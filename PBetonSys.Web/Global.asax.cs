@@ -12,6 +12,9 @@ namespace PBetonSys.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// 应用程序开始
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
