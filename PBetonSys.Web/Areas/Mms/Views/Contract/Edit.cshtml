@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+<script src="~/Areas/Mms/ViewModels/mms.com.js"></script>
+<script src="~/Areas/Mms/ViewModels/mms.viewModel.edit.js"></script>
+    <script type="text/javascript">
+        var viewModel = function (data) {
+            var self = this;
+            mms.viewModel.edit.apply(self, arguments);              //继承mms.viewModel.edit
+        };
+        var formatterEnable = function (value) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:saveClick" title="保存">保存</a>
+    <div class="datagrid-btn-separator"></div>
+</div>
+
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">系统编号</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.SysCont_ID" class="z-txt" /></div>
+    <div class="grid_1 lbl">合同编号</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Cont_ID" class="z-txt" /></div>
+    <div class="grid_1 lbl">工程是否结</div>
+    <div class="grid_3 val "><input type="text" data-bind="datasource:dataSource.FinshFlagList,comboboxValue:form.FinshFlag" class="z-txt easyui-combobox" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">简称</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.SimpleName" class="z-txt" /></div>
+    <div class="grid_1 lbl">施工单位</div>
+    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.constructionList,comboboxValue:form.Clinet_id" class="z-txt easyui-combobox" /></div>
+    <div class="grid_1 lbl">业务承接人 </div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.SalseRecevice" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">销售员 </div>
+    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.clerkList,comboboxValue:form.SalseName" class="z-txt easyui-combobox" /></div>
+    <div class="grid_1 lbl">签订日期</div>
+    <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.CheckDateTime" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">工程老板 </div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.BossName" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">联系电话</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.LinkPhon" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系人</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.LinkName" class="z-txt" /></div>
+    <div class="grid_1 lbl">密码</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Password" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">微信号</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.WXCode" class="z-txt" /></div>
+    <div class="grid_1 lbl">运距</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Interva" class="z-txt" /></div>
+    <div class="grid_1 lbl">合同数量</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Amount" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">结束日期</div>
+    <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.FinShDateTime" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">栓号</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Strong" class="z-txt" /></div>
+    <div class="grid_1 lbl">单价</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Price" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">对账时间</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.StatDate" class="z-txt" /></div>
+    <div class="grid_1 lbl">付款方式</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.paymentType" class="z-txt" /></div>
+    <div class="grid_1 lbl">比率</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.GatheringRatio" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">收款时间</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.GatheringDate" class="z-txt" /></div>
+    <div class="grid_1 lbl">尾款期限</div>
+    <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.EndPaymentDatetime" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">余款</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.EndPaymentMonth" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">合同类型</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.ContType" class="z-txt" /></div>
+    <div class="grid_1 lbl">备注</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.Remark" class="z-txt" /></div>
+    <div class="clear"></div>
+</div>
+
+<div id="tt" class="easyui-tabs">
+    <div title="报价明细">
+    </div>
+    <div title="表单信息" class="hide" style="padding-top:2px;">
+    </div>
+</div>  
+

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/Cart.js"></script>
+    <script type="text/javascript">
+        using('datebox');
+        var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
+        ko.bindingViewModel(new viewModel());
+    </script>
+}
+<div class="z-toolbar">
+    <a id="a_refresh" href="#" plain="true" class="easyui-linkbutton" icon="icon-arrow_refresh" title="刷新" data-bind="click:refreshClick">刷新</a>
+    <a id="a_add" href="#" plain="true" class="easyui-linkbutton" icon="icon-add" title="新增" data-bind="click:addClick">新增</a>
+    <a id="a_edit" href="#" plain="true" class="easyui-linkbutton" icon="icon-edit" data-bind="click:editClick" title="编辑">编辑</a>
+    <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:saveClick" title="保存">保存</a>
+</div>
+
+
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="_id" hidden="true">_id</th>
+            <th field="CartID" width="80">车号</th>
+            <th field="CartType" editor="text">车辆类型</th>
+            <th field="licenseID" editor="text" width="100">车牌号</th>
+            <th field="Company" editor="text" width="120">所属公司</th>
+            <th field="department" editor="text" width="80">部门</th>
+            <th field="brand" editor="text" width="80">品牌</th>
+            <th field="Tare" editor="text" width="80">皮重</th>
+            <th field="Cart_bulk" editor="text" width="80">体积</th>
+            <th field="UseTime" editor="text" width="80">使用年限</th>
+            <th field="BuyDateTime" sortable="true" align="left" width="80" editor="{type:'datebox'}" formatter="com.formatDate">购买时间</th>
+            <th field="StartDateTime" sortable="true" align="left" width="80" editor="{type:'datebox'}" formatter="com.formatDate">启用时间 </th>
+            <th field="State" sortable="true" align="left" width="80" editor="{type: 'checkbox',options: {on: true,off: false}}" formatter="formatterEnable">状态  </th>
+            <th field="Average_Oil_Consume" sortable="true" align="left" width="100" editor="text">平均油耗</th>
+            <th field="CardId" sortable="true" align="center" width="200" editor="text">卡号</th>
+            <th field="Remark" sortable="true" align="left" width="200" editor="text">备注</th>
+        </tr>
+    </thead>
+</table>
+

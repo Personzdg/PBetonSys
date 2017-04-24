@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/Clinet.js"></script>
+    <script type="text/javascript">
+        using('datebox');
+        var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
+        ko.bindingViewModel(new viewModel());
+    </script>
+}
+<div class="z-toolbar">
+    <a id="a_refresh" href="#" plain="true" class="easyui-linkbutton" icon="icon-arrow_refresh" title="刷新" data-bind="click:refreshClick">刷新</a>
+    <a id="a_add" href="#" plain="true" class="easyui-linkbutton" icon="icon-add" title="新增" data-bind="click:addClick">新增</a>
+    <a id="a_edit" href="#" plain="true" class="easyui-linkbutton" icon="icon-edit" data-bind="click:editClick" title="编辑">编辑</a>
+    <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:saveClick" title="保存">保存</a>
+</div>
+
+
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="_id" hidden="true">_id</th>
+            <th field="DriveID">车号</th>
+            <th field="Name" editor="text">名称</th>
+            <th field="CheckDateTime" sortable="true" align="left" width="80" editor="{type:'datebox'}" formatter="com.formatDate">时间   </th>
+            <th field="State" sortable="true" align="left" width="120" editor="{type: 'checkbox',options: {on: true,off: false}}" formatter="formatterEnable">状态  </th>
+            <th field="Remark" sortable="true" align="left" width="100" editor="text">备注</th>
+            <th field="SimpleName" sortable="true" align="center" width="100" editor="text">简称</th>
+            <th field="ClerkID" sortable="true" align="left" width="80" editor="text">操作员</th>
+            <th field="LinkName" sortable="true" align="center" width="80" editor="text">联系人</th>
+            <th field="LinkPhon" sortable="true" align="left" width="200" editor="text">联系电话</th>
+            <th field="WXCode" sortable="true" align="left" width="200" editor="text">微信号</th>
+            <th field="Password" sortable="true" align="left" width="200" editor="text">密码</th>
+        </tr>
+    </thead>
+</table>
