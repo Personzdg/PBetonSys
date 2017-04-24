@@ -53,3 +53,14 @@ D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Core\bin\Debug\N
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Core\obj\Debug\PBetonSys.Core.csprojResolveAssemblyReference.cache
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Core\obj\Debug\PBetonSys.Core.dll
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Core\obj\Debug\PBetonSys.Core.pdb
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\PBetonSys.Core.dll
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\PBetonSys.Core.pdb
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\Newtonsoft.Json.dll
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\PBetonSys.Data.dll
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\PBetonSys.Utils.dll
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\PBetonSys.Data.pdb
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\PBetonSys.Utils.pdb
+D:\PB\PBetonSys\PBetonSys.Core\bin\Debug\Newtonsoft.Json.xml
+D:\PB\PBetonSys\PBetonSys.Core\obj\Debug\PBetonSys.Core.csprojResolveAssemblyReference.cache
+D:\PB\PBetonSys\PBetonSys.Core\obj\Debug\PBetonSys.Core.dll
+D:\PB\PBetonSys\PBetonSys.Core\obj\Debug\PBetonSys.Core.pdb

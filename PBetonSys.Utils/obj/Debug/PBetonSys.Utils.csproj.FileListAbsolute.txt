@@ -30,3 +30,10 @@ D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Utils\obj\Debug\
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.csproj.GenerateResource.Cache
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.dll
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.pdb
+D:\PB\PBetonSys\PBetonSys.Utils\bin\Debug\PBetonSys.Utils.dll
+D:\PB\PBetonSys\PBetonSys.Utils\bin\Debug\PBetonSys.Utils.pdb
+D:\PB\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.csprojResolveAssemblyReference.cache
+D:\PB\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.Document.Excel.NPOI.Resource1.resources
+D:\PB\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.csproj.GenerateResource.Cache
+D:\PB\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.dll
+D:\PB\PBetonSys\PBetonSys.Utils\obj\Debug\PBetonSys.Utils.pdb
