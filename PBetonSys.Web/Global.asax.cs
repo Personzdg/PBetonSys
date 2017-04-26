@@ -13,7 +13,11 @@ namespace PBetonSys.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         /// <summary>
+<<<<<<< HEAD
         /// 应用程序开始
+=======
+        /// 这是一个测试22222
+>>>>>>> origin/master
         /// </summary>
         protected void Application_Start()
         {
