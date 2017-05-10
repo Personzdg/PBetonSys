@@ -11,7 +11,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
     {
         public TaskService() 
         {
-            base.db.ConnectionStringName(APP.DB_Betonsys, new SqlServerProvider());
+            base.ModuleName = "Betonsys";
         }
         //public List<Task> GetTaskList()
         //{

@@ -185,74 +185,7 @@ var permissionTab = function (row) {
                 } 
             };
 
-            this.grid3check = function (node,value) {
-                node.checked = value;
-                var img = self.grid3.treegrid('getPanel').find('img[PermissionCode=' + node.PermissionCode + ']');
-                value ? img.show() : img.hide();
-                img.val(node.IsDefault);
-            };
-            this.grid3 = {
-                height: 460,
-                width: 774,
-                url: '/api/sys/permission/GetRolePermission/' + row.RoleCode,
-                idField: 'PermissionCode',
-                queryParams: ko.observable(),
-                treeField: 'PermissionName',
-                singleSelect: false,
-                columns: [[
-                    {field:'chk',checkbox:true},
-                    {field:'PermissionName', width:150,title:'授权名称'},
-                    {field:'PermissionCode',width:100,title:'授权代码'},
-                    {
-                        field: 'IsDefault', width: 60, title: '是否默认', align: 'center', formatter: function (v, r) {
-                        return '<img value="'+r.IsDefault+'" style="display:'+(r.checked?'':'none')+'" PermissionCode="'+ r.PermissionCode +'" src="/Content/images/' + (v ? "checkmark.gif" : "checknomark.gif") + '"/>';
-                    }}
-                ]],
-                onCheck: function (node) {
-                    self.grid3check(node, true);
-                },
-                onUncheck: function (node) {
-                    self.grid3check(node, false);
-                },
-                onCheckAll: function (rows) {
-                    utils.eachTreeRow(rows, function (node) { self.grid3check(node, true); });
-                },
-                onUncheckAll: function (rows) {
-                    utils.eachTreeRow(rows, function (node) { self.grid3check(node, false); });
-                },
-                onLoadSuccess: function (r, d) {
-                    self.grid3.treegrid('getPanel').find("td[field=IsDefault]").unbind('click').click(function (event) {
-                        var img = $(this).find("img"),value = img.attr("value")=="1"?"0":"1";
-                        var map = { "0": "/Content/images/checknomark.gif", "1": "/Content/images/checkmark.gif" };
-                        if (value == "1")
-                            self.grid3.treegrid('getPanel').find("img[PermissionCode]").attr("src", map["0"]).val(0);
-                        img.attr("src", map[value]).val(value);
-                        event.stopPropagation();
-                    });
-                },
-                loadFilter: function (d) {
-                    return utils.toTreeData(d, 'PermissionCode', 'ParentCode', "children");
-                }
-            };
 
-            this.grid4 = {
-                height: 460,
-                width: 774,
-                idField: 'MenuCode',
-                treeField: 'MenuName',
-                columns: [[
-                    { field: 'MenuName', width: 150, title: '菜单' },
-                    { field: 'AllowColumns', width: 270, title: '允许', editor: 'text' },
-                    { field: 'RejectColumns', width: 300, title: '拒绝', editor: 'text' }
-                ]],
-                loadFilter: function (d) {
-                    return utils.toTreeData(d, 'MenuCode', 'ParentCode', "children");
-                }
-            };
-            this.grid4Edit = new com.editTreeGridViewModel(this.grid4);
-            this.grid4.onDblClickRow = this.grid4Edit.begin;
-            this.grid4.onClickRow = this.grid4Edit.ended;
-            this.grid4.OnBeforeDestroyEditor = ko.observable();
             
             this.confirmClick = function () {
                 var post = {menus:[],buttons:[],permissions:[],columns:[]};
@@ -266,21 +199,8 @@ var permissionTab = function (row) {
                             if (btn.substr(0, 4) == 'btn_' && node[btn] == '1' && btn != 'btn__checkall')
                                 post.buttons.push({ MenuCode: node.MenuCode, ButtonCode: btn.split('_')[1] });
 
-                        //3取得列权限数据
-                        if (node.AllowColumns || node.RejectColumns)
-                            post.columns.push({ MenuCode: node.MenuCode, AllowColumns: node.AllowColumns, RejectColumns: node.RejectColumns });
                     }
                 });
-
-                //4 取得授权代码数据
-                var panel3 = self.grid3.treegrid('getPanel');
-                utils.eachTreeRow(self.grid3.treegrid('getData'), function (node) {
-                    if (node.checked) {
-                        var img = panel3.find("img[PermissionCode=" + node.PermissionCode + "][value=1]");
-                        post.permissions.push({ PermissionCode: node.PermissionCode, IsDefault: img.length });
-                    }
-                });
- 
                 com.ajax({
                     url: '/api/sys/role/editpermission/' + row.RoleCode,
                     data: ko.toJSON(post),
