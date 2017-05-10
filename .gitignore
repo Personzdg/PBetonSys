@@ -7,3 +7,11 @@
 *.pdb
 *.cache
 packages/
+/PBetonSys.Core/bin
+/PBetonSys.Core/obj
+/PBetonSys.Data/bin
+/PBetonSys.Data/obj
+/PBetonSys.Utils/bin
+/PBetonSys.Utils/obj
+/PBetonSys.Web/bin
+/PBetonSys.Web/obj
