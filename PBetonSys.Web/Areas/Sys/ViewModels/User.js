@@ -48,7 +48,7 @@ var viewModel = function(){
     this.saveClick = function () {
         self.gridEdit.ended();
         var post = {};
-        post.list = self.gridEdit.getChanges(['ClerkID', 'Name', 'State']);
+        post.list = self.gridEdit.getChanges(['ClerkID', 'Name', 'State', 'UserType']);
         if (self.gridEdit.ended() && post.list._changed) {
             com.ajax({
                 url: '/api/sys/user/edit',

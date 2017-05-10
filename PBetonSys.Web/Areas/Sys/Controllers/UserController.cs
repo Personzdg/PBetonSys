@@ -14,7 +14,14 @@ namespace PBetonSys.Web.Areas.Sys.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new
+            {
+                dataSource = new
+                {
+                    userType = new sys_codeService().GetValueTextListByType("UserType")
+                }
+            };
+            return View(model);
         }
     }
 

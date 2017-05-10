@@ -12,7 +12,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
 {
     public class ClinetController : Controller
     {
-        //
+        //This is A Test
         // GET: /Mms/Clinet/
         public ActionResult Index()
         {
