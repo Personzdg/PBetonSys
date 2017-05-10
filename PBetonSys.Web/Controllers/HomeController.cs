@@ -12,10 +12,14 @@ namespace PBetonSys.Web.Controllers
     [MvcMenuFilter(false)]
     public class HomeController : Controller
     {
+        /// <summary>
+        /// 系统首页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var loginer = FormsAuth.GetUserData<LoginerBase>();
-            ViewBag.Title = "建设工程材料管理系统";
+            ViewBag.Title = "管理系统";
             ViewBag.UserName = loginer.UserName;
             ViewBag.Settings = new ClerkService().GetCurrentUserSettings();
 
