@@ -184,10 +184,12 @@
     <Compile Include="Areas\Mms\Controllers\ClientController.cs" />
     <Compile Include="Areas\Mms\Controllers\ContractController.cs" />
     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mms\Controllers\TaskController.cs" />
     <Compile Include="Areas\Mms\MmsAreaRegistration.cs" />
     <Compile Include="Areas\Mms\Models\Cart.cs" />
     <Compile Include="Areas\Mms\Models\Client.cs" />
     <Compile Include="Areas\Mms\Models\Contract.cs" />
+    <Compile Include="Areas\Mms\Models\Task.cs" />
     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />
     <Compile Include="Areas\Sys\Controllers\MenuController.cs" />
     <Compile Include="Areas\Sys\Controllers\OrganizeController.cs" />
@@ -223,6 +225,7 @@
     <Content Include="Areas\Mms\ViewModels\mms.com.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.edit.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.search.js" />
+    <Content Include="Areas\Mms\ViewModels\Task.js" />
     <Content Include="Areas\Sys\ViewModels\Code.js" />
     <Content Include="Areas\Sys\ViewModels\Menu.js" />
     <Content Include="Areas\Sys\ViewModels\Organize.js" />
@@ -3316,6 +3319,7 @@
     <Content Include="Areas\Mms\Views\Contract\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Contract\Edit.cshtml" />
     <Content Include="Areas\Mms\Views\Cart\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\Task\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
