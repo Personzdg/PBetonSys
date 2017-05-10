@@ -27,15 +27,15 @@ var viewModel = function () {
         window.location.reload();
     };
     this.addClick = function () {
-
-        com.ajax({
-            type: 'GET',
-            url: '/api/Mms/Clinet/getnewcode',
-            success: function (d) {
-                var row = { Task_id: d };
-                self.gridEdit.addnew(row);
-            }
-        });
+        this.opentaskdialog();
+        //com.ajax({
+        //    type: 'GET',
+        //    url: '/api/Mms/Clinet/getnewcode',
+        //    success: function (d) {
+        //        var row = { Task_id: d };
+        //        self.gridEdit.addnew(row);
+        //    }
+        //});
         //self.gridEdit.addnew({});
     };
     this.deleteClick = function () {
@@ -63,5 +63,77 @@ var viewModel = function () {
                 }
             });
         }
+    };
+
+
+    this.opentaskdialog = function () {
+           com.dialog({
+            title: "编辑任务",
+            width: 500,
+            height: 300,
+            html: "#task-template",
+            viewModel: function (win) {
+                var self = this;
+                this.confirmClick = function () {
+                    //self.grid.treegrid('getData');
+                    window.location.reload();
+                    win.dialog('close');
+                };
+                this.cancelClick = function () {
+                    window.location.reload();
+                    win.dialog('close');
+                };
+
+            }
+        });
+    };
+
+
+    var taskdialog = function (row) {
+        com.dialog({
+            title: "编辑任务",
+            width: 800,
+            height: 600,
+            html: "#task-template",
+            viewModel: function (win) {
+                var self = this;
+                //this.grid2 = {
+                //    height: 460,
+                //    width: 774,
+                //    idField: 'MenuCode',
+                //    treeField: 'MenuName',
+                //    frozenColumns: [[
+                //        { field: 'MenuName', width: 150, title: '菜单' },
+                //        {
+                //            field: 'btn__checkall',
+                //            width: 50,
+                //            align: 'center',
+                //            title: '<span class="icon icon-chk_unchecked">全选</span>',
+                //            formatter: function (v, r) {
+                //                for (var i in r) {
+                //                    if (i.indexOf("btn_") > -1 && r[i] > -1) {
+                //                        return '<img MenuCode="' + r.MenuCode + '" ButtonCode="_checkall" src="/Content/images/' + (v ? "checkmark.gif" : "checknomark.gif") + '"/>';
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    ]],
+                //    columns: ko.observableArray(),
+                //    loadFilter: function (d) {
+                //        return utils.toTreeData(d, 'MenuCode', 'ParentCode', "children");
+                //    }
+                //};
+
+
+
+                //this.confirmClick = function () {
+                //    //self.grid.treegrid('getData');
+                //};
+                //this.cancelClick = function () {
+                //    win.dialog('close');
+                //};
+
+            }
+        });
     };
 };
