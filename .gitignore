@@ -1,2 +1,6 @@
 *.cache
 *.cache
+/PBetonSys.Web/bin
+/PBetonSys.Utils/bin
+/PBetonSys.Data/bin
+/PBetonSys.Core/bin

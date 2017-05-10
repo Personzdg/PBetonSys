@@ -20,3 +20,8 @@ D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Data\bin\Debug\P
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Data\bin\Debug\PBetonSys.Data.pdb
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Data\obj\Debug\PBetonSys.Data.dll
 D:\BaiduNetdiskDownload\PBetonSys2017041703\PBetonSys\PBetonSys.Data\obj\Debug\PBetonSys.Data.pdb
+D:\MySourceCode\PB\PBetonSys\PBetonSys.Data\bin\Debug\PBetonSys.Data.dll
+D:\MySourceCode\PB\PBetonSys\PBetonSys.Data\bin\Debug\PBetonSys.Data.pdb
+D:\MySourceCode\PB\PBetonSys\PBetonSys.Data\obj\Debug\PBetonSys.Data.csprojResolveAssemblyReference.cache
+D:\MySourceCode\PB\PBetonSys\PBetonSys.Data\obj\Debug\PBetonSys.Data.dll
+D:\MySourceCode\PB\PBetonSys\PBetonSys.Data\obj\Debug\PBetonSys.Data.pdb
