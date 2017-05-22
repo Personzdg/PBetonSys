@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,7 +6,7 @@
 @section scripts{
     <script src="~/Areas/Mms/ViewModels/Task.js"></script>
     <script type="text/javascript">
-        using('datebox');
+        using(['combogrid', 'combobox', 'datebox','numberbox']);
         var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
         ko.bindingViewModel(new viewModel());
     </script>
@@ -17,7 +16,6 @@
     <a id="a_add" href="#" plain="true" class="easyui-linkbutton" icon="icon-add" title="新增" data-bind="click:addClick">新增</a>
     <a id="a_edit" href="#" plain="true" class="easyui-linkbutton" icon="icon-edit" data-bind="click:editClick" title="编辑">编辑</a>
     <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
-    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:saveClick" title="保存">保存</a>
 </div>
 
 
@@ -26,7 +24,7 @@
     <thead>
         <tr>
             <th field="_id" hidden="true">_id</th>
-            <th field="Task_id" width="80">单号任务</th>
+            <th field="Task_id" width="80">任务单号</th>
             <th field="Cont_ID" width="80">合同编号</th>
             <th field="Strong" width="80">强度</th>
             <th field="Fall" width="80">坍落度</th>
@@ -40,60 +38,80 @@
 
 
 <script type="text/html" id="task-template">
-        <div id="master" class="container_12">
-            <div class="grid_2 lbl">任务单号</div>
-            <div class="grid_4 val"><input type="text"  class="z-txt" /></div>
-            <div class="grid_2 lbl">楼号</div>
-            <div class="grid_4 val"><input type="text"  class="z-txt" /></div>
+    <style type="text/css">
+        .s-txt {
+            width: 60px;
+        }
+        .m-txt{
+            width:100px;
+        }
+        .l-txt {
+            width: 356px;
+        }
+    </style>
+    <div id="master" class="container_12">
+        <div class="grid_2 lbl">任务单号</div>
+        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Task_id" disabled="disabled" /></div>
+        <div class="grid_2 lbl">楼号</div>
+        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.House_id" /></div>
+        <div class="grid_2 lbl">状态</div>
+        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.AuditingFlag" disabled="disabled" /></div>
+        <div class="clear"></div>
 
-            <div class="clear"></div>
+        <div class="grid_2 lbl required">合同编号</div>
+        <div class="grid_10 val"><input type="text" class="z-txt l-txt" data-bind="easyuiCombogrid:combotree,combogridValue:form.Cont_ID" data-options="editable:true,required:true" /><span data-bind1="text:form.Cont_ID" style="margin:5px;"></span></div>
+        <div class="clear"></div>
 
-            <div class="grid_2 lbl">状态</div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
+        <div class="grid_2 lbl">工程名称</div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxProject,comboboxValue:form.Cont_ID" data-options="disabled:true" /></div>
+        <div class="clear"></div>
 
-            <div class="grid_2 lbl">合同编号</div>
-            <div class="grid_4 val"><input type="text"  class="z-txt" /></div>
+        <div class="grid_2 lbl">施工单位</div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxClient,comboboxValue:form.Clin_ID" data-options="disabled:true" /></div>
+        <div class="clear"></div>
 
-            <div class="clear"></div>
-            <div class="grid_2 lbl">施工单位</div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">结构部位 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
+        <div class="grid_2 lbl required">结构部位</div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPlace,comboboxValue:form.Place" data-options="required:true" /></div>
+        <div class="clear"></div>
 
-            <div class="clear"></div>
+        <div class="grid_2 lbl">预定方量</div>
+        <div class="grid_10 val"><input type="text" class="easyui-numberbox z-txt m-txt" data-bind="numberboxValue:form.Amount" data-options="precision:2" /></div>
+        <div class="clear"></div>
 
-            <div class="grid_2 lbl">强度等级 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">预定方量</div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
+        <div class="grid_2 lbl required">强度等级</div>
+        <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt m-txt" data-bind="easyuiCombobox:comboboxStrong,comboboxValue:form.Strong" data-options="required:true" /></div>
+        <div class="grid_2 lbl required">坍落度</div>
+        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxFall,comboboxValue:form.Fall" data-options="required:true" /></div>
+        <div class="grid_2 lbl">是否泵送 </div>
+        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.Pump" /></div>
+        <div class="clear"></div>
 
-            <div class="clear"></div>
-            <div class="grid_2 lbl">坍落度 </div>
-            <div class="grid_4 val"><input type="text"  class="z-txt" /></div>
-            <div class="grid_2 lbl">是否泵送 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="clear"></div>
-            <div class="grid_2 lbl">泵车</div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">联系人 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
+        <div class="grid_2 lbl">泵车</div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPumpType" data-options="multiple:true" /></div>
+        <div class="clear"></div>
 
-            <div class="clear"></div>
-            <div class="grid_2 lbl">联系电话 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">签发人</div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">创建时间 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">审核人 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="clear"></div>
-            <div class="grid_2 lbl">供应时间</div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="grid_2 lbl">备注 </div>
-            <div class="grid_4 val"><input type="text" class="z-txt" /></div>
-            <div class="clear"></div>
-        </div>
+        <div class="grid_2 lbl">需方联系人</div>
+        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.LinkName" /></div>
+        <div class="grid_2 lbl">需方电话</div>
+        <div class="grid_5 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Telephon" /></div>
+        <div class="clear"></div>
+
+        <div class="grid_2 lbl">签发</div>
+        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.ViseName" /></div>
+        <div class="grid_2 lbl required">签发时间 </div>
+        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
+        <div class="clear"></div>
+
+        <div class="grid_2 lbl">审核</div>
+        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
+        <div class="grid_2 lbl">供应时间</div>
+        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.Provide_DateTime" /></div>
+        <div class="clear"></div>
+
+        <div class="grid_2 lbl">备注 </div>
+        <div class="grid_4 val"><textarea style="height:50px;" class="z-txt l-txt" data-bind="value:form.Remark"></textarea></div>
+        <div class="clear"></div>
+    </div>
     <div style="text-align:center;clear:both">
         <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:confirmClick" href="javascript:void(0)">确定</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>

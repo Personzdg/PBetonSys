@@ -117,6 +117,24 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return result;
         }
 
+        public dynamic GetComboContract()
+        {
+            RequestWrapper query = new RequestWrapper();
+            query.LoadSettingXmlString(@"
+                <settings defaultOrderBy='a.CheckDateTime'>
+                    <select>
+                        a.Cont_ID,a.ProjectName,a.Clinet_id,b.Name
+                    </select>
+                    <from>
+                        Contract as a
+                        inner join Clinet as b on a.Clinet_id=b.Clinet_id
+                    </from>
+                </settings>");
+            var pQuery = query.ToParamQuery();
+            var result = masterService.GetDynamicList(pQuery);
+            return result;
+        }
+
         public string GetNewCode()
         {
             var service = new ContractService();

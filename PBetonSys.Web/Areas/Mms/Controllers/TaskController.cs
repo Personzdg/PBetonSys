@@ -17,7 +17,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         {
             return View();
         }
-	}
+    }
 
     public class TaskApiController : ApiController
     {
@@ -36,5 +36,30 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             var result = new TaskService().GetDynamicListWithPaging(pQuery);
             return result;
         }
+
+        public string GetNewCode()
+        {
+            var service = new TaskService();
+            return service.GetNewCode();
+        }
+
+        [System.Web.Http.HttpPost]
+        public void Edit(dynamic data)
+        {
+            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+                    <settings>
+                        <table>
+                            Task
+                        </table>
+                        <where>
+                            <field name='Task_id' cp='equal' variable='Task_id'></field>
+                        </where>
+                    </settings>");
+
+            var service = new TaskService();
+            var result = service.Edit(null, listWrapper, data);
+
+        }
+
     }
 }

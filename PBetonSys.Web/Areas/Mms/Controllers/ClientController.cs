@@ -37,6 +37,23 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return result;
         }
 
+        public dynamic GetComboClinet()
+        {
+            RequestWrapper query = new RequestWrapper();
+            query.LoadSettingXmlString(@"
+                <settings defaultOrderBy='CheckDateTime'>
+                    <select>
+                        [Clinet_id] ,[Name]
+                    </select>
+                    <from>
+                        Clinet
+                    </from>
+                </settings>");
+            var pQuery = query.ToParamQuery();
+            var result = new ClientService().GetDynamicList(pQuery);
+            return result;
+        }
+
         public string GetNewCode()
         {
             var service = new ClientService();

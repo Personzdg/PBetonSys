@@ -19,6 +19,14 @@ namespace PBetonSys.Web.Areas.Mms.Models
         //    string strSql = "SELECT [Task_id],[House_id],[Cont_ID],[Clin_ID],[Place],[Strong],[Fall],[Infiltrate] ,[Amount] ,[Pump],[KanZhe],[Pump_vehicle],[LinkName],[Telephon],[ViseName],[Auditing],[CheckDateTime],[Provide_DateTime] ,[Remark],[State],[Wjj],[ShowFlag],[ContractUnit] ,[TempProject],[Task_inside_code],[AuditingFlag],[NetID],[Type] FROM [dbo].[Task]";
         //    return db.Sql(strSql).QueryMany<Task>();
         //}
+
+        public string GetNewCode()
+        {
+            var produce = db.StoredProcedure("GetTaskNO");
+            produce.ParameterOut("Number", DataTypes.String, 13);
+            produce.Execute();
+            return produce.ParameterValue<string>("Number");
+        }
     }
     public class Task : ModelBase
     {

@@ -196,7 +196,9 @@
     <Compile Include="Areas\Sys\Controllers\ParameterController.cs" />
     <Compile Include="Areas\Sys\Controllers\PermissionController.cs" />
     <Compile Include="Areas\Sys\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Sys\Controllers\SysCodeController.cs" />
     <Compile Include="Areas\Sys\Controllers\UserController.cs" />
+    <Compile Include="Areas\Sys\Models\SysCode.cs" />
     <Compile Include="Areas\Sys\Models\sys_buttonService.cs" />
     <Compile Include="Areas\Sys\Models\sys_code.cs" />
     <Compile Include="Areas\Sys\Models\sys_codeType.cs" />
@@ -3368,9 +3370,11 @@
     <Folder Include="Areas\Area\Controllers\" />
     <Folder Include="Areas\Area\Models\" />
     <Folder Include="Areas\Area\Views\Shared\" />
+    <Folder Include="Areas\Mms\Views\Code\" />
     <Folder Include="Areas\Mms\Views\Shared\" />
     <Folder Include="Areas\Sys\Models\Shared\" />
     <Folder Include="Areas\Sys\Views\Permission\" />
+    <Folder Include="Areas\Sys\Views\SysCode\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
