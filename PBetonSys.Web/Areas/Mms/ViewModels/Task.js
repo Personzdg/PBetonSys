@@ -112,7 +112,7 @@ var viewModel = function () {
                         { field: 'Name', title: '施工单位', width: 150 }
                     ]],
                     filter: function (q, row) {
-                        return row['Cont_ID'].indexOf(q) >= 0;
+                        return row['Cont_ID'].indexOf(q) >= 0 && row['ProjectName'].indexOf(q) >= 0;
                     },
                     onSelect: function (i, row) {
                         that.form.Clin_ID(row.Clinet_id);
