@@ -1,4 +1,5 @@
 ﻿using PBetonSys.Core;
+using PBetonSys.Web.App_Start.webstack;
 using PBetonSys.Web.Areas.Mms.Models;
 using PBetonSys.Web.Areas.Sys.Models;
 using System;
@@ -22,10 +23,16 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 form = new
                 {
                     Cont_ID = "",
-                    SalseName=""
+                    SalseName = ""
                 }
             };
             return View(model);
+        }
+
+        [MvcMenuFilter(false)]
+        public ActionResult LookupContract()
+        {
+            return View();
         }
 
         public ActionResult Edit(string id)
@@ -42,7 +49,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 {
                     FinshFlagList = finshFlagList,
                     clerkList = new ClerkService().GetDynamicList(ParamQuery.Instance().Select("Name as value,Name as text")),
-                    constructionList = new ClientService().GetDynamicList(ParamQuery.Instance().Select("Clinet_id as value,Name as text"))    
+                    constructionList = new ClientService().GetDynamicList(ParamQuery.Instance().Select("Clinet_id as value,Name as text"))
                 },
                 //defaultForm = new mms_receive().Extend(new
                 //{
@@ -69,7 +76,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             };
             return View(model);
         }
-	}
+    }
 
     public class ContractApiController : MmsBaseApi<Contract, ContractService>
     {
@@ -135,27 +142,48 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return result;
         }
 
+        public dynamic GetLookupContract(RequestWrapper query)
+        {
+            query.LoadSettingXmlString(@"
+                <settings defaultOrderBy='a.CheckDateTime'>
+                    <select>
+                        a.Cont_ID,a.ProjectName,a.Clinet_id,b.Name
+                    </select>
+                    <from>
+                        Contract as a
+                        inner join Clinet as b on a.Clinet_id=b.Clinet_id
+                    </from>
+  <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+    <field name='a.Cont_ID'       cp='startwith'  ></field>
+    <field name='a.ProjectName'       cp='like'       ></field>
+  </where>
+                </settings>");
+            var pQuery = query.ToParamQuery();
+            var result = masterService.GetDynamicListWithPaging(pQuery);
+            return result;
+        }
+
         public string GetNewCode()
         {
             var service = new ContractService();
             return service.GetNewKey("SysCont_ID", "maxplus").PadLeft(3, '0');
         }
 
-//        public ActionResult Edit(dynamic data)
-//        {
-//            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
-//            <settings>
-//                <table>
-//                    Clinet
-//                </table>
-//                <where>
-//                    <field name='SysCont_ID' cp='equal' variable='SysCont_ID'></field>
-//                </where>
-//            </settings>");
-//            var service = new ContractService();
-//            var result = service.Edit(null, listWrapper, data);
-//        }
+        //        public ActionResult Edit(dynamic data)
+        //        {
+        //            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+        //            <settings>
+        //                <table>
+        //                    Clinet
+        //                </table>
+        //                <where>
+        //                    <field name='SysCont_ID' cp='equal' variable='SysCont_ID'></field>
+        //                </where>
+        //            </settings>");
+        //            var service = new ContractService();
+        //            var result = service.Edit(null, listWrapper, data);
+        //        }
 
-       
+
     }
 }

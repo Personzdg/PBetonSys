@@ -47,6 +47,19 @@ namespace PBetonSys.Web.Areas.Sys.Controllers
             return result;
         }
 
+        public dynamic GetCombo(RequestWrapper request)
+        {
+            request.LoadSettingXmlString(@"
+<settings defaultOrderBy='Seq'>
+   <where>
+        <field name='CodeType' cp='equal' ignoreEmpty='true'></field>
+    </where>
+</settings>");
+            var service = new sys_codeService();
+            var result = service.GetModelList(request.ToParamQuery());
+            return result;
+        }
+
         public string GetNewCode()
         {
             var service = new sys_codeService();

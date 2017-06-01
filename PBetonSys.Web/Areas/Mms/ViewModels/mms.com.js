@@ -10,13 +10,13 @@ var mms = mms || {};
 mms.com = {};
 
 mms.com.getCurrentProject = function () {
-    return window!=parent?parent.$.cookie('CurrentProject'):"";
+    return window != parent ? parent.$.cookie('CurrentProject') : "";
 };
 
 mms.com.formatSrcBillType = function (value) {
     var dict = {
     };
-    return dict[value]||value;
+    return dict[value] || value;
 };
 
 //计算总金额 用法：
@@ -56,7 +56,7 @@ mms.com.auditDialog = function () {
     var query = parent.$;
     var winAudit = query('#w_audit_div'), args = arguments;
     if (winAudit.length == 0) {
-        var html = utils.functionComment(function () {});
+        var html = utils.functionComment(function () { });
         var wrapper = query(html).appendTo("body");
         wrapper.find(".easyui-linkbutton").linkbutton();
         winAudit = wrapper.find(".easyui-dialog").dialog();
@@ -66,7 +66,7 @@ mms.com.auditDialog = function () {
         var self = this;
         this.disabled = ko.observable(true);
         this.form = {
-            status: args[0].ApproveState()=="passed"?"reject":"passed",
+            status: args[0].ApproveState() == "passed" ? "reject" : "passed",
             comment: args[0].ApproveRemark()
         };
         this.confirmClick = function () {
@@ -87,54 +87,25 @@ mms.com.auditDialog = function () {
     ko.cleanNode(node);
     ko.applyBindings(new viewModel(), node);
 };
- 
-//弹出选择材料窗口
-mms.com.selectMaterial = function (vm, param) {
+
+//弹出选择合同窗口
+mms.com.selectContract = function (vm, param,callback) {
     var grid = vm.grid;
     var addnew = vm.gridEdit.addnew;
     var defaultRow = vm.defaultRow;
-    var url = vm.urls.getrowid;
-    defaultRow.BillNo = vm.scrollKeys.current();
 
-    //var isExist = {}, existData = grid.datagrid('getData').rows;
-    //for (var j in existData)
-    //    isExist[existData[j].MaterialCode] = true;
     var orgRows = grid.datagrid('getData').rows;
-    var comapreArray = param._xml == "mms.material_batches" ? ['MaterialCode', 'SrcBillType', 'SrcBillNo'] : ['MaterialCode'];
-    var fnEqual = function (row1, row2) {
-        for (var key in comapreArray) 
-            if (row1[comapreArray[key]] != row2[comapreArray[key]])
-                return false;
-        return true;
-    }
-    var fnExist = function (row) {
-        for (var i in orgRows)
-            if (fnEqual(orgRows[i], row))
-                return true;
-        return false;
-    };
 
-    var target = parent.$('#selectMaterial').length ? parent.$('#selectMaterial') : parent.$('<div id="selectMaterial"></div>').appendTo('body');
+    var target = parent.$('#selectContract').length ? parent.$('#selectContract') : parent.$('<div id="selectContract"></div>').appendTo('body');
     utils.clearIframe(target);
 
-    var opt = { title: '选择在库材料', width: 800, height: 550, modal: true, collapsible: false, minimizable: false, maximizable: true, closable: true };
-    opt.content = "<iframe id='frm_win_material' src='/mms/home/lookupmaterial' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>";  //frameborder="0" for ie7
+    var opt = { title: '选择合同', width: 600, height: 450, modal: true, collapsible: false, minimizable: false, maximizable: true, closable: true };
+    opt.content = "<iframe id='frm_win_material' src='/mms/contract/lookupcontract' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>";  //frameborder="0" for ie7
     opt.paramater = param;      //可传参数
-    opt.onSelect = function (data) {                //可接收选择数据
-        var total = data.total;
-        var rows = data.rows;
-        com.ajax({
-            type: 'GET',
-            url: url + total,
-            data:{BillNo:vm.form.BillNo},
-            success: function (d) {
-                var ids = d.split(',');
-                for (var i in rows) {
-                    if (!fnExist(rows[i])) 
-                        addnew($.extend({ RowId: ids[i] }, defaultRow, rows[i]));
-                }
-            }
-        });
+    opt.onSelect = function (selectedData) {                //可接收选择数据
+        if (selectedData) {
+            callback(selectedData);
+        }
     };
     target.window(opt);
 };

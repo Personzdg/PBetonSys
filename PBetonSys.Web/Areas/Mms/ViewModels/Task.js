@@ -98,29 +98,15 @@ var viewModel = function () {
             html: "#task-template",
             viewModel: function (win) {
                 var that = this;
-                this.combotree = {
-                    panelWidth: 450,
-                    editable: true,
-                    mode: 'local',
-                    fitColumns: true,
-                    idField: 'Cont_ID',
-                    textField: 'Cont_ID',
-                    data: self.combogridData,
-                    columns: [[
-                        { field: 'Cont_ID', title: '合同编号', width: 100 },
-                        { field: 'ProjectName', title: '工程名称', width: 150 },
-                        { field: 'Name', title: '施工单位', width: 150 }
-                    ]],
-                    filter: function (q, row) {
-                        return row['Cont_ID'].indexOf(q) >= 0 && row['ProjectName'].indexOf(q) >= 0;
-                    },
-                    onSelect: function (i, row) {
-                        that.form.Clin_ID(row.Clinet_id);
-                    }
+                this.lookupClick = function () {
+                    mms.com.selectContract(self, null, function (data) {
+                        that.form.Cont_ID(data.Cont_ID);
+                        that.form.Clin_ID(data.Clinet_id);
+                    });
                 };
                 this.comboboxHouse = {
                     valueField: 'Code',
-                    textField: 'DESCRIPTION',
+                    textField: 'Text',
                     data: self.comboboxHouseData
                 };
                 this.comboboxProject = {
@@ -134,24 +120,24 @@ var viewModel = function () {
                     data: self.comboboxClientData
                 };
                 this.comboboxPlace = {
-                    valueField: 'DESCRIPTION',
-                    textField: 'DESCRIPTION',
+                    valueField: 'Text',
+                    textField: 'Text',
                     data: self.comboboxPlaceData
                 };
                 this.comboboxStrong = {
-                    valueField: 'DESCRIPTION',
-                    textField: 'DESCRIPTION',
+                    valueField: 'Text',
+                    textField: 'Text',
                     data: self.comboboxStrongData
                 };
                 this.comboboxFall = {
-                    valueField: 'DESCRIPTION',
-                    textField: 'DESCRIPTION',
+                    valueField: 'Text',
+                    textField: 'Text',
                     data: self.comboboxFallData
                 };
                 this.comboboxPumpType = {
                     value: self.removeEmptyValue(model.Pump_vehicle.replace(';', ',').split(',')),
-                    valueField: 'DESCRIPTION',
-                    textField: 'DESCRIPTION',
+                    valueField: 'Text',
+                    textField: 'Text',
                     data: self.comboboxPumpTypeData,
                     onChange: function (n, o) {
                         that.form.Pump_vehicle(n.join(','));
@@ -203,7 +189,8 @@ var viewModel = function () {
     this.initComboData = function () {
         com.ajax({
             type: 'GET',
-            url: '/api/Sys/SysCode/GetHouseList',
+            url: '/api/Sys/code/getcombo',
+            data: { CodeType: 'House_id' },
             success: function (d) {
                 self.comboboxHouseData = d;
             }
@@ -224,28 +211,32 @@ var viewModel = function () {
         });
         com.ajax({
             type: 'GET',
-            url: '/api/Sys/SysCode/GetPlaceList',
+            url: '/api/Sys/code/getcombo',
+            data: { CodeType: 'Place' },
             success: function (d) {
                 self.comboboxPlaceData = d;
             }
         });
         com.ajax({
             type: 'GET',
-            url: '/api/Sys/SysCode/GetStrongList',
+            url: '/api/Sys/code/getcombo',
+            data: { CodeType: 'Strong' },
             success: function (d) {
                 self.comboboxStrongData = d;
             }
         });
         com.ajax({
             type: 'GET',
-            url: '/api/Sys/SysCode/GetFallList',
+            url: '/api/Sys/code/getcombo',
+            data: { CodeType: 'Fall' },
             success: function (d) {
                 self.comboboxFallData = d;
             }
         });
         com.ajax({
             type: 'GET',
-            url: '/api/Sys/SysCode/GetPumpTypeList',
+            url: '/api/Sys/code/getcombo',
+            data: { CodeType: 'pumpType' },
             success: function (d) {
                 self.comboboxPumpTypeData = d;
             }

@@ -4,9 +4,10 @@
 }
 
 @section scripts{
+    <script src="~/Areas/Mms/ViewModels/mms.com.js"></script>
     <script src="~/Areas/Mms/ViewModels/Task.js"></script>
     <script type="text/javascript">
-        using(['combogrid', 'combobox', 'datebox','numberbox']);
+        using(['combogrid', 'combobox', 'datebox', 'numberbox']);
         var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
         ko.bindingViewModel(new viewModel());
     </script>
@@ -42,9 +43,11 @@
         .s-txt {
             width: 60px;
         }
-        .m-txt{
-            width:100px;
+
+        .m-txt {
+            width: 100px;
         }
+
         .l-txt {
             width: 356px;
         }
@@ -59,7 +62,10 @@
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">合同编号</div>
-        <div class="grid_10 val"><input type="text" class="z-txt l-txt" data-bind="easyuiCombogrid:combotree,combogridValue:form.Cont_ID" data-options="editable:true,required:true" /><span data-bind1="text:form.Cont_ID" style="margin:5px;"></span></div>
+        <div class="grid_10 val">
+            <input type="text" class="z-txt l-txt" style="width:300px;" data-bind="value:form.Cont_ID" disabled="disabled" />
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
+        </div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">工程名称</div>
