@@ -3,8 +3,9 @@
 * 程序名: PriceInfo.js
 **/
 
-var viewModel = function () {
+var viewModel = function (data) {
     var self = this;
+    this.form = ko.mapping.fromJS(data.form);
     this.grid = {
         size: { w: 4, h: 40 },
         url: '/api/Mms/Task/GetTaskList',
@@ -15,14 +16,17 @@ var viewModel = function () {
             return d;
         }
     };
+    this.grid.queryParams(data.form);
     this.gridEdit = new com.editGridViewModel(this.grid);
 
-    //this.grid.onDblClickRow = this.gridEdit.begin;
-    //this.grid.onClickRow = this.gridEdit.ended;
-    //this.grid.OnAfterCreateEditor = function (editors, row) {
-    //    if (row._isnew == undefined)
-    //        com.readOnlyHandler('input')(editors.Clinet_id.target, true);
-    //};
+    this.searchClick = function () {
+        var param = ko.toJS(this.form);
+        this.grid.queryParams(param);
+    };
+
+    this.clearClick = function () {
+        window.location.reload();
+    };
 
     this.refreshClick = function () {
         window.location.reload();
@@ -32,7 +36,7 @@ var viewModel = function () {
             type: 'GET',
             url: '/api/Mms/Task/getnewcode',
             success: function (d) {
-                var defaults = { Task_id: d, Pump_vehicle: "" };
+                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "" };
                 self.opentaskdialog("添加新任务", defaults, function (vm, win) {
                     if (com.formValidate(win)) {
                         self.save("inserted", vm, win);
@@ -94,7 +98,7 @@ var viewModel = function () {
         com.dialog({
             title: title,
             width: 500,
-            height: 420,
+            height: 440,
             html: "#task-template",
             viewModel: function (win) {
                 var that = this;
@@ -143,6 +147,15 @@ var viewModel = function () {
                         that.form.Pump_vehicle(n.join(','));
                     }
                 };
+                this.comboboxWjj = {
+                    value: self.removeEmptyValue(model.Wjj ? model.Wjj.replace(';', ',').split(',') : []),
+                    valueField: 'Text',
+                    textField: 'Text',
+                    data: self.comboboxWjjData,
+                    onChange: function (n, o) {
+                        that.form.Wjj(n.join(','));
+                    }
+                };
 
                 this.form = {
                     Task_id: ko.observable(model.Task_id),
@@ -156,6 +169,7 @@ var viewModel = function () {
                     Fall: ko.observable(model.Fall),
                     Pump: ko.observable(model.Pump),
                     Pump_vehicle: ko.observable(model.Pump_vehicle.replace(';', ',')),
+                    Wjj: ko.observable(model.Wjj ? model.Wjj.replace(';', ',') : undefined),
                     LinkName: ko.observable(model.LinkName),
                     Telephon: ko.observable(model.Telephon),
                     ViseName: ko.observable(model.ViseName),
@@ -239,6 +253,14 @@ var viewModel = function () {
             data: { CodeType: 'pumpType' },
             success: function (d) {
                 self.comboboxPumpTypeData = d;
+            }
+        });
+        com.ajax({
+            type: 'GET',
+            url: '/api/Sys/code/getcombo',
+            data: { CodeType: 'wjj' },
+            success: function (d) {
+                self.comboboxWjjData = d;
             }
         });
     };

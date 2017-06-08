@@ -49,7 +49,8 @@
     ko.creatEasyuiValueBindings({ type: 'combobox', event: 'onSelect' });
     ko.creatEasyuiValueBindings({ type: 'combotree', event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'combogrid', event: 'onChange' });
-    ko.creatEasyuiValueBindings({ type: 'datebox'       , event: 'onSelect' , formatter: com.formatDate });
+    ko.creatEasyuiValueBindings({ type: 'datebox', event: 'onSelect', formatter: com.formatDate });
+    ko.creatEasyuiValueBindings({ type: 'datetimebox', event: 'onChange', formatter: com.formatTime });
     ko.creatEasyuiValueBindings({ type: 'lookup'        , event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'numberbox'     , event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'numberspinner' , event: 'onChange' ,fix: function (element) { $(element).width($(element).width() + 20); } });
@@ -94,6 +95,7 @@
     ko.creatEasyuiReadOnlyBindings({ type: 'numberbox' }); 
     ko.creatEasyuiReadOnlyBindings({ type: 'combobox', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'datebox', handler: _readOnlyHandles.combo });
+    ko.creatEasyuiReadOnlyBindings({ type: 'datetimebox', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'lookup', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'combogrid', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'combotree', handler: _readOnlyHandles.combo });

@@ -7,9 +7,10 @@
     <script src="~/Areas/Mms/ViewModels/mms.com.js"></script>
     <script src="~/Areas/Mms/ViewModels/Task.js"></script>
     <script type="text/javascript">
-        using(['combogrid', 'combobox', 'datebox', 'numberbox']);
+        using(['combogrid', 'combobox', 'datetimebox', 'numberbox']);
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
         var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
-        ko.bindingViewModel(new viewModel());
+        ko.bindingViewModel(new viewModel(data));
     </script>
 }
 <div class="z-toolbar">
@@ -19,6 +20,20 @@
     <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
 </div>
 
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">任务单号</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Task_id" class="z-txt" /></div>
+    <div class="grid_1 lbl">工程名称</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">供应时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Provide_DateTime" class="easyui-daterange z-txt" /></div>
+    <div class="clear"></div>
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:searchClick" style="margin:0 15px;">查询</a>
+        <a id="a_reset" href="#" class="buttonHuge button-blue" data-bind="click:clearClick">清空</a>
+    </div>
+</div>
 
 
 <table id="gridlist" data-bind="datagrid:grid">
@@ -27,12 +42,13 @@
             <th field="_id" hidden="true">_id</th>
             <th field="Task_id" width="80">任务单号</th>
             <th field="Cont_ID" width="80">合同编号</th>
+            <th field="ProjectName" width="120">工程名称</th>
             <th field="Strong" width="80">强度</th>
             <th field="Fall" width="80">坍落度</th>
             <th field="LinkName" width="80">联系人</th>
             <th field="Telephon" width="80">联系电话</th>
-            <th field="Provide_DateTime" sortable="true" align="left" width="120" editor="{type:'datebox'}" formatter="com.formatDate">供应时间</th>
-            <th field="CheckDateTime" sortable="true" align="left" width="120" editor="{type:'datebox'}" formatter="com.formatDate">供应时间 </th>
+            <th field="Provide_DateTime" sortable="true" align="left" width="120" editor="{type:'datetimebox'}" formatter="com.formatTime">供应时间</th>
+            <th field="CheckDateTime" sortable="true" align="left" width="120" editor="{type:'datebox'}" formatter="com.formatDate">签发时间 </th>
         </tr>
     </thead>
 </table>
@@ -96,6 +112,10 @@
         <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPumpType" data-options="multiple:true" /></div>
         <div class="clear"></div>
 
+        <div class="grid_2 lbl">外加剂</div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxWjj" data-options="multiple:true" /></div>
+        <div class="clear"></div>
+
         <div class="grid_2 lbl">需方联系人</div>
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.LinkName" /></div>
         <div class="grid_2 lbl">需方电话</div>
@@ -111,7 +131,7 @@
         <div class="grid_2 lbl">审核</div>
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
         <div class="grid_2 lbl">供应时间</div>
-        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.Provide_DateTime" /></div>
+        <div class="grid_5 val"><input type="text" class="easyui-datetimebox z-txt m-txt" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>

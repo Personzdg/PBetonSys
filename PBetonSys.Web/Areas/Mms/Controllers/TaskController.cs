@@ -15,7 +15,16 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         // GET: /Mms/Task/
         public ActionResult Index()
         {
-            return View();
+            var model = new
+            {
+                form = new
+                {
+                    Task_id = "",
+                    ProjectName = "",
+                    Provide_DateTime = ""
+                }
+            };
+            return View(model);
         }
     }
 
@@ -26,11 +35,17 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='CheckDateTime'>
                     <select>
-                       [Task_id],[House_id],[Cont_ID],[Clin_ID],[Place],[Strong],[Fall],[Infiltrate] ,[Amount] ,[Pump],[KanZhe],[Pump_vehicle],[LinkName],[Telephon],[ViseName],[Auditing],[CheckDateTime],[Provide_DateTime] ,[Remark],[State],[Wjj],[ShowFlag],[ContractUnit] ,[TempProject],[Task_inside_code],[AuditingFlag],[NetID],[Type]
+                        a.* ,b.ProjectName
                     </select>
                     <from>
-                        Task
+                        Task as a
+                        left join Contract as b on a.Cont_ID=b.Cont_ID
                     </from>
+  <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+    <field name='a.Task_id'       cp='startwith'  ></field>
+    <field name='b.ProjectName'       cp='like'   ></field>
+    <field name='a.Provide_DateTime'          cp='daterange'  ></field>
+  </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
             var result = new TaskService().GetDynamicListWithPaging(pQuery);
