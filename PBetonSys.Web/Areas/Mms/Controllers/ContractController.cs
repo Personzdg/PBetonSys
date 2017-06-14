@@ -23,7 +23,9 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 form = new
                 {
                     Cont_ID = "",
-                    SalseName = ""
+                    ProjectName="",
+                    SalseName = "",
+                    CheckDateTime=""
                 }
             };
             return View(model);
@@ -83,44 +85,47 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public dynamic GetContractList(RequestWrapper query)
         {
             query.LoadSettingXmlString(@"
-                <settings defaultOrderBy='CheckDateTime'>
+                <settings defaultOrderBy='a.CheckDateTime'>
                     <select>
-                   [SysCont_ID]
-                  ,[Cont_ID]
-                  ,[ProjectName]
-                  ,[ProjectAddr]
-                  ,[Interva]
-                  ,[Clinet_id]
-                  ,[CheckDateTime]
-                  ,[SalseName]
-                  ,[BossName]
-                  ,[SalseRecevice]
-                  ,[LinkPhon]
-                  ,[MobilePhon]
-                  ,[Strong]
-                  ,[Amount]
-                  ,[Price]
-                  ,[FinshFlag]
-                  ,[FinShDateTime]
-                  ,[EndPaymentDatetime]
-                  ,[paymentType]
-                  ,[GatheringRatio]
-                  ,[Remark]
-                  ,[StatDate]
-                  ,[GatheringDate]
-                  ,[EndPaymentMonth]
-                  ,[ContType]
-                  ,[SimpleName]
-                  ,[LinkName]
-                  ,[WXCode]
-                  ,[Password]
+                        a.*,b.Name as ClientName
                     </select>
                     <from>
-                        Contract
+                        Contract as a
+                        left join Clinet as b on a.Clinet_id=b.Clinet_id
                     </from>
+                    <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+                        <field name='a.Cont_ID'       cp='startwith'  ></field>
+                        <field name='a.ProjectName'       cp='like'   ></field>
+                        <field name='a.SalseName'       cp='like'   ></field>
+                        <field name='a.CheckDateTime'          cp='daterange'  ></field>
+                    </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
             var result = masterService.GetDynamicListWithPaging(pQuery);
+            return result;
+        }
+
+        public override dynamic GetEditMaster(string id)
+        {
+            var query = RequestWrapper
+    .InstanceFromRequest()
+    .SetRequestData("SysCont_ID", id)
+    .LoadSettingXmlString(@"
+                <settings defaultOrderBy='a.CheckDateTime'>
+                    <select>
+                        a.*,b.Name as ClientName
+                    </select>
+                    <from>
+                        Contract as a
+                        left join Clinet as b on a.Clinet_id=b.Clinet_id
+                    </from>
+                    <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+                        <field name='a.SysCont_ID' cp='equal'  ></field>
+                    </where>
+                </settings>");
+
+            var pQuery = query.ToParamQuery();
+            var result = new { form = masterService.GetDynamic(pQuery) };
             return result;
         }
 

@@ -3322,6 +3322,8 @@
     <Content Include="Areas\Mms\Views\Cart\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Task\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Contract\LookupContract.cshtml" />
+    <Content Include="Areas\Mms\Views\Clinet\LookupClient.cshtml" />
+    <Content Include="Areas\Mms\ViewModels\mms.lookupClient.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

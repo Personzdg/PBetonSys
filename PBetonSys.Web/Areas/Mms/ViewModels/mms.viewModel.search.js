@@ -10,17 +10,13 @@ mms.viewModel.search = function (data) {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.urls = data.urls;
-    //delete this.form.__ko_mapping__;
+    delete this.form.__ko_mapping__;
     this.grid = {
         size: { w: 4, h: 94 },
         url: "/api/Mms/Contract/GetContractList",
         queryParams: ko.observable(),
         pagination: true,
-        //customLoad: true,
-        loadFilter: function (d) {
-            d.rows = utils.copyProperty(d.rows, 'PrintCont_ID', '_id');
-            return d;
-        }
+        customLoad: false
     };
     this.grid.queryParams(data.form);
 

@@ -11,6 +11,12 @@
         var viewModel = function (data) {
             var self = this;
             mms.viewModel.edit.apply(self, arguments);              //继承mms.viewModel.edit
+            this.lookupClick = function () {
+                mms.com.selectClient(null, function (row) {
+                    self.form.ClientName(row.Name);
+                    self.form.Clinet_id(row.Clinet_id);
+                });
+            };
         };
         var formatterEnable = function (value) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
         var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
@@ -33,10 +39,20 @@
 
     <div class="clear"></div>
 
+    <div class="grid_1 lbl">工程名称</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
+    <div class="grid_1 lbl">工程地址</div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.ProjectAddr" class="z-txt" /></div>
+    <div class="clear"></div>
+
     <div class="grid_1 lbl">简称</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.SimpleName" class="z-txt" /></div>
     <div class="grid_1 lbl">施工单位</div>
-    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.constructionList,comboboxValue:form.Clinet_id" class="z-txt easyui-combobox" /></div>
+    <div class="grid_3 val">
+        <input type="text" class="z-txt" data-bind="value:form.ClientName" disabled="disabled" />
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
+        <input type="hidden" data-bind="value:form.Clinet_id" />
+    </div>
     <div class="grid_1 lbl">业务承接人 </div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.SalseRecevice" class="z-txt" /></div>
 

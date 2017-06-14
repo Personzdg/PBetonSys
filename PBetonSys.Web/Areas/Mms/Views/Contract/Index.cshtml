@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "合同管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,7 +11,7 @@
         using('datebox');
         var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
         var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
-        var viewModel = function(){ 
+        var viewModel = function(){
             var self = this;
             mms.viewModel.search.apply(this,arguments);
         }
@@ -30,17 +29,21 @@
 </div>
 
 @*<div id="dropdown" style="width:100px; display:none;">
-    <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
-    <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
-    <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
-</div>*@ 
+        <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
+        <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
+        <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
+    </div>*@
 
 <div id="condition" class="container_12" style="position:relative;">
     <div class="grid_1 lbl">合同编号</div>
     <div class="grid_2 val"><input type="text" data-bind="value:form.Cont_ID" class="z-txt" /></div>
+    <div class="grid_1 lbl">工程名称</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
     <div class="clear"></div>
     <div class="grid_1 lbl">销售员</div>
     <div class="grid_2 val"><input type="text" data-bind="value:form.SalseName" class="z-txt" /></div>
+    <div class="grid_1 lbl">签订时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.CheckDateTime" class="easyui-daterange z-txt" /></div>
     <div class="clear"></div>
     <div class="prefix_9" style="position:absolute;top:5px;height:0;">
         <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:searchClick" style="margin:0 15px;">查询</a>
@@ -52,11 +55,11 @@
     <thead>
         <tr>
             <th field="_id" hidden="true">_id</th>
-            <th field="Cont_ID">系统编号</th>
-            <th field="PrintCont_ID" editor="text">合同编号</th>
+            <th field="Cont_ID" sortable="true" editor="text">合同编号</th>
+            <th field="ProjectName" sortable="true" align="left" width="100" editor="text">工程名称</th>
+            <th field="ClientName" sortable="true" align="left" width="100" editor="text">施工单位</th>
             <th field="FinshFlag" sortable="true" align="left" width="80" editor="{type: 'checkbox',options: {on: true,off: false}}" formatter="formatterEnable">工程结束</th>
             <th field="SimpleName" sortable="true" align="left" width="80" editor="text">简称</th>
-            <th field="Clinet_id" sortable="true" align="left" width="100" editor="text">施工单位</th>
             <th field="SalseRecevice" sortable="true" align="center" width="80" editor="text">业务承接人</th>
             <th field="SalseName" sortable="true" align="left" width="80" editor="text">销售员</th>
             <th field="CheckDateTime" sortable="true" align="center" width="80" editor="{type:'datebox'}" formatter="com.formatDate">签订日期</th>

@@ -109,3 +109,19 @@ mms.com.selectContract = function (vm, param,callback) {
     };
     target.window(opt);
 };
+
+//弹出选择施工单位窗口
+mms.com.selectClient = function (param, callback) {
+    var target = parent.$('#selectClient').length ? parent.$('#selectClient') : parent.$('<div id="selectClient"></div>').appendTo('body');
+    utils.clearIframe(target);
+
+    var opt = { title: '选择施工单位', width: 600, height: 450, modal: true, collapsible: false, minimizable: false, maximizable: true, closable: true };
+    opt.content = "<iframe id='frm_win_material' src='/mms/Clinet/lookupclient' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>";  //frameborder="0" for ie7
+    opt.paramater = param;      //可传参数
+    opt.onSelect = function (selectedData) {                //可接收选择数据
+        if (selectedData) {
+            callback(selectedData);
+        }
+    };
+    target.window(opt);
+};

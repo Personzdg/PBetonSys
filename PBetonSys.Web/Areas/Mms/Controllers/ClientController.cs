@@ -1,4 +1,5 @@
 ﻿using PBetonSys.Core;
+using PBetonSys.Web.App_Start.webstack;
 using PBetonSys.Web.Areas.Mms.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,13 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         {
             return View();
         }
+
+        [MvcMenuFilter(false)]
+        public ActionResult LookupClient()
+        {
+            return View();
+        }
+
     }
     public class ClinetApiController : ApiController
     {
@@ -31,6 +39,26 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                     <from>
                         Clinet
                     </from>
+                </settings>");
+            var pQuery = query.ToParamQuery();
+            var result = new ClientService().GetDynamicListWithPaging(pQuery);
+            return result;
+        }
+
+        public dynamic GetLookupClient(RequestWrapper query)
+        {
+            query.LoadSettingXmlString(@"
+                <settings defaultOrderBy='CheckDateTime'>
+                    <select>
+                        *
+                    </select>
+                    <from>
+                        Clinet
+                    </from>
+  <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+    <field name='Clinet_id'       cp='startwith'  ></field>
+    <field name='Name'       cp='like'       ></field>
+  </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
             var result = new ClientService().GetDynamicListWithPaging(pQuery);

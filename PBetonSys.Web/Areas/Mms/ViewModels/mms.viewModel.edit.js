@@ -43,6 +43,7 @@ mms.viewModel.edit = function (data) {
             //,
             //list: self.gridEdit.getChanges(self.setting.postListFields)
         };
+        post.form.ClientName = undefined;
         if ((post.form._changed)) {
             com.ajax({
                 url: "/api/mms/Contract/Edit",
