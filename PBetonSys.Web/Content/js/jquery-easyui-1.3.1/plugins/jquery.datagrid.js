@@ -248,12 +248,12 @@ $("<div class=\"datagrid-btn-separator\"></div>").appendTo(tb);
 var _45=$("<a href=\"javascript:void(0)\"></a>");
 _45[0].onclick=eval(btn.handler||function(){
 });
-//modify by liuhuisheng for add splitbutton start
+//modify by zhdg for add splitbutton start
 if (btn.type == 'splitbutton')
     _45.css("float", "left").appendTo(tb).splitbutton($.extend({}, btn, { plain: true }));
 else
     _45.css("float", "left").appendTo(tb).linkbutton($.extend({}, btn, { plain: true }));
-//modify by liuhuisheng for add splitbutton end
+//modify by zhdg for add splitbutton end
 }
 }
 }

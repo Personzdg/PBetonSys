@@ -15,14 +15,14 @@ namespace PBetonSys.Data
 
 		public int Execute()
 		{
-            //mod by liuhuisheng start
+            //mod by zhdg start
             //if (Data.Columns.Count == 0
             //    || Data.Where.Count == 0)
             //    throw new FluentDataException("Columns or where filter have not yet been added.");
             if (Data.Columns.Count == 0
                 || (Data.Where.Count == 0 && Data.WhereSql.Length == 0))
                 throw new FluentDataException("Columns or where filter have not yet been added.");
-            //mod by liuhuisheng end
+            //mod by zhdg end
 
 			Data.Command.ClearSql.Sql(Data.Command.Data.Context.Data.Provider.GetSqlForUpdateBuilder(Data));
 		

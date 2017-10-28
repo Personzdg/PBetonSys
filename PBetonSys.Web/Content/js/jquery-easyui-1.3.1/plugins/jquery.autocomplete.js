@@ -1,6 +1,6 @@
 ﻿/**
 * jquery.autocomplete.js
-* create by liuhuisheng 2012-11-18
+* create by zhdg 2012-11-18
 */
 (function ($) {
 

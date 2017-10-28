@@ -1,6 +1,6 @@
 ﻿/**
 * jquery.lookup.js
-* create by liuhuisheng 2012-11-07
+* create by zhdg 2012-11-07
 */
 (function ($) {
     $.fn.lookup = function (arg0, arg1) {

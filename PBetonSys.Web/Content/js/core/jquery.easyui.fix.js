@@ -1,7 +1,7 @@
 ﻿/**
 * 模块名：easyui方法修改
 * 程序名: easyui.fix.js
-* Copyright(c) 2013-2015 liuhuisheng [ liuhuisheng.xm@gmail.com ] 
+* Copyright(c) 2013-2015 zhdg [ zhdg ] 
 **/
 
 var easyuifix = {};

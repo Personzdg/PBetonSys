@@ -25,7 +25,7 @@ _7=_5.find(".combo-arrow").outerWidth();
 }
 _5.find("input.combo-text").width(0);
 _5._outerWidth(_4.width);
-_5.find("input.combo-text").width(_5.width()-_7-3);//modify by liuhuisheng
+_5.find("input.combo-text").width(_5.width()-_7-3);//modify by zhdg
 _6.panel("resize",{width:(_4.panelWidth?_4.panelWidth:_5.outerWidth()),height:_4.panelHeight});
 _5.insertAfter(_2);
 };

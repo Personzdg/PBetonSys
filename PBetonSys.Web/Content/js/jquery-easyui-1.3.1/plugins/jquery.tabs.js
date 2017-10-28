@@ -390,7 +390,7 @@ _67.animate({scrollLeft:pos},_61.scrollDuration);
 }
 _1e(_5f);
 _61.onSelect.call(_5f, _66, _38(_5f, _64));
-_64.show();    //add by liuhuisheng for 打开时其它页签先隐藏,点击时再显示
+_64.show();    //add by zhdg for 打开时其它页签先隐藏,点击时再显示
 };
 function _4f(_6b,_6c){
 return _50(_6b,_6c)!=null;

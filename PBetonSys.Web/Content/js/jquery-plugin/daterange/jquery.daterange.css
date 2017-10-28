@@ -3,7 +3,7 @@
 .ui-daterangepickercontain {
 	position: absolute;
 	z-index: 999;
-	font-size: 11px; /*add by liuhuisheng for resize the panel*/
+	font-size: 11px; /*add by zhdg for resize the panel*/
 }
 .ui-daterangepickercontain .ui-daterangepicker {
 	float: left;

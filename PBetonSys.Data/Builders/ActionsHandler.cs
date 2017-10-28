@@ -128,7 +128,7 @@ namespace PBetonSys.Data
 			WhereAction(parser.Name, parser.Value, parameterType, size);
 		}
 
-        //add by liuhuisheng
+        //add by zhdg
         internal void WhereAction(string sql)
         {
             _data.WhereSql = sql;

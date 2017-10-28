@@ -13,7 +13,7 @@
 			return this;
 		}
 
-        //add by liuhuisheng
+        //add by zhdg
         public IDeleteBuilder Where(string sql)
         {
             Actions.WhereAction(sql);

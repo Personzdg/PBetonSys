@@ -9,7 +9,7 @@ namespace PBetonSys.Data
 		public string ObjectName { get; set; }
 		public IDbCommand Command { get; set; }
 		public List<BuilderColumn> Where { get; set; }
-        public string WhereSql { get; set; } // add by liuhuisheng
+        public string WhereSql { get; set; } // add by zhdg
 
 		public BuilderData(IDbCommand command, string objectName)
 		{
@@ -17,7 +17,7 @@ namespace PBetonSys.Data
 			Command = command;
 			Columns = new List<BuilderColumn>();
 			Where = new List<BuilderColumn>();
-            WhereSql = string.Empty; // add by liuhuisheng
+            WhereSql = string.Empty; // add by zhdg
 		}
 	}
 }

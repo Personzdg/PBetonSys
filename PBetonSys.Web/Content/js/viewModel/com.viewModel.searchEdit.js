@@ -1,7 +1,7 @@
 ﻿/**
 * 模块名：com viewModel
 * 程序名: SearchEdit.js
-* Copyright(c) 2013-2015 liuhuisheng [ liuhuisheng.xm@gmail.com ] 
+* Copyright(c) 2013-2015 zhdg [ zhdg ] 
 **/
 var com = com || {};
 com.viewModel = com.viewModel || {};

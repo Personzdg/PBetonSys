@@ -88,7 +88,7 @@
             showAnim: "drop"           //<span class="wp_keywordlink_affiliate"><a href="http://luacloud.com/tag/animation" title="查看 动画 中的全部文章" target="_blank">动画</a></span>方式
         };
 
-        //add by liuhuisheng start for init value
+        //add by zhdg start for init value
         //var initDate = rangeInput.val().split(options.rangeSplitter);
         //rangeInput.data("daterange", { from: initDate[0] || '', to: initDate[1] || '' });
         //var inputName, inputFrom, inputTo;
@@ -97,7 +97,7 @@
         //    inputFrom = $('<input type="hidden" name="' + inputName + '" class="date-from" data-cp="' + fromCp + '"/>').insertAfter(rangeInput);
         //    inputTo = $('<input type="hidden" name="' + inputName + '" class="date-to" data-cp="' + toCp + '" />').insertAfter(rangeInput);
         //}
-        //add by liuhuisheng end
+        //add by zhdg end
 
         //custom datepicker options, extended by options
         var datepickerOptions = $.extend({
@@ -114,7 +114,7 @@
                 var rangeA = fDate(range_start.datepicker('getDate'));
                 var rangeB = fDate(range_end.datepicker('getDate'));
 
-                //add by liuhuisheng for save value start
+                //add by zhdg for save value start
                 //rangeInput.data("daterange", { from: rangeA, to: rangeB });
                 //if (rangeA && rangeB && rangeA != rangeB && rangeInput.length == 1)
                 //    rangeInput.css({ "font-size": "11px" });
@@ -123,7 +123,7 @@
 
                 //if (inputFrom) inputFrom.val(rangeA);
                 //if (inputTo) inputTo.val(rangeB);
-                //add by liuhuisheng end
+                //add by zhdg end
 
                 //send back to input or inputs
                 if (rangeInput.length == 2) {

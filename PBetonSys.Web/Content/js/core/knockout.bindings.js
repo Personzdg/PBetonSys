@@ -2,7 +2,7 @@
 /**
 * 模块名：共通脚本
 * 程序名: knockoutjs自定义绑定
-* Copyright(c) 2013-2015 liuhuisheng [ liuhuisheng.xm@gmail.com ] 
+* Copyright(c) 2013-2015 zhdg [ zhdg ] 
 **/
 
 (function ($, ko) {

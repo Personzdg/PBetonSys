@@ -145,7 +145,7 @@ KISSY.add('gallery/form/1.3/uploader/type/flash', function (S, Node, UploadType,
         action:{
             value:EMPTY,
             getter: function (v) {
-//mod by liuhuisheng for delete the path method
+//mod by zhdg for delete the path method
 //                var reg = /^http/;
 //                //不是绝对路径拼接成绝对路径
 //                if(!reg.test(v)){

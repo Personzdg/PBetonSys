@@ -1,4 +1,4 @@
-﻿//create by liuhuisheng 2012-10-27
+﻿//create by zhdg 2012-10-27
 using System;
 using System.Collections.Generic;
 using System.Linq;

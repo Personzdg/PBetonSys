@@ -15,13 +15,13 @@ namespace PBetonSys.Data
 			return this;
 		}
 
-        //add by liuhuisheng start
+        //add by zhdg start
         public virtual IUpdateBuilder Where(string sql)
         {
             Actions.WhereAction(sql);
             return this;
         }
-        //add by liuhuisheng end
+        //add by zhdg end
 
 		public IUpdateBuilder Column(string columnName, object value, DataTypes parameterType, int size)
 		{

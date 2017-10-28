@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "设备实时生产状态";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @section head
+    {
+        <style type="text/css">
+
+            .z-body {
+                overflow-y: scroll !important;
+                text-align: center;
+                font-size: large;
+                font-weight: bold;
+            }
+            .area {
+                margin-left: 10px;
+                margin-top: 20px;
+                float: left;
+                height: 270px;
+                width: 160px;
+                background-color: #b9ffff;
+                border: 1px solid black;
+                border-radius: 5px 5px 5px 5px;
+            }
+
+                .area p {
+                    display:block;
+                    height:40px;
+                }
+
+                .area .container {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    /*margin-left: 2px;*/
+                    margin:0 auto;
+                    height: 185px;
+                    width: 100px;
+                    border: 2px solid white;
+                    border-radius: 10px 10px 20px 20px;
+                }
+
+                    .area .container .unused {
+                        height: 10%;
+                        vertical-align: central;
+                        vertical-align: middle;
+                    }
+
+                    .area .container .used {
+                        background-color: #37eeff;
+                        border-radius: 0 0 20px 20px;
+                        height: 90%;
+                    }
+        </style>
+    }
+
+@model System.Collections.Generic.List<PBetonSys.Web.Areas.Mms.Models.SilotReport >
+    <div id="content" style="overflow-y:scroll">
+        @if (Model != null || Model.Count() == 0)
+        {
+            foreach (var item in Model)
+            {
+                <div class="area">
+                    <p>@item.Name</p>
+                    <div class="container">
+                        <div class="unused" style="height:@item.UnPercentDesc">
+                            @item.PValDesc
+
+                        </div>
+                        <div class="used" style="height:@item.UPercentDesc;">
+                            <p>
+                                @(
+ @item.UPercentDesc == "0%" ? "" : @item.UPercentDesc == "100%" ? "" : @item.UPercentDesc
+                                )
+                            </p>
+</div>
+
+                    </div>
+                    <p>@item.MaxValDesc</p>
+                </div>
+            }
+        }
+    </div>

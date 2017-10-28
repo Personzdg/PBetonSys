@@ -1,7 +1,7 @@
 ﻿/**
 * 模块名：System
 * 程序名: parameter.js
-* Copyright(c) 2013-2015 liuhuisheng [ liuhuisheng.xm@gmail.com ] 
+* Copyright(c) 2013-2015 zhdg [ zhdg ] 
 **/
 
 var viewModel = function() {

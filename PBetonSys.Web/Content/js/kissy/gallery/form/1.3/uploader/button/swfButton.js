@@ -275,7 +275,7 @@ KISSY.add('gallery/form/1.3/uploader/button/swfButton', function (S, Node, Base,
          */
         flash:{
             value:{
-                src:'/Content/js/kissy/gallery/form/1.3/uploader/plugins/ajbridge/uploader.swf', //mod by liuhuisheng
+                src:'/Content/js/kissy/gallery/form/1.3/uploader/plugins/ajbridge/uploader.swf', //mod by zhdg
                 id:'swfUploader',
                 params:{
                     bgcolor:"#fff",

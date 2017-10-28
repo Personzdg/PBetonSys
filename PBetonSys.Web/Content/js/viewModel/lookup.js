@@ -1,7 +1,7 @@
 ﻿/**
 * 模块名：共通弹出窗口viewModel
 * 程序名: lookup.js
-* Copyright(c) 2013-2015 liuhuisheng [ liuhuisheng.xm@gmail.com ] 
+* Copyright(c) 2013-2015 zhdg [ zhdg ] 
 **/
 
 function viewModel(data) {

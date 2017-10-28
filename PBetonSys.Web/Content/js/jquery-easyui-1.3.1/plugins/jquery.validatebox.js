@@ -69,7 +69,7 @@
         var tip = $.data(_11, "validatebox").tip;
 
         if (tip) {
-            //modify by liuhuisheng start 20121206 for fix the tip over the screen
+            //modify by zhdg start 20121206 for fix the tip over the screen
             var tipRight = tip.find(".validatebox-tip-content").outerWidth() + box.offset().left + box.outerWidth();
             var winWidth = $(window).outerWidth();
             var delta = tipRight - winWidth;
@@ -86,7 +86,7 @@
                     left: box.offset().left + box.outerWidth() - delta - 10,
                     top: box.offset().top
                 });
-            //modify by liuhuisheng end 20121206 for fix the tip over the screen
+            //modify by zhdg end 20121206 for fix the tip over the screen
         }
     };
     function _b(_12) {
@@ -116,11 +116,11 @@
             }
         }
         if (_16.validType) {
-            // add by liuhuisheng 2012-12-27 start for support multiple validType like validType="xxx&xxx"
+            // add by zhdg 2012-12-27 start for support multiple validType like validType="xxx&xxx"
             var _validTypes = (_16.validType).split(/&/g);
             for (var _i = 0; _i < _validTypes.length; _i++) {
                 var vType = _validTypes[_i];
-            // add by liuhuisheng 2012-12-27 end
+            // add by zhdg 2012-12-27 end
                 var _19 = /([a-zA-Z_]+)(.*)/.exec(_16.validType);
                 var _1a = _16.rules[_19[1]];
                 if (_17 && _1a) {

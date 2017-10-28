@@ -109,7 +109,7 @@ KISSY.add('gallery/form/1.3/uploader/urlsInput',function(S, Node, Base) {
     			var urls = $(input).val(),
     				split = self.get('split'),
     				files=[];
-    			if (urls) files = urls.split(split); //mod by liuhuisheng 原为files = urls.split(split)
+    			if (urls) files = urls.split(split); //mod by zhdg 原为files = urls.split(split)
                 self.set('urls',files);
     			return files;
     		}else{

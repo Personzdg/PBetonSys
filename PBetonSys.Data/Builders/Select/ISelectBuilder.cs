@@ -30,12 +30,12 @@ namespace PBetonSys.Data
 		TEntity QueryComplexSingle(Func<IDataReader, TEntity> customMapper);
 		TEntity QueryComplexSingle(Func<dynamic, TEntity> customMapper);
 
-        // add by liuhuisheng start
+        // add by zhdg start
         List<dynamic> QueryManyDynamic();
         dynamic QuerySingleDynamic();
         TField QueryValue<TField>();
         List<TField> QueryValues<TField>();
         string GetSql();
-        //add by liuhuisheng end
+        //add by zhdg end
 	}
 }

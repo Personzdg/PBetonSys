@@ -77,7 +77,7 @@ namespace PBetonSys.Data
 				if (data.PagingItemsPerPage == 0)
 					sql.Append("select");
 				else
-                    //modify by liuhuisheng on 2013-08-28 for support distinct start
+                    //modify by zhdg on 2013-08-28 for support distinct start
 					//sql.Append("select top " + data.PagingItemsPerPage.ToString());
                     if (data.Select.ToLower().Trim().StartsWith("distinct"))
                     {

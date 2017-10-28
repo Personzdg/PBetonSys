@@ -1,7 +1,7 @@
 ﻿/**
 * 模块名：mms viewModel
 * 程序名: mms.viewModel.edit.js
-* Copyright(c) 2013-2015 liuhuisheng [ liuhuisheng.xm@gmail.com ] 
+* Copyright(c) 2013-2015 zhdg [ zhdg ] 
 **/
 var mms = mms || {};
 mms.viewModel = mms.viewModel || {};

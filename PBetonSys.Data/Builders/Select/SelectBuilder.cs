@@ -144,7 +144,7 @@ namespace PBetonSys.Data
 			return GetPreparedDbCommand().QueryComplexSingle(customMapper);
 		}
 
-        //add by liuhuisheng start
+        //add by zhdg start
         public List<dynamic> QueryManyDynamic()
         {
             return GetPreparedDbCommand().QueryMany<dynamic>();
@@ -169,6 +169,6 @@ namespace PBetonSys.Data
         {
             return GetPreparedDbCommand().QueryMany<TField>();
         }
-        //add by liuhuisheng end
+        //add by zhdg end
 	}
 }

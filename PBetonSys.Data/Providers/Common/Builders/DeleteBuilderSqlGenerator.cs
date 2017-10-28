@@ -4,10 +4,10 @@
 	{
 		public string GenerateSql(IDbProvider provider, string parameterPrefix, BuilderData data)
 		{
-            //mod by liuhuisheng start
+            //mod by zhdg start
             //var whereSql = "";
             var whereSql = data.WhereSql;
-            //mod by liuhuisheng end
+            //mod by zhdg end
 			foreach (var column in data.Columns)
 			{
 				if (whereSql.Length > 0)
