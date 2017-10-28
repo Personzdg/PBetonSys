@@ -5,7 +5,7 @@ namespace PBetonSys.Web
 {
     public class BundleConfig
     {
-        // 有关绑定的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkId=301862
+        // 有关 Bundling 的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
             var EasyuiVersion = "1.3.2";
@@ -44,5 +44,6 @@ namespace PBetonSys.Web
             //ignoreList.Ignore("*.min.js", OptimizationMode.WhenDisabled);
             ignoreList.Ignore("*.min.css", OptimizationMode.WhenDisabled);
         }
+
     }
 }

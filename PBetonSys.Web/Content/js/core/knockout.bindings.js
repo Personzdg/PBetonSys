@@ -48,9 +48,7 @@
 
     ko.creatEasyuiValueBindings({ type: 'combobox', event: 'onSelect' });
     ko.creatEasyuiValueBindings({ type: 'combotree', event: 'onChange' });
-    ko.creatEasyuiValueBindings({ type: 'combogrid', event: 'onChange' });
-    ko.creatEasyuiValueBindings({ type: 'datebox', event: 'onSelect', formatter: com.formatDate });
-    ko.creatEasyuiValueBindings({ type: 'datetimebox', event: 'onChange', formatter: com.formatTime });
+    ko.creatEasyuiValueBindings({ type: 'datebox'       , event: 'onSelect' , formatter: com.formatDate });
     ko.creatEasyuiValueBindings({ type: 'lookup'        , event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'numberbox'     , event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'numberspinner' , event: 'onChange' ,fix: function (element) { $(element).width($(element).width() + 20); } });
@@ -95,9 +93,7 @@
     ko.creatEasyuiReadOnlyBindings({ type: 'numberbox' }); 
     ko.creatEasyuiReadOnlyBindings({ type: 'combobox', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'datebox', handler: _readOnlyHandles.combo });
-    ko.creatEasyuiReadOnlyBindings({ type: 'datetimebox', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'lookup', handler: _readOnlyHandles.combo });
-    ko.creatEasyuiReadOnlyBindings({ type: 'combogrid', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'combotree', handler: _readOnlyHandles.combo });
     ko.creatEasyuiReadOnlyBindings({ type: 'numberspinner', handler: _readOnlyHandles.spinner });
  
@@ -111,15 +107,11 @@
                 jq.treegrid('loadData', ds);
             else if (jq.data('datagrid'))
                 jq.datagrid('loadData', ds);
-            else if (jq.data('combogrid')) {
-                var val = jq.combogrid('getValue');
-                jq.combogrid('clear').combogrid('loadData', ds).combogrid('setValue', val);
-            }
             else if (jq.data('combotree'))
                 jq.combotree('loadData', ds);
             else if (jq.data('combobox')) {
                 var val = jq.combobox('getValue'), ds = ds.rows || ds;
-                jq.combobox('clear').combobox('loadData', ds).combobox('setValue', val);
+                jq.combobox('clear').combobox('loadData',ds).combobox('setValue', val);
             }
             else if (jq.data('tree'))
                 jq.tree('loadData', ds.rows || ds);
@@ -239,7 +231,6 @@
 
     ko.createEasyuiInitBindings({ type: 'tabs' });
     ko.createEasyuiInitBindings({ type: 'tree' });
-    ko.createEasyuiInitBindings({ type: 'combogrid' });
     ko.createEasyuiInitBindings({ type: 'combotree' });
     ko.createEasyuiInitBindings({ type: 'combobox' });
     ko.createEasyuiInitBindings({ type: 'linkbutton' });

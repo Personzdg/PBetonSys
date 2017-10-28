@@ -14,7 +14,7 @@ wrapper.init = function () {
     $('.loginOut').click(wrapper.logout);
     $('.changepwd').click(wrapper.changePassword);
     $('.myconfig').click(wrapper.mysettings);
-    //$('.swich_project').click(wrapper.changeProject).html("当前项目：" + com.cookie('CurrentProjectName'));
+    $('.swich_project').click(wrapper.changeProject).html("当前项目：" + com.cookie('CurrentProjectName'));
     $('#notity').jnotifyInizialize({ oneAtTime: true, appendType: 'append' }).css({ 'position': 'absolute', '*top': '2px', 'left': '50%', 'margin': '20px 0px 0px -120px', '*margin': '0px 0px 0px -120px', 'width': '240px', 'z-index': '9999' });
     $('#closeMenu').menu({ onClick: wrapper.rightMenuClick });
 
@@ -61,6 +61,29 @@ wrapper.changePassword = function () {
 
 wrapper.mysettings = function () {
     wrapper.addTab("个人设置", "/sys/config", "icon icon-wrench_orange");
+};
+
+wrapper.changeProject = function () {
+    var self = this;
+    $("#w").data("lookup", { lookupType: 'project', valueTitle: '项目编码', textTitle: '项目名称' }).window({
+        title: '&nbsp;切换项目'
+        , width: 600
+        , height: 420
+        , iconCls: 'icon-flag_france'
+        , modal: true
+        , collapsible: false
+        , minimizable: false
+        , maximizable: true
+        , closable: true
+        , content: "<iframe id='frm_win_project' src='/plugins/lookup?r=" + Math.random() + "' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>" //frameborder="0" for ie7
+        , onClose: function () {
+            var rtnValue = $(this).data("returnValue");
+            if (rtnValue) {
+                $(self).find(".l-btn-text").html("当前项目：" + rtnValue.text);
+                com.cookie('CurrentProject', rtnValue.value);
+            }
+        }
+    });
 };
 
 wrapper.logout = function () {
@@ -164,7 +187,7 @@ wrapper.initMenu = function (d) {
         return;
     }
 
-    // $('body').data('menulist', d);
+    $('body').data('menulist', d);
     var visibleMenu = $.grep(d, function (row) {return row.IsVisible;});
     var menus = utils.toTreeData(visibleMenu, 'MenuCode', 'ParentCode', 'children');
 

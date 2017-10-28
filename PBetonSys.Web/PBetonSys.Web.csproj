@@ -183,12 +183,15 @@
     <Compile Include="Areas\Mms\Controllers\CartController.cs" />
     <Compile Include="Areas\Mms\Controllers\ClientController.cs" />
     <Compile Include="Areas\Mms\Controllers\ContractController.cs" />
+    <Compile Include="Areas\Mms\Controllers\DispatchController.cs" />
     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mms\Controllers\ReportController.cs" />
     <Compile Include="Areas\Mms\Controllers\TaskController.cs" />
     <Compile Include="Areas\Mms\MmsAreaRegistration.cs" />
     <Compile Include="Areas\Mms\Models\Cart.cs" />
     <Compile Include="Areas\Mms\Models\Client.cs" />
     <Compile Include="Areas\Mms\Models\Contract.cs" />
+    <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\Task.cs" />
     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />
     <Compile Include="Areas\Sys\Controllers\MenuController.cs" />
@@ -3232,7 +3235,6 @@
     <Content Include="Content\js\viewModel\index.js" />
     <Content Include="Content\js\viewModel\login.js" />
     <Content Include="Content\js\viewModel\lookup.js" />
-    <Content Include="Content\page\icon.html" />
     <Content Include="Content\themes\default\style.css" />
     <Content Include="Content\themes\gray\style.css" />
     <Content Include="favicon.ico" />
@@ -3324,6 +3326,8 @@
     <Content Include="Areas\Mms\Views\Contract\LookupContract.cshtml" />
     <Content Include="Areas\Mms\Views\Clinet\LookupClient.cshtml" />
     <Content Include="Areas\Mms\ViewModels\mms.lookupClient.js" />
+    <Content Include="Areas\Mms\Views\Dispatch\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\Report\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -3340,7 +3344,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\_LayoutPartial.cshtml" />
