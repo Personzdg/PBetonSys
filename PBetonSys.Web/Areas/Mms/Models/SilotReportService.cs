@@ -41,6 +41,10 @@ namespace PBetonSys.Web.Areas.Mms.Models
             get { return string.Format("{0}%", UnPercent); }
         }
 
+        public string IsShow 
+        {
+            get { return UPercent > 50 ? "block" :"none"; }
+        }
         public int UPercent 
         {
             get {
@@ -48,8 +52,8 @@ namespace PBetonSys.Web.Areas.Mms.Models
                 {
                     return 0;
                 }
-                var pResult = int.Parse(((UVal / MaxVal) * 100).ToString("F0"));
-                return pResult>100?100:pResult;
+                var pResult = int.Parse(((PVal / MaxVal) * 100).ToString("F0"));
+                return pResult>100?100:pResult<0?0:pResult;
             }
         }
 
