@@ -191,6 +191,7 @@
     <Compile Include="Areas\Mms\Models\Cart.cs" />
     <Compile Include="Areas\Mms\Models\Client.cs" />
     <Compile Include="Areas\Mms\Models\Contract.cs" />
+    <Compile Include="Areas\Mms\Models\DispatchService.cs" />
     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\Task.cs" />
     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />
@@ -225,6 +226,7 @@
     <Content Include="Areas\Mms\ViewModels\Cart.js" />
     <Content Include="Areas\Mms\ViewModels\Clinet.js" />
     <Content Include="Areas\Mms\ViewModels\Contract.js" />
+    <Content Include="Areas\Mms\ViewModels\Dispatch.js" />
     <Content Include="Areas\Mms\ViewModels\mms.com.js" />
     <Content Include="Areas\Mms\ViewModels\mms.lookupContract.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.edit.js" />
