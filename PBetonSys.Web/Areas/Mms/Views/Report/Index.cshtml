@@ -54,6 +54,14 @@
         </style>
     }
 
+@section scripts{
+    <script type="text/javascript">
+        setInterval(function () {
+            window.location = window.location;
+        }, 5000)
+    </script>
+}
+
 @model System.Collections.Generic.List<PBetonSys.Web.Areas.Mms.Models.SilotReport >
     <div id="content" style="overflow-y:scroll">
         @if (Model != null || Model.Count() == 0)
@@ -68,6 +76,7 @@
 
                         </div>
                         <div class="used" style="height:@item.UPercentDesc;">
+                            <span style="display:@item.IsShow ;height:20px"></span>
                             <p>
                                 @(
  @item.UPercentDesc == "0%" ? "" : @item.UPercentDesc == "100%" ? "" : @item.UPercentDesc
