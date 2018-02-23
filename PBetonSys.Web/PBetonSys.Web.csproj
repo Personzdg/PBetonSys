@@ -185,6 +185,7 @@
     <Compile Include="Areas\Mms\Controllers\ContractController.cs" />
     <Compile Include="Areas\Mms\Controllers\DispatchController.cs" />
     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mms\Controllers\ProductController.cs" />
     <Compile Include="Areas\Mms\Controllers\ReportController.cs" />
     <Compile Include="Areas\Mms\Controllers\TaskController.cs" />
     <Compile Include="Areas\Mms\MmsAreaRegistration.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Areas\Mms\Models\Client.cs" />
     <Compile Include="Areas\Mms\Models\Contract.cs" />
     <Compile Include="Areas\Mms\Models\DispatchService.cs" />
+    <Compile Include="Areas\Mms\Models\Product.cs" />
     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\Task.cs" />
     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />
@@ -231,6 +233,7 @@
     <Content Include="Areas\Mms\ViewModels\mms.lookupContract.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.edit.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.search.js" />
+    <Content Include="Areas\Mms\ViewModels\Product.js" />
     <Content Include="Areas\Mms\ViewModels\Task.js" />
     <Content Include="Areas\Sys\ViewModels\Code.js" />
     <Content Include="Areas\Sys\ViewModels\Menu.js" />
@@ -3330,6 +3333,7 @@
     <Content Include="Areas\Mms\ViewModels\mms.lookupClient.js" />
     <Content Include="Areas\Mms\Views\Dispatch\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\Product\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
