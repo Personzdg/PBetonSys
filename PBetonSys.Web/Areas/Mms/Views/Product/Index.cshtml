@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/Product.js"></script>
+    <script type="text/javascript">
+        ko.bindingViewModel(new viewModel());
+    </script>
+<style type="text/css">
+   table {
+        font-size: 12px;
+        width:600px;
+    }
+
+    table {
+        table-layout: fixed;
+        empty-cells: show;
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    td {
+        height: 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    h1, h2, h3 {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .title {
+        background: #FFF;
+        border: 1px solid #9DB3C5;
+        padding: 1px;
+        width: 90%;
+        margin: 20px auto;
+    }
+
+        .title h1 {
+            line-height: 31px;
+            text-align: center;
+            background-position: 0 0;
+            color: #FFF;
+        }
+
+        .title th, .title td {
+            border: 1px solid #CAD9EA;
+            padding: 5px;
+        }
+
+
+
+
+
+    table.t2 {
+        border: 1px solid #9db3c5;
+        color: #666;
+    }
+
+        table.t2 th {
+            background-repeat:repeat-x;
+            height: 20px;
+        }
+
+        table.t2 td {
+            border: 1px dotted #cad9ea;
+            padding: 0 2px 0;
+        }
+
+        table.t2 th {
+            border: 1px solid #a7d1fd;
+            padding: 0 2px 0;
+        }
+
+        table.t2 tr.a1 {
+            background-color: #e8f3fd;
+        }
+</style>
+}
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">生产时间</div>
+    <div class="grid_1 val"><input type="text" data-bind="" class="z-txt easyui-daterange" /></div>
+    <div class="grid_1 lbl">公司名</div>
+    <div class="grid_1 val"><input type="text" data-bind="" class="z-txt easyui-combobox" data-options="showblank:true" /></div>
+    <div class="grid_1 val">
+        <a id="btnSearch" href="#" plain="true" data-bind="click:searchClick" class="easyui-linkbutton" icon="icon-search" title="查询">查询</a>
+    </div>
+    <div class="grid_7 lbl" style="height:30px;">
+    </div>
+</div>
+
+  <div class="clear"></div>
+<div data-bind="foreach:{data:iniGroups, as:'iniGroup'}">
+    <div style="float:left;margin:10px;">
+        <table border="1" class="t2">
+            <thead style="background-color: aquamarine;">
+                <tr>
+                    <th style="width:80px;">ID</th>
+                    <th style="width:80px;">车次</th>
+                    <th style="width:80px;">车号</th>
+                    <th style="width:80px;">方量</th>
+                    <th style="width:80px;">强度</th>
+                    <th style="width:200px;">工程名称</th>
+                    <th style="width:200px;">时间</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:{data:iniGroup.datas, as:'inidata'}">
+                <tr data-bind="attr: { class:$index()%2!=0?'a1':'a2'}">
+                    <td data-bind="text: $index()+1"></td>
+                    <td data-bind="text: inidata.Number"></td>
+                    <td data-bind="text: inidata.Vehicle_id"></td>
+                    <td data-bind="text: inidata.amount"></td>
+                    <td data-bind="text: inidata.strong"></td>
+                    <td data-bind="text: inidata.ProjectName"></td>
+                    <td data-bind="text: inidata.CheckDateTime"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
