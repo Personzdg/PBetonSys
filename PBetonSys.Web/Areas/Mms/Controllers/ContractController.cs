@@ -135,7 +135,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='a.CheckDateTime'>
                     <select>
-                        a.Cont_ID,a.ProjectName,a.Clinet_id,b.Name
+                       a.SysCont_ID as Cont_ID ,a.ProjectName,a.Clinet_id,b.Name
                     </select>
                     <from>
                         Contract as a
@@ -152,7 +152,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='a.CheckDateTime'>
                     <select>
-                        a.Cont_ID,a.ProjectName,a.Clinet_id,b.Name
+                         a.SysCont_ID as  Cont_ID,a.ProjectName,a.Clinet_id,b.Name
                     </select>
                     <from>
                         Contract as a
