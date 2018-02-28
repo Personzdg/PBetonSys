@@ -71,73 +71,94 @@
             width: 356px;
         }
     </style>
-    <div id="master" class="container_12">
-        <div class="grid_2 lbl">配比单号</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:100px;" data-bind="value:form.Confect_ID" disabled="disabled" /></div>
-        <div class="grid_2 lbl">任务单号</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:100px;" data-bind="value:form.Task_id" disabled="disabled" /></div>
-        <div class="grid_2 lbl">楼号</div>
-        <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.Hous_id" /></div>
- 
-        <div class="clear"></div>
+   
+   
+    <table border="0" width="800" cellspacing="0" cellpadding="0" height="600" id="table1">
+        <tr>
+            <td width="300">
+                <div id="master" class="container_12">
+                    <div class="grid_2 lbl">配比单号</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;" data-bind="value:form.Confect_ID" disabled="disabled" /></div>
+                    <div class="grid_2 lbl">任务单号</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;" data-bind="value:form.Task_id" disabled="disabled" /></div>
+                    
+                    <div class="clear"></div>
 
-        <div class="grid_2 lbl ">合同编号</div>
-        <div class="grid_3 val"><input type="text" class="z-txt l-txt" style="width:100px;" data-bind="value:form.Cont_ID" disabled="disabled" />
-           
-           
-        </div>
-        
+                    <div class="grid_2 lbl ">合同编号</div>
+                    <div class="grid_3 val">
+                        <input type="text" class="z-txt l-txt" style="width:80px;" data-bind="value:form.Cont_ID" disabled="disabled" />
+                    </div>
+                    <div class="grid_2 lbl">楼号</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.Hous_id" /></div>
+                    <div class="clear"></div>
 
-        <div class="grid_2 lbl">工程名称</div>
-        <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:300px;" data-bind="easyuiCombobox:comboboxProject,comboboxValue:form.Cont_ID" data-options="disabled:true" /></div>
-        <div class="clear"></div>
+                    <div class="grid_2 lbl">工程名称</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;" data-bind="easyuiCombobox:comboboxProject,comboboxValue:form.Cont_ID" data-options="disabled:true" /></div>
+                    <div class="clear"></div>
 
-        <div class="grid_2 lbl">施工单位</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxClient,comboboxValue:dispalyform.Clin_ID" data-options="disabled:true" /></div>
-        <div class="clear"></div>
+                    <div class="grid_2 lbl">施工单位</div>
+                    <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;"  data-bind="easyuiCombobox:comboboxClient,comboboxValue:dispalyform.Clin_ID" data-options="disabled:true" /></div>
+                    <div class="clear"></div>
 
-        <div class="grid_2 lbl required">结构部位</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPlace,comboboxValue:form.Place" data-options="required:true" /></div>
-        <div class="clear"></div>
-
-        <div class="grid_2 lbl required">预定方量</div>
-        <div class="grid_10 val"><input type="text" class="easyui-numberbox z-txt m-txt" data-bind="numberboxValue:form.Amount" data-options="required:true" /></div>
-        <div class="grid_2 lbl">内部编号</div>
-        <div class="grid_10 val"><input type="text" class="z-txt m-txt" data-bind="Value:form.Inside_Code" data-options="required:true" />
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
-        </div>
-        <div class="clear"></div>
-
-        <div class="grid_2 lbl required">强度等级</div>
-        <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt m-txt" data-bind="easyuiCombobox:comboboxStrong,comboboxValue:form.Strong" data-options="required:true" /></div>
-        <div class="grid_2 lbl required">坍落度</div>
-        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxFall,comboboxValue:form.Fall" data-options="required:true" /></div>
-        <div class="grid_2 lbl">是否泵送 </div>
-        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.Pump" /></div>
-        <div class="clear"></div>
-
-        <div class="grid_2 lbl">泵车</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPumpType" data-options="multiple:true" /></div>
-        <div class="grid_2 lbl">外加剂</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxWjj" data-options="multiple:true" /></div>
-        <div class="clear"></div>
+                    <div class="grid_2 lbl required">结构部位</div>
+                    <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;"  data-bind="easyuiCombobox:comboboxPlace,comboboxValue:form.Place" data-options="required:true" /></div>
+                    <div class="clear"></div>
 
 
-        <div class="grid_2 lbl">签发</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.ViseName" /></div>
-        <div class="grid_2 lbl">审核</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
-        <div class="grid_2 lbl required">登记时间 </div>
-        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
-        <div class="clear"></div>
+                    <div class="grid_2 lbl">是否泵送 </div>
+                    <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.Pump" /></div>
+
+                    <div class="grid_2 lbl">泵车</div>
+                    <div class="grid_1 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:150px;" data-bind="easyuiCombobox:comboboxPumpType" data-options="multiple:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl required">预定方量</div>
+                    <div class="grid_1 val"><input type="text" class="easyui-numberbox z-txt m-txt" style="width:80px;" data-bind="numberboxValue:form.Amount" data-options="required:true" /></div>
+                    <div class="clear"></div>
 
 
 
+                    <div class="grid_2 lbl">内部编号</div>
+                    <div class="grid_1 val">
+                        <input type="text" class="z-txt m-txt" style="width:100px;" data-bind="Value:form.Inside_Code" data-options="required:true" />
+                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
+                    </div>
+                    <div class="clear"></div>
 
-        <div class="grid_2 lbl">备注 </div>
-        <div class="grid_4 val"><textarea style="height:50px;" class="z-txt l-txt" data-bind="value:form.Remark"></textarea></div>
-        <div class="clear"></div>
-    </div>
+                    <div class="grid_2 lbl required">强度等级</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt m-txt" style="width:90px;"  data-bind="easyuiCombobox:comboboxStrong,comboboxValue:form.Strong" data-options="required:true" /></div>
+                    <div class="grid_2 lbl required">坍落度</div>
+                    <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" style="width:90px;"  data-bind="easyuiCombobox:comboboxFall,comboboxValue:form.Fall" data-options="required:true" /></div>
+                    <div class="clear"></div>
+
+                 
+                    <div class="grid_2 lbl">外加剂</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:100px;" data-bind="easyuiCombobox:comboboxWjj" data-options="multiple:true" /></div>
+                    <div class="grid_2 lbl required">登记时间 </div>
+                    <div class="grid_3 val"><input type="text" class="easyui-datebox z-txt m-txt" style="width:100px;" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">签发</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;" data-bind="value:form.ViseName" /></div>
+                    <div class="grid_2 lbl">审核</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;"  data-bind="value:form.Auditing" /></div>
+                    
+                    <div class="clear"></div>
+
+
+
+
+                    <div class="grid_2 lbl">备注 </div>
+                    <div class="grid_4 val"><textarea style="height:50px;" class="z-txt l-txt" style="width:100px;" data-bind="value:form.Remark"></textarea></div>
+                    <div class="clear"></div>
+                </div>
+
+
+
+            </td>
+            <td>　</td>
+        </tr>
+    </table>
     <div style="text-align:center;clear:both">
         <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:confirmClick" href="javascript:void(0)">确定</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
