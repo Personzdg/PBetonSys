@@ -3344,6 +3344,7 @@
     <Content Include="Areas\Mms\Views\Product\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Task\LookupNewTask.cshtml" />
     <Content Include="Areas\Mms\Views\Confect\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\S_Confect\LookupS_Confect.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

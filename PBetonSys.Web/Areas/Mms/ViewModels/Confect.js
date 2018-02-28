@@ -98,14 +98,13 @@ var viewModel = function (data) {
         com.dialog({
             title: title,
             width: 800,
-            height: 600,
+            height: 500,
             html: "#task-template",
             viewModel: function (win) {
                 var that = this;
                 this.lookupClick = function () {
                     mms.com.selectS_Confect(self, null, function (data) {
-                        //that.form.Cont_ID(data.Cont_ID);
-                        //that.form.Clin_ID(data.Clinet_id);
+                      
                         that.form.Inside_Code(data.Inside_Code);
                     });
                 };
