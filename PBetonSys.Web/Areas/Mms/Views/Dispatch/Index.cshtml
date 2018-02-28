@@ -9,18 +9,22 @@
         using('datebox');
         using('timespinner');
         using('datetimebox');
+        using('jquery');
         using(['validatebox', 'combotree', 'numberspinner'], easyuifix.datagrid_editor_extend);
         var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
         ko.bindingViewModel(new viewModel(data));
     </script>
     <style type="text/css">
         .datagrid {
-        height:550px;
-        overflow-y:auto;
+            height: 550px;
+            overflow-y: auto;
+        }
+        .z-body {
+        overflow-y:scroll;
         }
     </style>
 }
-<div id="cc" class="easyui-layout" style="width: 2100px; height:900px;">
+<div id="cc" class="easyui-layout" style="width: 2100px; height:900px;" data-options="fit:true">
     <div data-options="region:'north',title:'',split:true" style="height:40px;width:1800px;">
         <div class="z-toolbar" style="height:23px;">
             <a id="a_refresh" href="#" plain="true" class="easyui-linkbutton" icon="icon-arrow_refresh" title="刷新" data-bind="click:refreshClick">刷新</a>
@@ -30,8 +34,10 @@
     <div data-options="region:'south',title:'',split:true" style="width:2100px;height:460px;">
         <div id="tt" class="easyui-tabs">
             <div title="生产查询">
+                <iframe id="frmProduct" frameborder="0" src="/Mms/Product" style="width: 100%;height:2000px"></iframe>
             </div>
             <div title="车辆查询">
+                <iframe id="frmProduct" frameborder="0" src="/Mms/Product" style="width: 100%;height:2000px"></iframe>
             </div>
             <div title="运输单" class="hide" style="padding-top:2px;">
             </div>
@@ -54,15 +60,15 @@
             <a id="a_printer" href="#" plain="true" class="easyui-linkbutton" icon="icon-printer" title="打印" data-bind="">打印</a>
         </div>
         <div id="master" class="container_12" style="width:85%;">
-            <div class="grid_1 lbl">合同编号</div>
-            <div class="grid_2 val"><input type="text" id="CNo" name="CNo" data-bind="value:CurrModel.CNo" class="z-txt readonly" /></div>
+            <div class="grid_1 lbl">合同编号</div>   @*CurrModel.CNo*@
+            <div class="grid_2 val"><input type="text" id="合同编号" name="合同编号" data-bind="value:CurrModel.CNo" class="z-txt readonly" /></div>
             <div class="grid_1 lbl">配比编号</div>
             <div class="grid_2 val"><input type="text" id="CPBNo" name="CPBNo" data-bind="value:CurrModel.CPBNo" class="z-txt readonly" /></div>
             <div class="grid_1 lbl">任务编号</div>
             <div class="grid_2 val "><input type="text" id="CTaskNo" name="CTaskNo" data-bind="value:CurrModel.CTaskNo" class="z-txt easyui-validatebox" /></div>
             <div class="grid_1 lbl">第一车</div>
             <div class="grid_2 val "><input type="text" id="CFirstCarTime" name="CFirstCarTime" data-bind="datetimeboxValue:CurrModel.CFirstCarTime" class=" z-txt easyui-datetimebox" /></div>
-         
+
             <div class="clear"></div>
 
             <div class="grid_1 lbl">工程名称</div>

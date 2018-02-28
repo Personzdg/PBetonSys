@@ -158,7 +158,8 @@ var viewModel = function (data) {
                 };
 
                 this.form = {
-                    Task_id: ko.observable(model.Task_id),
+                    /**     Task_id: ko.observable(model.Task_id.replace('T','P'))**/
+                        Task_id: ko.observable(model.Task_id),
                     House_id: ko.observable(model.House_id),
                     AuditingFlag: ko.observable(model.AuditingFlag),
                     Cont_ID: ko.observable(model.Cont_ID),

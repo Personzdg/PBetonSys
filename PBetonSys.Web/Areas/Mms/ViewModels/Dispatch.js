@@ -34,6 +34,7 @@ var viewModel = function (data) {
         CDriveID: ko.observable(),
         CPumpId:ko.observable()
     };
+    this.currRow = ko.observable({});
     this.gridEdit = new com.editGridViewModel(this.grid);
     //this.grid.onDblClickRow = this.gridEdit.begin;
     //this.grid.onClickRow = this.gridEdit.ended;
@@ -73,5 +74,17 @@ var viewModel = function (data) {
         //self.gridEdit.begin()
     };
     this.grid.onClickRow = this.editClick;
+    this.tabClick = function ()
+    {
+        //setTimeout(function ()
+        //{
+        //    $('#tt').tabs({
+        //        border: false,
+        //        onSelect: function (title, index) {
+        //            console.log(title + ' is selected');
+        //        }
+        //    });
+        //}, 2000);
+    };
     //this.grid.onDblClickRow = this.editClick;
 };
