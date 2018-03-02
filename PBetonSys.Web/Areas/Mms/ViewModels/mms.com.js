@@ -132,7 +132,7 @@ mms.com.selectS_Confect = function (param, callback) {
     utils.clearIframe(target);
 
     var opt = { title: '选择标准配比', width: 600, height: 450, modal: true, collapsible: false, minimizable: false, maximizable: true, closable: true };
-    opt.content = "<iframe id='frm_win_material' src='/mms/S_Confect/LookupS_Confect' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>";  //frameborder="0" for ie7
+    opt.content = "<iframe id='frm_win_selectS_Confect' src='/mms/S_Confect/LookupS_Confect' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>";  //frameborder="0" for ie7
     opt.paramater = param;      //可传参数
     opt.onSelect = function (selectedData) {                //可接收选择数据
         if (selectedData) {

@@ -1,5 +1,6 @@
 ﻿$(function () {
     using(['layout', 'datagrid', 'tree'], function () {
+        debugger;
         //获取window信息
         var iframe = getThisIframe();
         var thiswin = parent.$(iframe).parent();

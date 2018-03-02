@@ -12,7 +12,10 @@ var viewModel = function (data) {
         queryParams: ko.observable(),
         pagination: true,
         loadFilter: function (d) {
-            d.rows = utils.copyProperty(d.rows, 'Task_id', '_id');
+            if (d&&d.row)
+            {
+                d.rows = utils.copyProperty(d.rows, 'Task_id', '_id');
+            }
             return d;
         }
     };
@@ -21,7 +24,7 @@ var viewModel = function (data) {
 
     this.searchClick = function () {
         var param = ko.toJS(this.form);
-        this.grid.queryParams(param);
+        self.grid.queryParams(param);
     };
 
     this.clearClick = function () {
@@ -36,7 +39,8 @@ var viewModel = function (data) {
     this.addClick = function () {
         var row = self.grid.datagrid('getSelected');
         if (!row) return com.message('warning', '请先选择一个任务！');
-        self.opentaskdialog("新开配比" + row._id, row, function (vm, win) {
+        debugger;
+        self.opentaskdialog("新开配比" + row.Task_id, row, function (vm, win) {
             if (com.formValidate(win)) {
                 self.save("inserted", vm, win);
             }
@@ -103,9 +107,9 @@ var viewModel = function (data) {
             viewModel: function (win) {
                 var that = this;
                 this.lookupClick = function () {
-                    mms.com.selectS_Confect(self, null, function (data) {
-                      
-                        that.form.Inside_Code(data.Inside_Code);
+                    mms.com.selectS_Confect(self, function (data) {
+                        debugger;
+                        that.form.Inside_Code(data.inside_id);
                     });
                 };
                 this.comboboxHouse = {
@@ -168,7 +172,7 @@ var viewModel = function (data) {
                     //AuditingFlag: ko.observable(model.AuditingFlag),
                     Cont_ID: ko.observable(model.Cont_ID),
 
-                    Inside_Code: ko.observable(model.Inside_Code),
+                    Inside_Code: ko.observable(),
                     Place: ko.observable(model.Place),
                     Strong: ko.observable(model.Strong),
                     Amount: ko.observable(model.Amount),

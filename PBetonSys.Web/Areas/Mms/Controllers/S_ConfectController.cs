@@ -31,21 +31,21 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public dynamic GetS_ConfectList(RequestWrapper query)
         {
             query.LoadSettingXmlString(@"
-                <settings defaultOrderBy='ID'>
+                <settings defaultOrderBy='a.ID'>
                     <select>
-                       select  a.inside_id,a.Strong,a.Pump, a.Fall ,a.State 
+                       a.inside_id,a.Strong,a.Pump, a.Fall ,a.State 
                     </select>
                     <from>
-                       S_Confect as a and  group by inside_id,Strong,State,Fall,Pump
+                       S_Confect as a 
                     </from>
                     <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
                         <field name='a.Strong'       cp='startwith'  ></field>
                         <field name='a.Fall'       cp='like'   ></field>
                         <field name='a.Pump'       cp='like'   ></field>
-                        
                     </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
+            pQuery.GroupBy("a.inside_id,Strong,State,Fall,Pump,a.ID");
             var result = masterService.GetDynamicListWithPaging(pQuery);
             return result;
         }

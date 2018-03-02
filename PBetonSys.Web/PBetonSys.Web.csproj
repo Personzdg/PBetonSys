@@ -232,10 +232,13 @@
   <ItemGroup>
     <Content Include="Areas\Mms\ViewModels\Cart.js" />
     <Content Include="Areas\Mms\ViewModels\Clinet.js" />
+    <Content Include="Areas\Mms\ViewModels\Confect.js" />
     <Content Include="Areas\Mms\ViewModels\Contract.js" />
     <Content Include="Areas\Mms\ViewModels\Dispatch.js" />
     <Content Include="Areas\Mms\ViewModels\mms.com.js" />
     <Content Include="Areas\Mms\ViewModels\mms.lookupContract.js" />
+    <Content Include="Areas\Mms\ViewModels\mms.lookupNewTask.js" />
+    <Content Include="Areas\Mms\ViewModels\mms.lookupS_Confect.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.edit.js" />
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.search.js" />
     <Content Include="Areas\Mms\ViewModels\Product.js" />
@@ -3339,6 +3342,8 @@
     <Content Include="Areas\Mms\Views\Dispatch\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Report\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\Confect\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\S_Confect\LookupS_Confect.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

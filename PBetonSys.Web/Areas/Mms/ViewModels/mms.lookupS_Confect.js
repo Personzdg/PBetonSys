@@ -15,7 +15,7 @@
         var panels = $('#right').data('layout').panels;
         panels.north.panel({
             onResize: function (w, h) {
-                $('#list').datagrid('resize', { width: w, height: h - 38 });
+                $('#list111').datagrid('resize', { width: w, height: h - 38 });
             }
         });
 
@@ -30,9 +30,9 @@
 
         //定义返回值
         var selected = new Object();
-        var grid = $('#list');
+        var grid1 = $('#list111');
 
-        var defaults = {
+        var defaults1 = {
             iconCls: 'icon icon-list',
             nowrap: true,           //折行
             rownumbers: true,       //行号
@@ -46,7 +46,7 @@
         };
 
         //设置明细表格的属性
-        var opt = $.extend({}, defaults, {
+        var opt1 = $.extend({}, defaults1, {
             height: 310,
             pagination: true,
             url: '/api/mms/S_Confect/GetS_ConfectList',
@@ -61,15 +61,39 @@
                 $('#btnConfirm').click();
             }
         });
+        //grid1.datagrid(opt1);
 
-        grid.datagrid(opt);
+        grid1.datagrid({
+            iconCls: 'icon icon-list',
+            nowrap: true,           //折行
+            rownumbers: true,       //行号
+            striped: true,          //隔行变色
+            singleSelect: true,     //单选
+            remoteSort: true,       //后台排序
+            pagination: false,      //翻页
+            pageSize: com.getSetting("gridrows", 20),
+            method: "GET",
+            contentType: "application/json",
+            height: 310,
+            pagination: true,
+            pageSize: 10,
+            url: '/api/mms/S_Confect/GetS_ConfectList',
+            columns: cols,
+            onClickRow: function (index, row) {
+                selected = row;
+            },
+            onDblClickRow: function (index, row) {
+                selected = row;
+                $('#btnConfirm').click();
+            }
+        });
 
         var search = function () {
             var queryParams = $.extend({}, param, {
                 Cont_ID: $('#id').val(),
                 ProjectName: $('#text').val()
             });
-            grid.datagrid('reload', queryParams);
+            grid1.datagrid('reload', queryParams);
         };
 
         var paramStr = "";
