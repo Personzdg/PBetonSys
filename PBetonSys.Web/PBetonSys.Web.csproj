@@ -186,6 +186,7 @@
     <Compile Include="Areas\Mms\Controllers\ContractController.cs" />
     <Compile Include="Areas\Mms\Controllers\DispatchController.cs" />
     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mms\Controllers\LookupS_ConfectController.cs" />
     <Compile Include="Areas\Mms\Controllers\ProductController.cs" />
     <Compile Include="Areas\Mms\Controllers\ReportController.cs" />
     <Compile Include="Areas\Mms\Controllers\S_ConfectController.cs" />

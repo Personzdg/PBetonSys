@@ -31,9 +31,9 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public dynamic GetS_ConfectList(RequestWrapper query)
         {
             query.LoadSettingXmlString(@"
-                <settings defaultOrderBy='a.ID'>
+                <settings defaultOrderBy='a.inside_id'>
                     <select>
-                       a.inside_id,a.Strong,a.Pump, a.Fall ,a.State 
+                       a.inside_id,a.Strong,a.Pump, a.Fall
                     </select>
                     <from>
                        S_Confect as a 
@@ -45,7 +45,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                     </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
-            pQuery.GroupBy("a.inside_id,Strong,State,Fall,Pump,a.ID");
+            pQuery.GroupBy("a.inside_id,Strong,Fall,Pump");
             var result = masterService.GetDynamicListWithPaging(pQuery);
             return result;
         }
@@ -56,21 +56,20 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public dynamic GetLookupS_Confect(RequestWrapper query)
         {
             query.LoadSettingXmlString(@"
-                <settings defaultOrderBy='a.id'>
+                <settings defaultOrderBy='inside_id'>
                     <select>
-                        a.*
+                       MT_Size,Theory_Value,silo
                     </select>
                     <from>
-                        S_Confect as a
-                       
+                        S_Confect
                     </from>
   <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
-    <field name='a.inside_id'       cp='startwith'  ></field>
+    <field name='inside_id'       cp='equal'  ></field>
    
   </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
-            var result = masterService.GetDynamicListWithPaging(pQuery);
+            var result = masterService.GetDynamicList(pQuery);
             return result;
         }
 

@@ -86,9 +86,11 @@
             columns: cols,
             onClickRow: function (index, row) {
                 selected = row;
+                IniConfectData(row.inside_id);
             },
             onDblClickRow: function (index, row) {
                 selected = row;
+                IniConfectData(row.inside_id);
                 $('#btnConfirm').click();
             }
         });
@@ -121,6 +123,35 @@
     });
 });
 
+function IniConfectData(inside_id)
+{
+    var cols222 = [[
+              { title: '材料名称', field: 'MT_Size', sortable: true, align: 'left', width: 80 },
+              { title: '配比值', field: 'Theory_Value', sortable: true, align: 'left', width: 80 },
+              { title: '筒仓号', field: 'silo', sortable: true, align: 'left', width: 80 }
+
+    ]];
+    var queryParams22 = {
+        inside_id: inside_id
+    };
+    var grid1 = $('#list222');
+    grid1.datagrid({
+        iconCls: 'icon icon-list',
+        nowrap: true,           //折行
+        rownumbers: false,       //行号
+        striped: true,          //隔行变色
+        singleSelect: false,     //单选
+        remoteSort: false,       //后台排序
+        pagination: false,      //翻页
+        queryParams: queryParams22,
+        pageSize: com.getSetting("gridrows", 20),
+        method: "GET",
+        contentType: "application/json",
+        height: 310,
+        url: '/api/mms/S_Confect/GetLookupS_Confect',
+        columns: cols222
+    });
+}
 function getThisIframe() {
     if (!parent) return null;
     var iframes = parent.document.getElementsByTagName('iframe');
