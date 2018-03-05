@@ -46,7 +46,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 </settings>");
             var pQuery = query.ToParamQuery();
             pQuery.GroupBy("a.inside_id,Strong,Fall,Pump");
-            var result = masterService.GetDynamicListWithPaging(pQuery);
+            var result = masterService.GetDynamicList(pQuery);
             return result;
         }
 
@@ -73,7 +73,19 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return result;
         }
 
-
+        /// <summary>
+        /// 获取
+        /// </summary>
+        /// <param name="Inside_ID"></param>
+        /// <param name="HousID"></param>
+        /// <returns></returns>
+        public dynamic GetLookupS_ConfectDetail(string Inside_ID, string HousID)
+        {
+            var pQuery = ParamQuery.Instance().Select("Inside_ID,Hous1Name,Hous2Name,Hous3Name,Hous4Name,MT_Size,Theory_Value,Tol,T1,MTType,MTSize,Provide_ID,MTCode,ZBCode,MT_Value ,Sequence,Range_To,range_From,NewMin,NewMax,Theory_Value,MT_Value,Ratio").From(string.Format(" LdS_confectToConfDetil('{0}','{1}')", Inside_ID, HousID));
+            pQuery.ClearWhere();
+            var result = masterService.GetDynamicList(pQuery);
+            return result;
+        }
 
 
     }

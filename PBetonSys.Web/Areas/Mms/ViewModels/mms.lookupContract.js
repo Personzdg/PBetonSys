@@ -38,7 +38,7 @@
             singleSelect: true,     //单选
             remoteSort: true,       //后台排序
             pagination: false,      //翻页
-            pageSize: com.getSetting("gridrows", 20),
+            //pageSize: com.getSetting("gridrows", 20),
             contentType: "application/json",
             method: "GET"
         };
@@ -46,10 +46,10 @@
         //设置明细表格的属性
         var opt = $.extend({}, defaults, {
             height: 310,
-            pagination: true,
+            //pagination: true,
             url: '/api/mms/contract/GetLookupContract',
             queryParams: param,
-            pageSize: 10,
+            //pageSize: 10,
             columns: cols,
             onClickRow: function (index, row) {
                 selected = row;

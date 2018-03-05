@@ -5,6 +5,7 @@
 
 var viewModel = function (data) {
     var self = this;
+    self.myList = [];
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
         size: { w: 4, h: 40 },
@@ -78,6 +79,7 @@ var viewModel = function (data) {
     **/
 
     this.save = function (type, vm, win) {
+        debugger;
         var post = new Object();
         post.list = new Object();
         post.list[type] = [];
@@ -107,9 +109,11 @@ var viewModel = function (data) {
             viewModel: function (win) {
                 var that = this;
                 this.lookupClick = function () {
-                    mms.com.selectS_Confect(self, function (data) {
+                    debugger;
+                    mms.com.selectS_Confect(self, model, function (data) {
                         debugger;
                         that.form.Inside_Code(data.inside_id);
+                        self.IniMyConfectDetail(data.inside_id, model.House_id);
                     });
                 };
                 this.comboboxHouse = {
@@ -280,4 +284,14 @@ var viewModel = function (data) {
 
     this.grid.onDblClickRow = this.addClick;
     
+    this.IniMyConfectDetail = function (Inside_ID, HousID)
+    {
+        com.ajax({
+            type: 'GET',
+            url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + Inside_ID + "&HousID=" + HousID,
+            success: function (d) {
+                self.myList = d;
+            }
+        });
+    };
 };

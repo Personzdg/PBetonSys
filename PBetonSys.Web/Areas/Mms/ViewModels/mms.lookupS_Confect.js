@@ -4,8 +4,12 @@
         var iframe = getThisIframe();
         var thiswin = parent.$(iframe).parent();
         var options = thiswin.window("options");
+        debugger;
+        console.log(options.paramater);
         var param = options.paramater;
-
+        if (options.data1 && options.data1.Strong) {
+            $('#id').val(options.data1.Strong);
+        };
         //初始化layout
         var box = $("#layoutbox"), right = $('#right').layout();
         box.width($(window).width()).height($(window).height()).layout();
@@ -80,19 +84,18 @@
             method: "GET",
             contentType: "application/json",
             height: 310,
-            pagination: true,
-            pageSize: 10,
             url: '/api/mms/S_Confect/GetS_ConfectList',
             columns: cols,
             onClickRow: function (index, row) {
                 selected = row;
                 IniConfectData(row.inside_id);
-            },
-            onDblClickRow: function (index, row) {
-                selected = row;
-                IniConfectData(row.inside_id);
-                $('#btnConfirm').click();
             }
+            //,
+            //onDblClickRow: function (index, row) {
+            //    selected = row;
+            //    IniConfectData(row.inside_id);
+            //    $('#btnConfirm').click();
+            //}
         });
 
         var search = function () {
