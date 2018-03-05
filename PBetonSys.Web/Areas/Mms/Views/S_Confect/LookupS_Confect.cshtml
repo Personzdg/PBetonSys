@@ -39,8 +39,8 @@
 <div id="layoutbox">
     <div region="center" split="true">
         <div id="right" class="easyui-layout" fit="true">
-            <div region="north" style="height:348px" border="false" split="true">
-                <div class="z-toolbar" style="border-bottom-width: 1px;">
+            <div region="north" border="false">
+                <div class="z-toolbar">
                     <div id="master" class="container_16">
                         <div class="grid_2 lbl" id="valueTitle">强度等级</div>
                         <div class="grid_4 val"><input type="text" id="id" name="Strong" class="z-txt" data-cp="like" /></div>
@@ -52,9 +52,12 @@
                     </div>
                 </div>
                 @*<div id="list111"></div>*@
+            </div>
+
+            <div region="center" border="false" split="true">
                 <table id="list111"></table>
             </div>
-            <div region="center" border="false" split="true">
+            <div region="south" border="false" split="true">
                 <div class="z-toolbar" style="text-align: center; padding: 4px 0; border-top-width: 1px; position:relative;">
                     <button id="btnConfirm" class="sexybutton"><span><span><span class="ok">确定</span></span></span></button>&nbsp;
                     <button id="btnCancel" class="sexybutton"><span><span><span class="cancel">取消</span></span></span></button>

@@ -32,37 +32,41 @@
         var selected = new Object();
         var grid1 = $('#list111');
 
-        var defaults1 = {
-            iconCls: 'icon icon-list',
-            nowrap: true,           //折行
-            rownumbers: true,       //行号
-            striped: true,          //隔行变色
-            singleSelect: true,     //单选
-            remoteSort: true,       //后台排序
-            pagination: false,      //翻页
-            pageSize: com.getSetting("gridrows", 20),
-            contentType: "application/json",
-            method: "GET"
-        };
+        //var defaults1 = {
+        //    iconCls: 'icon icon-list',
+        //    nowrap: true,           //折行
+        //    rownumbers: true,       //行号
+        //    striped: true,          //隔行变色
+        //    singleSelect: true,     //单选
+        //    remoteSort: true,       //后台排序
+        //    pagination: false,      //翻页
+        //    pageSize: com.getSetting("gridrows", 20),
+        //    contentType: "application/json",
+        //    method: "GET"
+        //};
 
-        //设置明细表格的属性
-        var opt1 = $.extend({}, defaults1, {
-            height: 310,
-            pagination: true,
-            url: '/api/mms/S_Confect/GetS_ConfectList',
-            queryParams: param,
-            pageSize: 10,
-            columns: cols,
-            onClickRow: function (index, row) {
-                selected = row;
-            },
-            onDblClickRow: function (index, row) {
-                selected = row;
-                $('#btnConfirm').click();
-            }
-        });
+        ////设置明细表格的属性
+        //var opt1 = $.extend({}, defaults1, {
+        //    height: 310,
+        //    pagination: true,
+        //    url: '/api/mms/S_Confect/GetS_ConfectList',
+        //    queryParams: param,
+        //    pageSize: 10,
+        //    columns: cols,
+        //    onClickRow: function (index, row) {
+        //        selected = row;
+        //    },
+        //    onDblClickRow: function (index, row) {
+        //        selected = row;
+        //        $('#btnConfirm').click();
+        //    }
+        //});
         //grid1.datagrid(opt1);
 
+        var queryParams11 =
+         {
+             Strong: $('#id').val()
+         };
         grid1.datagrid({
             iconCls: 'icon icon-list',
             nowrap: true,           //折行
@@ -71,6 +75,7 @@
             singleSelect: true,     //单选
             remoteSort: true,       //后台排序
             pagination: false,      //翻页
+            queryParams: queryParams11,
             pageSize: com.getSetting("gridrows", 20),
             method: "GET",
             contentType: "application/json",
@@ -89,11 +94,11 @@
         });
 
         var search = function () {
-            var queryParams = $.extend({}, param, {
-                Cont_ID: $('#id').val(),
-                ProjectName: $('#text').val()
-            });
-            grid1.datagrid('reload', queryParams);
+            var queryParams11 =
+          {
+              Strong: $('#id').val()
+          };
+            grid1.datagrid('reload', queryParams11);
         };
 
         var paramStr = "";
