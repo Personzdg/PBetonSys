@@ -4,8 +4,6 @@
         var iframe = getThisIframe();
         var thiswin = parent.$(iframe).parent();
         var options = thiswin.window("options");
-        debugger;
-        console.log(options.paramater);
         var param = options.paramater;
         if (options.data1 && options.data1.Strong) {
             $('#id').val(options.data1.Strong);
@@ -26,9 +24,9 @@
         //设置grid列
         var cols = [[
                 { title: '标配编号', field: 'inside_id', sortable: true, align: 'left', width: 80 },
-                { title: '强度', field: 'Strong', sortable: true, align: 'left', width: 80 },
-                { title: '泵送', field: 'Pump', sortable: true, align: 'left', width: 80 },
-                { title: '坍落度', field: 'Fall', sortable: true, align: 'left', width: 80 }
+                { title: '强度', field: 'Strong', sortable: true, align: 'left', width: 60 },
+                { title: '泵送', field: 'Pump', sortable: true, align: 'left', width: 60 },
+                { title: '坍落度', field: 'Fall', sortable: true, align: 'left', width: 60 }
                 
         ]];
 
@@ -80,6 +78,7 @@
             remoteSort: true,       //后台排序
             pagination: false,      //翻页
             queryParams: queryParams11,
+            fit:false,
             pageSize: com.getSetting("gridrows", 20),
             method: "GET",
             contentType: "application/json",
@@ -146,6 +145,7 @@ function IniConfectData(inside_id)
         singleSelect: false,     //单选
         remoteSort: false,       //后台排序
         pagination: false,      //翻页
+        fit: false,
         queryParams: queryParams22,
         pageSize: com.getSetting("gridrows", 20),
         method: "GET",

@@ -40,7 +40,6 @@ var viewModel = function (data) {
     this.addClick = function () {
         var row = self.grid.datagrid('getSelected');
         if (!row) return com.message('warning', '请先选择一个任务！');
-        debugger;
         self.opentaskdialog("新开配比" + row.Task_id, row, function (vm, win) {
             if (com.formValidate(win)) {
                 self.save("inserted", vm, win);
@@ -79,7 +78,6 @@ var viewModel = function (data) {
     **/
 
     this.save = function (type, vm, win) {
-        debugger;
         var post = new Object();
         post.list = new Object();
         post.list[type] = [];
@@ -109,9 +107,7 @@ var viewModel = function (data) {
             viewModel: function (win) {
                 var that = this;
                 this.lookupClick = function () {
-                    debugger;
                     mms.com.selectS_Confect(self, model, function (data) {
-                        debugger;
                         that.form.Inside_Code(data.inside_id);
                         self.IniMyConfectDetail(data.inside_id, model.House_id);
                     });

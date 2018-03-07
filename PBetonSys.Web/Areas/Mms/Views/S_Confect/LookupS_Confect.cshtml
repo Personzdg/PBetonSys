@@ -7,7 +7,7 @@
     <style type="text/css">
         .z-toolbar {
             border-width: 0;
-            margin: 0;
+            margin: 0 !important;
         }
 
         #form_div {
@@ -53,13 +53,13 @@
                 </div>
                 @*<div id="list111"></div>*@
             </div>
-
-            <div region="center" border="false" split="true">
+            <div region="west" style="width:0px;"></div>
+            <div region="center">
                 <table id="list111"></table>
             </div>
-            <div region="east" style="width:300px;" border="false" split="true"><table id="list222"></table></div>
-            <div region="south" border="false" split="true">
-                <div class="z-toolbar" style="text-align: center; padding: 4px 0; border-top-width: 1px; position:relative;">
+            <div region="east" style="width:280px;"><table id="list222"></table></div>
+            <div region="south" border="false" split="true" style="height:28px;">
+                <div class="z-toolbar" style="text-align: center; position:relative;padding-top:0px;">
                     <button id="btnConfirm" class="sexybutton"><span><span><span class="ok">确定</span></span></span></button>&nbsp;
                     <button id="btnCancel" class="sexybutton"><span><span><span class="cancel">取消</span></span></span></button>
                 </div>
