@@ -13,8 +13,7 @@ var viewModel = function (data) {
         queryParams: ko.observable(),
         pagination: true,
         loadFilter: function (d) {
-            if (d&&d.row)
-            {
+            if (d && d.row) {
                 d.rows = utils.copyProperty(d.rows, 'Task_id', '_id');
             }
             return d;
@@ -36,7 +35,7 @@ var viewModel = function (data) {
         window.location.reload();
     };
 
-/**    ------------**/
+    /**    ------------**/
     this.addClick = function () {
         var row = self.grid.datagrid('getSelected');
         if (!row) return com.message('warning', '请先选择一个任务！');
@@ -109,11 +108,16 @@ var viewModel = function (data) {
                 this.lookupClick = function () {
                     mms.com.selectS_Confect(self, model, function (data) {
                         that.form.Inside_Code(data.inside_id);
-                        self.IniMyConfectDetail(data.inside_id, model.House_id);
+                        var queryParams = {
+                            Inside_ID: data.inside_id,
+                            HousID: model.House_id
+                        };
+                        //that.gridDetail('reload', queryParams);
+                        that.IniMyConfectDetailList(data.inside_id, model.House_id);
                     });
                 };
                 this.comboboxHouse = {
-                    valueField: 'Code',
+                    valueField: 'Value',
                     textField: 'Text',
                     data: self.comboboxHouseData
                 };
@@ -166,7 +170,7 @@ var viewModel = function (data) {
                         //Pump_vehicle: ko.observable(model.Pump_vehicle.replace(';', ',')) // 这部个显示的时候是需要的。但保存时Confect表里没这个字段不需要保存
                     };
                 this.form = {
-                    Confect_ID: ko.observable(model.Task_id.replace('T','P')),
+                    Confect_ID: ko.observable(model.Task_id.replace('T', 'P')),
                     Task_id: ko.observable(model.Task_id),
                     Hous_id: ko.observable(model.House_id),
                     //AuditingFlag: ko.observable(model.AuditingFlag),
@@ -179,7 +183,7 @@ var viewModel = function (data) {
                     Fall: ko.observable(model.Fall),
                     Pump: ko.observable(model.Pump),
                     State: ko.observable(false),
-                   
+
                     Wjj: ko.observable(model.Wjj ? model.Wjj.replace(';', ',') : undefined),
                     //LinkName: ko.observable(model.LinkName),
                     //Telephon: ko.observable(model.Telephon),
@@ -189,12 +193,76 @@ var viewModel = function (data) {
                     Remark: ko.observable(model.Remark)
                 };
 
+                that.grid = {
+                    size: { w: 4, h: 40 },
+                    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + this.form.Inside_Code + "&HousID=" + this.form.Hous_id,
+                    queryParams: ko.observable(),
+                    pagination: false
+                };
                 this.confirmClick = function () {
                     fnConfirm(this, win);
                 };
 
                 this.cancelClick = function () {
                     win.dialog('close');
+                };
+                this.IniMyConfectDetailList = function (Inside_ID, HousID) {
+                    debugger;
+                    //设置grid列
+                    var detailcols = [[
+                            { title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
+                            { title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
+                            { title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
+                            { title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
+                            { title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
+                            { title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
+                            { title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
+                            { title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
+                            { title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
+                            { title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
+                            { title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
+                            { title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
+                            { title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }
+                    ]];
+                    var queryParams2222 = {
+                        Inside_ID: Inside_ID,
+                        HousID: HousID
+                    };
+                    //setTimeout(function ()
+                    //{
+                    var grid222222 = $('#griddetaillist');
+                    grid222222.datagrid({
+                        iconCls: 'icon icon-list',
+                        nowrap: true,           //折行
+                        rownumbers: false,       //行号
+                        striped: true,          //隔行变色
+                        singleSelect: false,     //单选
+                        remoteSort: false,       //后台排序
+                        pagination: false,      //翻页
+                        fit: false,
+                        queryParams: queryParams2222,
+                        method: "GET",
+                        contentType: "application/json",
+                        height: 310,
+                        url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?rad=' + Math.random(),
+                        columns: detailcols
+                    });
+                    //}, 2000);
+
+
+
+                    //com.ajax({
+                    //    type: 'GET',
+                    //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + Inside_ID + "&HousID=" + HousID,
+                    //    success: function (d) {
+                    //        //self.myList = d;
+                    //        for (var i = 0; i < d.length; i++)
+                    //        {
+                    //            vm.griddetaillist.addnew(d[i]);
+                    //            //$('#griddetaillist').addnew(d[i]);
+                    //        }
+                    //    }
+                    //});
                 };
             }
         });
@@ -279,15 +347,15 @@ var viewModel = function (data) {
     this.initComboData();
 
     this.grid.onDblClickRow = this.addClick;
-    
-    this.IniMyConfectDetail = function (Inside_ID, HousID)
-    {
-        com.ajax({
-            type: 'GET',
-            url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + Inside_ID + "&HousID=" + HousID,
-            success: function (d) {
-                self.myList = d;
-            }
-        });
-    };
+
+
+    this.gridDetail = $.extend(true,{},self.grid,{
+        url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail',
+        queryParams: {
+            Inside_ID: 'C15-1',
+            HousID: '01'
+        },
+        pagination:false
+    });
+
 };

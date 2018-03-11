@@ -75,7 +75,7 @@
    
     <table border="0" width="750" cellspacing="0" cellpadding="0" height="430" id="table1">
         <tr>
-            <td width="360">
+            <td width="10">
                 <div id="master" class="container_12">
                     <div class="grid_2 lbl">配比单号</div>
                     <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;" data-bind="value:form.Confect_ID" disabled="disabled" /></div>
@@ -150,7 +150,39 @@
 
 
             </td>
-            <td>　</td>
+            <td width="300px;">
+                <table id="griddetaillist">
+                    @*<thead>
+                        <tr>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Hous1Name" sortable="true" align="left" width="60" editor="text">1#线</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                        </tr>
+                    </thead>*@
+                    @*{ title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
+            { title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
+            { title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
+            { title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
+            { title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
+            { title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
+            { title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
+            { title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
+            { title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
+            { title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
+            { title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
+            { title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
+            { title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }*@
+                </table>
+            </td>
         </tr>
     </table>
     <div style="text-align:center;clear:both">
