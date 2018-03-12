@@ -3394,6 +3394,7 @@
     <Folder Include="Areas\Area\Controllers\" />
     <Folder Include="Areas\Area\Models\" />
     <Folder Include="Areas\Area\Views\Shared\" />
+    <Folder Include="Areas\Mms\Controllers\common\" />
     <Folder Include="Areas\Mms\Views\Code\" />
     <Folder Include="Areas\Mms\Views\Default1\" />
     <Folder Include="Areas\Mms\Views\Shared\" />

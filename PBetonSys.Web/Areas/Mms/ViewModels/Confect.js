@@ -112,8 +112,9 @@ var viewModel = function (data) {
                             Inside_ID: data.inside_id,
                             HousID: model.House_id
                         };
+                        that.griddetail.datagrid('reload', queryParams);
                         //that.gridDetail('reload', queryParams);
-                        that.IniMyConfectDetailList(data.inside_id, model.House_id);
+                        //that.IniMyConfectDetailList(data.inside_id, model.House_id);
                     });
                 };
                 this.comboboxHouse = {
@@ -193,12 +194,12 @@ var viewModel = function (data) {
                     Remark: ko.observable(model.Remark)
                 };
 
-                that.grid = {
-                    size: { w: 4, h: 40 },
-                    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + this.form.Inside_Code + "&HousID=" + this.form.Hous_id,
-                    queryParams: ko.observable(),
-                    pagination: false
-                };
+                //that.grid = {
+                //    size: { w: 4, h: 40 },
+                //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + this.form.Inside_Code + "&HousID=" + this.form.Hous_id,
+                //    queryParams: ko.observable(),
+                //    pagination: false
+                //};
                 this.confirmClick = function () {
                     fnConfirm(this, win);
                 };
@@ -206,32 +207,24 @@ var viewModel = function (data) {
                 this.cancelClick = function () {
                     win.dialog('close');
                 };
-                this.IniMyConfectDetailList = function (Inside_ID, HousID) {
-                    debugger;
-                    //设置grid列
-                    var detailcols = [[
-                            { title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
-                            { title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
-                            { title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
-                            { title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
-                            { title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
-                            { title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
-                            { title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
-                            { title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
-                            { title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
-                            { title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
-                            { title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
-                            { title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
-                            { title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }
-                    ]];
-                    var queryParams2222 = {
-                        Inside_ID: Inside_ID,
-                        HousID: HousID
-                    };
-                    //setTimeout(function ()
-                    //{
-                    var grid222222 = $('#griddetaillist');
-                    grid222222.datagrid({
+          //      var detailcols = [[
+          //{ title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
+          //{ title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
+          //{ title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
+          //{ title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
+          //{ title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
+          //{ title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
+          //{ title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
+          //{ title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
+          //{ title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
+          //{ title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
+          //{ title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
+          //{ title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
+          //{ title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }
+                //]];
+
+                this.griddetail =
+                    {
                         iconCls: 'icon icon-list',
                         nowrap: true,           //折行
                         rownumbers: false,       //行号
@@ -240,30 +233,19 @@ var viewModel = function (data) {
                         remoteSort: false,       //后台排序
                         pagination: false,      //翻页
                         fit: false,
-                        queryParams: queryParams2222,
+                        size: { w: 5, h:15 },
+                        queryParams: {
+                            Inside_ID: "",
+                            HousID: model.House_id
+                        },
                         method: "GET",
                         contentType: "application/json",
-                        height: 310,
                         url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?rad=' + Math.random(),
-                        columns: detailcols
-                    });
-                    //}, 2000);
-
-
-
-                    //com.ajax({
-                    //    type: 'GET',
-                    //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + Inside_ID + "&HousID=" + HousID,
-                    //    success: function (d) {
-                    //        //self.myList = d;
-                    //        for (var i = 0; i < d.length; i++)
-                    //        {
-                    //            vm.griddetaillist.addnew(d[i]);
-                    //            //$('#griddetaillist').addnew(d[i]);
-                    //        }
-                    //    }
-                    //});
-                };
+                        
+                    };
+                this.gridEdit = new com.editGridViewModel(that.griddetail);
+                this.griddetail.onDblClickRow = that.gridEdit.begin;
+                this.griddetail.onClickRow = that.gridEdit.ended;
             }
         });
     };
@@ -349,13 +331,70 @@ var viewModel = function (data) {
     this.grid.onDblClickRow = this.addClick;
 
 
-    this.gridDetail = $.extend(true,{},self.grid,{
-        url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail',
-        queryParams: {
-            Inside_ID: 'C15-1',
-            HousID: '01'
-        },
-        pagination:false
-    });
+    //this.gridDetail = $.extend(true,{},self.grid,{
+    //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail',
+    //    queryParams: {
+    //        Inside_ID: 'C15-1',
+    //        HousID: '01'
+    //    },
+    //    pagination:false
+    //});
+    //设置grid列
+  
 
+    //this.IniMyConfectDetailList = function (Inside_ID, HousID) {
+    //    debugger;
+    //    //设置grid列
+    //    var detailcols = [[
+    //            { title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
+    //            { title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
+    //            { title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
+    //            { title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
+    //            { title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
+    //            { title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
+    //            { title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
+    //            { title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
+    //            { title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
+    //            { title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
+    //            { title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
+    //            { title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
+    //            { title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }
+    //    ]];
+    //    var queryParams2222 = {
+    //        Inside_ID: 'C15-1',
+    //        HousID: '01'
+    //    };
+    //    var grid222222 = $('#griddetaillist');
+    //    grid222222.datagrid({
+    //        iconCls: 'icon icon-list',
+    //        nowrap: true,           //折行
+    //        rownumbers: false,       //行号
+    //        striped: true,          //隔行变色
+    //        singleSelect: false,     //单选
+    //        remoteSort: false,       //后台排序
+    //        pagination: false,      //翻页
+    //        fit: false,
+    //        queryParams: queryParams2222,
+    //        method: "GET",
+    //        contentType: "application/json",
+    //        height: 310,
+    //        url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?rad=' + Math.random(),
+    //        columns: detailcols
+    //    });
+
+
+
+    //    //com.ajax({
+    //    //    type: 'GET',
+    //    //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + Inside_ID + "&HousID=" + HousID,
+    //    //    success: function (d) {
+    //    //        //self.myList = d;
+    //    //        for (var i = 0; i < d.length; i++)
+    //    //        {
+    //    //            vm.griddetaillist.addnew(d[i]);
+    //    //            //$('#griddetaillist').addnew(d[i]);
+    //    //        }
+    //    //    }
+    //    //});
+    //};
 };
