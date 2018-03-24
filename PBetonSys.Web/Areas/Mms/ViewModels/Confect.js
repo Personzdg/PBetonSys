@@ -100,7 +100,7 @@ var viewModel = function (data) {
     this.opentaskdialog = function (title, model, fnConfirm) {
         com.dialog({
             title: title,
-            width: 800,
+            width: 900,
             height: 500,
             html: "#task-template",
             viewModel: function (win) {
