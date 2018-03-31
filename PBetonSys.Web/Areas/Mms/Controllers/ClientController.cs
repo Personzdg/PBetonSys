@@ -27,7 +27,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         }
 
     }
-    public class ClinetApiController : ApiController
+    public class ClinetApiController : MmsBaseApi<Clinet, ClientService>
     {
         public dynamic GetClientList(RequestWrapper query)
         {
@@ -50,7 +50,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='CheckDateTime'>
                     <select>
-                        *
+                        Clinet_id,Name
                     </select>
                     <from>
                         Clinet
@@ -60,8 +60,11 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
     <field name='Name'       cp='like'       ></field>
   </where>
                 </settings>");
+
+
             var pQuery = query.ToParamQuery();
-            var result = new ClientService().GetDynamicListWithPaging(pQuery);
+           // var result = new ClientService().GetDynamicListWithPaging(pQuery);
+            var result = masterService.GetDynamicListWithPaging(pQuery);
             return result;
         }
 

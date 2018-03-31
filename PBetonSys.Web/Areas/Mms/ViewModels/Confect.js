@@ -147,8 +147,9 @@ var viewModel = function (data) {
                     textField: 'Text',
                     data: self.comboboxFallData
                 };
+                debugger;
                 this.comboboxPumpType = {
-                    value: self.removeEmptyValue(model.Pump_vehicle.replace(';', ',').split(',')),
+                    value: model.Pump_vehicle==null?null:self.removeEmptyValue(model.Pump_vehicle.replace(';', ',').split(',')),
                     valueField: 'Text',
                     textField: 'Text',
                     data: self.comboboxPumpTypeData,

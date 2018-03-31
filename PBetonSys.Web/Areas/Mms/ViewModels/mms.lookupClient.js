@@ -63,8 +63,8 @@
 
 		var search = function () {
 			var queryParams = $.extend({}, param, {
-				Cont_ID: $('#id').val(),
-				ProjectName: $('#text').val()
+			    Clinet_id: $('#id').val(),
+				Name: $('#text').val()
 			});
 			grid.datagrid('reload', queryParams);
 		};

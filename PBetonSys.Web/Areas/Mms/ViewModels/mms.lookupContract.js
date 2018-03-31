@@ -54,11 +54,11 @@
             onClickRow: function (index, row) {
                 selected = row;
             }
-            //,
-            //onDblClickRow: function (index, row) {
-            //    selected = row;
-            //    $('#btnConfirm').click();
-            //}
+            ,
+            onDblClickRow: function (index, row) {
+                selected = row;
+                $('#btnConfirm').click();
+            }
         });
 
         grid.datagrid(opt);
