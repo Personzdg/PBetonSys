@@ -36,7 +36,7 @@ var viewModel = function (data) {
             type: 'GET',
             url: '/api/Mms/Task/getnewcode',
             success: function (d) {
-                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "",AuditingFlag:false};
+                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "",AuditingFlag:false,Provide_DateTime:''};
                 self.opentaskdialog("添加新任务", defaults, function (vm, win) {
                     if (com.formValidate(win)) {
                         self.save("inserted", vm, win);
@@ -160,13 +160,11 @@ var viewModel = function (data) {
                         that.form.Wjj(n.join(','));
                     }
                 };
-                debugger;
                 this.form = {
                     /**     Task_id: ko.observable(model.Task_id.replace('T','P'))**/
                         Task_id: ko.observable(model.Task_id),
                     House_id: ko.observable(model.House_id),
-                    AuditingFlag: ko.observable(model.AuditingFlag),
-                    AuditingFlagDisplay:model.AuditingFlag?"block":"none",
+                    AuditingFlag: ko.observable(!model.AuditingFlag),
                     Cont_ID: ko.observable(model.Cont_ID),
                     Clin_ID: ko.observable(model.Clin_ID),
                     Place: ko.observable(model.Place),
@@ -184,13 +182,11 @@ var viewModel = function (data) {
                     //Provide_DateTime: ko.observable(model.Provide_DateTime == null ? '': model.Provide_DateTime),
                     Remark: ko.observable(model.Remark)
                 };
-                debugger;
                 if (!this.form.House_id())
                 {
                    
                     if (self.comboboxHouseData.length > 0)
                     {
-                        debugger;
                         this.form.House_id(self.comboboxHouseData[0].Code)
                     }
                 }

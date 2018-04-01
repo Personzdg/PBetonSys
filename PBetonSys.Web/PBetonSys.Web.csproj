@@ -180,7 +180,6 @@
     <Compile Include="App_Start\webstack\WebApiExceptionFilter.cs" />
     <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
     <Compile Include="Areas\Mms\common\MmsBaseApi.cs" />
-    <Compile Include="Areas\Mms\Controllers\AuditingTaskController.cs" />
     <Compile Include="Areas\Mms\Controllers\CartController.cs" />
     <Compile Include="Areas\Mms\Controllers\ClientController.cs" />
     <Compile Include="Areas\Mms\Controllers\ConfectControllers.cs" />

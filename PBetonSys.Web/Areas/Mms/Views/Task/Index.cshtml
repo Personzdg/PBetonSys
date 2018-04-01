@@ -131,7 +131,7 @@
         <div class="grid_2 lbl">审核</div>
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
         <div class="grid_2 lbl">供应时间</div>
-        <div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
+        <div class="grid_5 val"><input type="text" class="z-txt easyui-datebox" style="width:140px;" data-bind="dateboxValue:form.Provide_DateTime" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>
@@ -139,7 +139,7 @@
         <div class="clear"></div>
     </div>
     <div style="text-align:center;clear:both">
-        <a class=" easyui-linkbutton" data-bind="css: { display:form.AuditingFlagDisplay },click:confirmClick" data-options="iconCls:'icon-ok'" href="javascript:void(0)">
+        <a class=" easyui-linkbutton" data-bind="visible:form.AuditingFlag,click:confirmClick" data-options="iconCls:'icon-ok'" href="javascript:void(0)">
             确定
         </a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
