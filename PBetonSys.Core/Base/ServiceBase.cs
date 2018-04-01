@@ -10,6 +10,8 @@
 
 using System.Dynamic;
 using PBetonSys.Data;
+using PBetonSys.Utils;
+using System.Collections.Generic;
 
 namespace PBetonSys.Core
 {
@@ -124,6 +126,23 @@ namespace PBetonSys.Core
             });
 
             return result.Trim(',');
+        }
+
+        public dynamic Extend(object obj)
+        {
+            var expando = (IDictionary<string, object>)new ExpandoObject();
+
+            EachHelper.EachObjectProperty(this, (i, name, value) =>
+            {
+                expando.Add(name, value);
+            });
+
+            EachHelper.EachObjectProperty(obj, (i, name, value) =>
+            {
+                expando[name] = value;
+            });
+
+            return expando;
         }
 
         #region 变量

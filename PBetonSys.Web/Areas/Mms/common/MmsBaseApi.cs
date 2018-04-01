@@ -131,14 +131,15 @@ namespace PBetonSys.Web.Areas.Mms
     <where><field name='SysCont_ID' cp='equal'></field></where>
 </settings>", typeof(TMasterModel).Name);
 
-            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
-<settings>
-    <table>{0}</table>
-    <where>
-        <field name='SysCont_ID' cp='equal'></field>
-    </where>
-</settings>", "");
+//            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+//<settings>
+//    <table>{0}</table>
+//    <where>
+//        <field name='SysCont_ID' cp='equal'></field>
+//    </where>
+//</settings>", "");
 
+            var listWrapper = new RequestWrapper();
             var result = masterService.Edit(formWrapper, listWrapper, data);
         }
         #endregion

@@ -37,13 +37,14 @@ mms.viewModel.edit = function (data) {
     };
 
     this.saveClick = function () {
+        debugger;
         self.gridEdit.ended(); //结束grid编辑状态
         var post = {           //传递到后台的数据
             form: com.formChanges(self.form, data.form, self.setting.postFormKeys)
             //,
             //list: self.gridEdit.getChanges(self.setting.postListFields)
         };
-        post.form.ClientName = undefined;
+        //post.form.ClientName = undefined;
         if ((post.form._changed)) {
             com.ajax({
                 url: "/api/mms/Contract/Edit",
