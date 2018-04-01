@@ -36,7 +36,7 @@ var viewModel = function (data) {
             type: 'GET',
             url: '/api/Mms/Task/getnewcode',
             success: function (d) {
-                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "" };
+                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "",AuditingFlag:false};
                 self.opentaskdialog("添加新任务", defaults, function (vm, win) {
                     if (com.formValidate(win)) {
                         self.save("inserted", vm, win);
@@ -89,7 +89,7 @@ var viewModel = function (data) {
                 data = d;
                 com.message('success', '保存成功！');
                 win.dialog('close');
-                self.grid.queryParams({});
+                self.searchClick();
             }
         });
     };
@@ -139,7 +139,9 @@ var viewModel = function (data) {
                     data: self.comboboxFallData
                 };
                 this.comboboxPumpType = {
-                    value: self.removeEmptyValue(model.Pump_vehicle.replace(';', ',').split(',')),
+                    value: model.Pump_vehicle == null ? null : self.removeEmptyValue(model.Pump_vehicle.replace(';', ',').split(',')),
+
+                    
                     valueField: 'Text',
                     textField: 'Text',
                     data: self.comboboxPumpTypeData,
@@ -148,7 +150,9 @@ var viewModel = function (data) {
                     }
                 };
                 this.comboboxWjj = {
-                    value: self.removeEmptyValue(model.Wjj ? model.Wjj.replace(';', ',').split(',') : []),
+
+                    //value: self.removeEmptyValue(model.Wjj ? model.Wjj.replace(';', ',').split(',') : []),
+                    value: model.wjj == null ? null : self.removeEmptyValue(model.wjj.replace(';', ',').split(',')),
                     valueField: 'Text',
                     textField: 'Text',
                     data: self.comboboxWjjData,
@@ -156,12 +160,13 @@ var viewModel = function (data) {
                         that.form.Wjj(n.join(','));
                     }
                 };
-
+                debugger;
                 this.form = {
                     /**     Task_id: ko.observable(model.Task_id.replace('T','P'))**/
                         Task_id: ko.observable(model.Task_id),
                     House_id: ko.observable(model.House_id),
                     AuditingFlag: ko.observable(model.AuditingFlag),
+                    AuditingFlagDisplay:model.AuditingFlag?"block":"none",
                     Cont_ID: ko.observable(model.Cont_ID),
                     Clin_ID: ko.observable(model.Clin_ID),
                     Place: ko.observable(model.Place),
@@ -169,18 +174,29 @@ var viewModel = function (data) {
                     Amount: ko.observable(model.Amount),
                     Fall: ko.observable(model.Fall),
                     Pump: ko.observable(model.Pump),
-                    Pump_vehicle: ko.observable(model.Pump_vehicle.replace(';', ',')),
+                    Pump_vehicle: ko.observable(model.Pump_vehicle ? model.Pump_vehicle.replace(';', ','):''),
                     Wjj: ko.observable(model.Wjj ? model.Wjj.replace(';', ',') : undefined),
                     LinkName: ko.observable(model.LinkName),
                     Telephon: ko.observable(model.Telephon),
                     ViseName: ko.observable(model.ViseName),
                     CheckDateTime: ko.observable(model.CheckDateTime),
-                    Provide_DateTime: ko.observable(model.Provide_DateTime == null ? undefined : model.Provide_DateTime),
+                    Provide_DateTime: ko.observable(model.Provide_DateTime),
+                    //Provide_DateTime: ko.observable(model.Provide_DateTime == null ? '': model.Provide_DateTime),
                     Remark: ko.observable(model.Remark)
                 };
-
+                debugger;
+                if (!this.form.House_id())
+                {
+                   
+                    if (self.comboboxHouseData.length > 0)
+                    {
+                        debugger;
+                        this.form.House_id(self.comboboxHouseData[0].Code)
+                    }
+                }
                 this.confirmClick = function () {
-                    fnConfirm(this, win);
+                    debugger;
+                    fnConfirm(that, win);
                 };
 
                 this.cancelClick = function () {

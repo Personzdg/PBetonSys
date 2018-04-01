@@ -180,6 +180,7 @@
     <Compile Include="App_Start\webstack\WebApiExceptionFilter.cs" />
     <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
     <Compile Include="Areas\Mms\common\MmsBaseApi.cs" />
+    <Compile Include="Areas\Mms\Controllers\AuditingTaskController.cs" />
     <Compile Include="Areas\Mms\Controllers\CartController.cs" />
     <Compile Include="Areas\Mms\Controllers\ClientController.cs" />
     <Compile Include="Areas\Mms\Controllers\ConfectControllers.cs" />
@@ -3344,6 +3345,7 @@
     <Content Include="Areas\Mms\Views\Product\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Confect\Index.cshtml" />
     <Content Include="Areas\Mms\Views\S_Confect\LookupS_Confect.cshtml" />
+    <Content Include="Areas\Mms\Views\AuditingTask\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -3353,7 +3355,9 @@
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -21,6 +21,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 {
                     Task_id = "",
                     ProjectName = "",
+                    
                     Provide_DateTime = DateTime.Now.ToString("yyyy-MM-dd"),
                 }
             };
@@ -100,6 +101,8 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         [System.Web.Http.HttpPost]
         public void Edit(dynamic data)
         {
+
+
             var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
                     <settings>
                         <table>

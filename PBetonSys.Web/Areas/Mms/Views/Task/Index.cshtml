@@ -74,7 +74,7 @@
         <div class="grid_2 lbl">楼号</div>
         <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.House_id" /></div>
         <div class="grid_2 lbl">状态</div>
-        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.AuditingFlag" disabled="disabled" /></div>
+        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.State" disabled="disabled" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">合同编号</div>
@@ -131,7 +131,7 @@
         <div class="grid_2 lbl">审核</div>
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
         <div class="grid_2 lbl">供应时间</div>
-        <div class="grid_5 val"><input type="text" class="easyui-datetimebox z-txt m-txt" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
+        <div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>
@@ -139,7 +139,9 @@
         <div class="clear"></div>
     </div>
     <div style="text-align:center;clear:both">
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:confirmClick" href="javascript:void(0)">确定</a>
+        <a class=" easyui-linkbutton" data-bind="css: { display:form.AuditingFlagDisplay },click:confirmClick" data-options="iconCls:'icon-ok'" href="javascript:void(0)">
+            确定
+        </a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
     </div>
 </script>

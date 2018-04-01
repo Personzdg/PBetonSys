@@ -54,7 +54,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                     clerkList = new ClerkService().GetDynamicList(ParamQuery.Instance().Select("Name as value,Name as text")),
                     constructionList = new ClientService().GetDynamicList(ParamQuery.Instance().Select("Clinet_id as value,Name as text"))
                 },
-                //defaultForm = new mms_receive().Extend(new
+                //defaultForm = new ContractService().Extend(new
                 //{
                 //    BillNo = id,
                 //    BillDate = DateTime.Now,
