@@ -166,7 +166,7 @@ var viewModel = function (data) {
                         Task_id: ko.observable(model.Task_id),
                     House_id: ko.observable(model.House_id),
                     AuditingFlag: ko.observable(model.AuditingFlag),
-                    AuditingFlagDisplay:model.AuditingFlag?"block":"none",
+                    //AuditingFlagDisplay:model.AuditingFlag?"block":"none",
                     Cont_ID: ko.observable(model.Cont_ID),
                     Clin_ID: ko.observable(model.Clin_ID),
                     Place: ko.observable(model.Place),

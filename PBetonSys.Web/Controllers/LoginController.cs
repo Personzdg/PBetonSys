@@ -24,7 +24,7 @@ namespace PBetonSys.Web.Controllers
 
         public ActionResult Mms()
         {
-            ViewBag.CnName = "龙鼎混凝土管理系统";
+            ViewBag.CnName = "企程混凝土ERP系统";
             ViewBag.EnName = "Engineering Material Mangange System";
             return View("Index");
         }
