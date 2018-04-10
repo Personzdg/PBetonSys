@@ -81,6 +81,10 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         /// <returns></returns>
         public dynamic GetLookupS_ConfectDetail(string Inside_ID, string HousID)
         {
+            if (string.IsNullOrEmpty(Inside_ID))
+            {
+                return new List<string>();
+            }
             var pQuery = ParamQuery.Instance().Select("Inside_ID,Hous1Name,Hous2Name,Hous3Name,Hous4Name,MT_Size,Theory_Value,Tol,T1,MTType,MTSize,Provide_ID,MTCode,ZBCode,MT_Value ,Sequence,Range_To,range_From,NewMin,NewMax,Theory_Value,MT_Value,Ratio").From(string.Format(" LdS_confectToConfDetil('{0}','{1}')", Inside_ID, HousID));
             pQuery.ClearWhere();
             var result = masterService.GetDynamicList(pQuery);

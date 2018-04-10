@@ -67,7 +67,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         [System.Web.Http.HttpPost]
         public void Edit(dynamic data)
         {
-            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+            var formWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
                     <settings>
                         <table>
                             Confect
@@ -77,8 +77,19 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         </where>
                     </settings>");
 
+            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+                    <settings>
+                        <table>
+                            Confect_Detail2
+                        </table>
+                        <where>
+                            <field name='Confect_ID' cp='equal' variable='Confect_ID'></field>
+                        </where>
+                    </settings>");
+
             var service = new TaskService();
-            var result = service.Edit(null, listWrapper, data);
+            var fromId = data.form.Confect_ID.Value;
+            var result = service.Edit(formWrapper, listWrapper, data);
 
         }
     

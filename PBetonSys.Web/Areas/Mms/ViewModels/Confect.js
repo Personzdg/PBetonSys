@@ -83,7 +83,30 @@ var viewModel = function (data) {
         var data = ko.toJS(vm.form);
         if (data.Amount == "")
             data.Amount = 0;
-        post.list[type].push(data);
+        //post.list[type].push(data);
+        post.form = data;
+        post.list["inserted"] = vm.griddetail.datagrid("getRows");
+        if (post.list["inserted"].length > 0)
+        {
+            for (var ii = 0; ii < post.list["inserted"].length; ii++)
+            {
+                post.list["inserted"][ii].Confect_ID = vm.form.Confect_ID();
+                post.list["inserted"][ii].NewMax = 0;
+                post.list["inserted"][ii].NewMin = 0; 
+                post.list["inserted"][ii].MTCode = 0; 
+                post.list["inserted"][ii].ZBCode = 0;
+                post.list["inserted"][ii].range_From = 0;
+                post.list["inserted"][ii].MTSize = 0; 
+                post.list["inserted"][ii].Provide_ID = 0; 
+                post.list["inserted"][ii].MT_Value = 0; 
+                post.list["inserted"][ii].Confect_Detail_ID = 0;
+                post.list["inserted"][ii].Ratio = 0;
+                post.list["inserted"][ii].T1 = 0;
+                post.list["inserted"][ii].Tol = 0; 
+                post.list["inserted"][ii].Theory_Value = 0;
+            }
+        }
+        debugger;
         com.ajax({
             type: 'POST',
             url: '/api/Mms/Confect/edit',

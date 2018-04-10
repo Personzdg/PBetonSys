@@ -120,28 +120,28 @@ namespace PBetonSys.Web.Areas.Mms
         }
         #endregion
 
-        #region 保存
-        // 保存 POST api/mms/send
-        [HttpPost]
-        public virtual void Edit(dynamic data)
-        {
-            var formWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
-<settings>
-    <table>{0}</table>
-    <where><field name='SysCont_ID' cp='equal'></field></where>
-</settings>", typeof(TMasterModel).Name);
-
-//            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+//        #region 保存
+//        // 保存 POST api/mms/send
+//        [HttpPost]
+//        public virtual void Edit(dynamic data)
+//        {
+//            var formWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
 //<settings>
 //    <table>{0}</table>
-//    <where>
-//        <field name='SysCont_ID' cp='equal'></field>
-//    </where>
-//</settings>", "");
+//    <where><field name='SysCont_ID' cp='equal'></field></where>
+//</settings>", typeof(TMasterModel).Name);
 
-            var listWrapper = new RequestWrapper();
-            var result = masterService.Edit(formWrapper, listWrapper, data);
-        }
-        #endregion
+////            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+////<settings>
+////    <table>{0}</table>
+////    <where>
+////        <field name='SysCont_ID' cp='equal'></field>
+////    </where>
+////</settings>", "");
+
+//            var listWrapper = new RequestWrapper();
+//            var result = masterService.Edit(formWrapper, listWrapper, data);
+//        }
+        //#endregion
     }
 }
