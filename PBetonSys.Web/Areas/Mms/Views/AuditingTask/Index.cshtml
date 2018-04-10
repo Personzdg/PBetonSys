@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AuditingTask";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,9 +15,9 @@
 }
 <div class="z-toolbar">
     <a id="a_refresh" href="#" plain="true" class="easyui-linkbutton" icon="icon-arrow_refresh" title="刷新" data-bind="click:refreshClick">刷新</a>
-    <a id="a_add" href="#" plain="true" class="easyui-linkbutton" icon="icon-add" title="新增" data-bind="click:addClick">新增</a>
+   
     <a id="a_edit" href="#" plain="true" class="easyui-linkbutton" icon="icon-edit" data-bind="click:editClick" title="编辑">编辑</a>
-    <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
+   
 </div>
 
 <div id="condition" class="container_12" style="position:relative;">
@@ -45,8 +45,8 @@
             <th field="ProjectName" width="120">工程名称</th>
             <th field="Strong" width="80">强度</th>
             <th field="Fall" width="80">坍落度</th>
-
-            <th field="AuditingFlag" width="80" editor="{type: 'checkbox',options: {on: true,off: false}}" formatter="formatterEnable">审核</th>
+        
+            <th field="AuditingFlag" width="80" editor="{type: 'checkbox',options: {on: true,off: false}}" formatter="formatterEnable" >审核</th>
 
             <th field="LinkName" width="80">联系人</th>
             <th field="Telephon" width="80">联系电话</th>
@@ -77,15 +77,15 @@
         <div class="grid_2 lbl">任务单号</div>
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Task_id" disabled="disabled" /></div>
         <div class="grid_2 lbl">楼号</div>
-        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.House_id" /></div>
+        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.House_id" data-options="disabled:true" /></div>
         <div class="grid_2 lbl">状态</div>
-        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.State" disabled="disabled" /></div>
+        <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.State" disabled="disabled" data-options="disabled:true" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">合同编号</div>
         <div class="grid_10 val">
             <input type="text" class="z-txt l-txt" style="width:300px;" data-bind="value:form.Cont_ID" disabled="disabled" />
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
+           
         </div>
         <div class="clear"></div>
 
@@ -98,17 +98,17 @@
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">结构部位</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPlace,comboboxValue:form.Place" data-options="required:true" /></div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxPlace,comboboxValue:form.Place" data-options="disabled:true" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">预定方量</div>
-        <div class="grid_10 val"><input type="text" class="easyui-numberbox z-txt m-txt" data-bind="numberboxValue:form.Amount" data-options="precision:2" /></div>
+        <div class="grid_10 val"><input type="text" class="easyui-numberbox z-txt m-txt" data-bind="numberboxValue:form.Amount" data-options="required:true" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">强度等级</div>
-        <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt m-txt" data-bind="easyuiCombobox:comboboxStrong,comboboxValue:form.Strong" data-options="required:true" /></div>
+        <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt m-txt" data-bind="easyuiCombobox:comboboxStrong,comboboxValue:form.Strong" data-options="disabled:true" /></div>
         <div class="grid_2 lbl required">坍落度</div>
-        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxFall,comboboxValue:form.Fall" data-options="required:true" /></div>
+        <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" data-bind="easyuiCombobox:comboboxFall,comboboxValue:form.Fall" data-options="disabled:true" /></div>
         <div class="grid_2 lbl">是否泵送 </div>
         <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.Pump" /></div>
         <div class="clear"></div>
@@ -128,15 +128,15 @@
         <div class="clear"></div>
 
         <div class="grid_2 lbl">签发</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.ViseName" /></div>
+        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.ViseName" disabled="disabled" /></div>
         <div class="grid_2 lbl required">签发时间 </div>
-        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
+        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.CheckDateTime" data-options="disabled:true" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">审核</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
+        <div class="grid_3 val"><input type="checkbox" data-bind="checked:form.AuditingFlag" /></div>
         <div class="grid_2 lbl">供应时间</div>
-        <div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
+        <div class="grid_5 val"><input type="text" class="easyui-datetimebox z-txt m-txt" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>
@@ -144,10 +144,7 @@
         <div class="clear"></div>
     </div>
     <div style="text-align:center;clear:both">
-        @*<a class=" easyui-linkbutton" data-bind="css: { display:form.AuditingFlagDisplay },click:confirmClick" data-options="iconCls:'icon-ok'" href="javascript:void(0)">*@
-        <a class=" easyui-linkbutton" data-bind="click:confirmClick" data-options="iconCls:'icon-ok'" href="javascript:void(0)">
-                确定
-            </a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:confirmClick" href="javascript:void(0)">确定</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
     </div>
 </script>

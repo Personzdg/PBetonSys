@@ -7,10 +7,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
-
 namespace PBetonSys.Web.Areas.Mms.Controllers
 {
-    public class ConfectController : Controller
+    public class AuditingConfectController : Controller
     {
         // GET: /Mms/confect/
         public ActionResult Index()
@@ -26,7 +25,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             };
             return View(model);
         }
-        
+
         public ActionResult ConfectList()
         {
             return View();
@@ -36,7 +35,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
 
     }
 
-    public class ConfectApiController : MmsBaseApi<Confect, ConfectService>
+    public class AuditingConfectApiController : MmsBaseApi<Confect, ConfectService>
     {
 
         public dynamic GetConfectList(RequestWrapper query)
@@ -61,7 +60,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return result;
         }
 
-    
+
 
 
         [System.Web.Http.HttpPost]
@@ -81,8 +80,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             var result = service.Edit(null, listWrapper, data);
 
         }
-    
-     }
 
+    }
 
 }

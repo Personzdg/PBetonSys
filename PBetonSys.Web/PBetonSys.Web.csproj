@@ -180,6 +180,8 @@
     <Compile Include="App_Start\webstack\WebApiExceptionFilter.cs" />
     <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
     <Compile Include="Areas\Mms\common\MmsBaseApi.cs" />
+    <Compile Include="Areas\Mms\Controllers\AuditingConfectController.cs" />
+    <Compile Include="Areas\Mms\Controllers\AuditingTaskController.cs" />
     <Compile Include="Areas\Mms\Controllers\CartController.cs" />
     <Compile Include="Areas\Mms\Controllers\ClientController.cs" />
     <Compile Include="Areas\Mms\Controllers\ConfectControllers.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Mms\ViewModels\AuditingConfect.js" />
     <Content Include="Areas\Mms\ViewModels\Cart.js" />
     <Content Include="Areas\Mms\ViewModels\Clinet.js" />
     <Content Include="Areas\Mms\ViewModels\Confect.js" />
@@ -3345,6 +3348,7 @@
     <Content Include="Areas\Mms\Views\Confect\Index.cshtml" />
     <Content Include="Areas\Mms\Views\S_Confect\LookupS_Confect.cshtml" />
     <Content Include="Areas\Mms\Views\AuditingTask\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\AuditingConfect\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

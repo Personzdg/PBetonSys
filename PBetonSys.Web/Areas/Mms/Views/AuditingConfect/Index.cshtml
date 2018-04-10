@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = "AuditingConfect";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/mms.com.js"></script>
+    <script src="~/Areas/Mms/ViewModels/AuditingConfect.js"></script>
+    <script type="text/javascript">
+        using(['combogrid', 'combobox', 'datetimebox', 'numberbox','datagrid']);
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+<div class="z-toolbar">
+    <a id="a_refresh" href="#" plain="true" class="easyui-linkbutton" icon="icon-arrow_refresh" title="刷新" data-bind="click:refreshClick">刷新</a>
+
+    <a id="a_edit" href="#" plain="true" class="easyui-linkbutton" icon="icon-edit" data-bind="click:editClick" title="审核">审核</a>
+    <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
+</div>
+
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">任务单号</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Task_id" class="z-txt" /></div>
+    <div class="grid_1 lbl">工程名称</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">供应时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Provide_DateTime" class="easyui-daterange z-txt" /></div>
+    <div class="clear"></div>
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:searchClick" style="margin:0 15px;">查询</a>
+        <a id="a_reset" href="#" class="buttonHuge button-blue" data-bind="click:clearClick">清空</a>
+    </div>
+</div>
+
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="_id" hidden="true">_id</th>
+            <th field="Confect_ID" width="50">配比单号</th>
+            <th field="Cont_ID" width="50">合同编号</th>
+            <th field="projectname" width="120">工程名称</th>
+            <th field="name" width="120">施工单位</th>
+            <th field="Place" width="50">结构部位</th>
+            <th field="Strong" width="50">强度</th>
+            <th field="Fall" width="50">坍落度</th>
+            <th field="Pump_vehicle" width="50">泵送方式</th>
+            <th field="LinkName" width="80">联系人</th>
+            <th field="Telephon" width="80">联系电话</th>
+            <th field="Provide_DateTime" sortable="true" align="left" width="120" editor="{type:'datetimebox'}" formatter="com.formatTime">供应时间</th>
+
+        </tr>
+    </thead>
+</table>
+
+@*<!-  弹出框 ------------- >*@
+
+<script type="text/html" id="task-template">
+    <style type="text/css">
+        .s-txt {
+            width: 60px;
+        }
+
+        .m-txt {
+            width: 100px;
+        }
+
+        .l-txt {
+            width: 356px;
+        }
+
+        .datagrid-wrap.panel-body.panel-body-noheader {
+            height: 420px !important;
+        }
+    </style>
+
+
+    <table border="0" cellspacing="0" cellpadding="0" id="table1">
+        <tr>
+            <td style="width:60%">
+                <div id="master" class="container_12">
+                    <div class="grid_2 lbl">配比单号</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;" data-bind="value:form.Confect_ID" disabled="disabled" /></div>
+                    <div class="grid_2 lbl">任务单号</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:90px;" data-bind="value:form.Task_id" disabled="disabled" /></div>
+
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">楼号</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt s-txt" style="width:90px;" data-bind="easyuiCombobox:comboboxHouse,comboboxValue:form.Hous_id" /></div>
+                    <div class="grid_2 lbl ">合同编号</div>
+                    <div class="grid_3 val">
+                        <input type="text" class="z-txt l-txt" style="width:90px;" data-bind="value:form.Cont_ID" disabled="disabled" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">工程名称</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;" data-bind="easyuiCombobox:comboboxProject,comboboxValue:form.Cont_ID" data-options="disabled:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">施工单位</div>
+                    <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;" data-bind="easyuiCombobox:comboboxClient,comboboxValue:dispalyform.Clin_ID" data-options="disabled:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl required">结构部位</div>
+                    <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;" data-bind="easyuiCombobox:comboboxPlace,comboboxValue:form.Place" data-options="required:true" /></div>
+                    <div class="clear"></div>
+                    <div class="grid_2 lbl required">强度等级</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt m-txt" style="width:90px;" data-bind="easyuiCombobox:comboboxStrong,comboboxValue:form.Strong" data-options="required:true" /></div>
+                    <div class="grid_2 lbl required">坍落度</div>
+                    <div class="grid_2 val"><input type="text" class="easyui-combobox z-txt s-txt" style="width:100px;" data-bind="easyuiCombobox:comboboxFall,comboboxValue:form.Fall" data-options="required:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">是否泵送 </div>
+                    <div class="grid_1 val"><input type="checkbox" data-bind="checked:form.Pump" /></div>
+
+                    <div class="grid_2 lbl">泵车</div>
+                    <div class="grid_1 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:160px;" data-bind="easyuiCombobox:comboboxPumpType" data-options="multiple:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">外加剂</div>
+                    <div class="grid_3 val"><input type="text" class="easyui-combobox z-txt l-txt" style="width:250px;" data-bind="easyuiCombobox:comboboxWjj" data-options="multiple:true" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl required">登记时间 </div>
+                    <div class="grid_3 val"><input type="text" class="easyui-datebox z-txt m-txt" style="width:90px;" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
+                    <div class="grid_2 lbl required">预定方量</div>
+                    <div class="grid_1 val"><input type="text" class="easyui-numberbox z-txt m-txt" style="width:90px;" data-bind="numberboxValue:form.Amount" data-options="required:true" /></div>
+
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">签发</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:80px;" data-bind="value:form.ViseName" /></div>
+                    <div class="grid_2 lbl">审核</div>
+                    <div class="grid_3 val"><input type="text" class="z-txt m-txt" style="width:90px;" data-bind="value:form.Auditing" /></div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2 lbl">内部编号</div>
+                    <div class="grid_10 val">
+                        <input type="text" class="z-txt m-txt" style="width:200px;" data-bind="value:form.Inside_Code" disabled="disabled" />
+                        @*<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>*@
+                    </div>
+                    <div class="clear"></div>
+
+
+                    <div class="grid_2 lbl">备注 </div>
+                    <div class="grid_3 val"><textarea class="z-txt l-txt" style="width: 250px;" data-bind="value:form.Remark"></textarea></div>
+                    <div class="clear"></div>
+                </div>
+
+
+
+            </td>
+            <td style="vertical-align:top;width:40%;">
+                <table style="margin-left: 45px;" id="griddetaillist" data-bind="datagrid:griddetail">
+                    <thead>
+                        <tr>
+                            <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
+                            <th field="Hous1Name" sortable="true" align="left" width="60" editor="text">1#线</th>
+                            <th field="Hous2Name" sortable="true" align="left" width="60" editor="text">2#线</</th>
+                            <th field="Hous3Name" sortable="true" align="left" width="60" editor="text">3#线</</th>
+                            <th field="Hous4Name" sortable="true" align="left" width="60" editor="text">4#线</</th>
+                            <th field="range_From" sortable="true" align="left" width="60" editor="text">最小值</th>
+                            <th field="Theory_value" sortable="true" align="left" width="60" editor="text">设定配比值</th>
+                            <th field="Ratio" sortable="true" align="left" width="60" editor="text">含水率</th>
+                            <th field="MT_Value" sortable="true" align="left" width="60" editor="text">施工配比值</th>
+                            <th field="Range_To" sortable="true" align="left" width="60" editor="text">最大值</th>
+                            <th field="MTType" sortable="true" align="left" width="60" editor="text">材料种类</th>
+                            <th field="MTSize" sortable="true" align="left" width="60" editor="text">材料规格</th>
+                            <th field="Provide_ID" sortable="true" align="left" width="60" editor="text">供应商名称</th>
+                        </tr>
+                    </thead>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center;clear:both">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:confirmClick" href="javascript:void(0)">确定</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
+    </div>
+
+</script>
