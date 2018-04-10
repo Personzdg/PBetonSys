@@ -77,6 +77,11 @@ var viewModel = function (data) {
     **/
 
     this.save = function (type, vm, win) {
+        //if (true)   //下面那些东西检测遇到错误给这样的提示实例
+        //{
+        //    com.message("error", "错误提示");
+        //    return false;
+        //}
         var post = new Object();
         post.list = new Object();
         post.list[type] = [];
