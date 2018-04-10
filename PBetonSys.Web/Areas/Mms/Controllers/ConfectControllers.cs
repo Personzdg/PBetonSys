@@ -89,6 +89,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
 
             var service = new TaskService();
             var fromId = data.form.Confect_ID.Value;
+            ParamDelete pd = ParamDelete.Instance().From("Confect_Detail2").AndWhere("Confect_ID",fromId); //删除之前的记录
             var result = service.Edit(formWrapper, listWrapper, data);
 
         }

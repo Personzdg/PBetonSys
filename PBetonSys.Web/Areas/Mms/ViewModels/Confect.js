@@ -217,13 +217,6 @@ var viewModel = function (data) {
                     //Provide_DateTime: ko.observable(model.Provide_DateTime == null ? undefined : model.Provide_DateTime),
                     Remark: ko.observable(model.Remark)
                 };
-
-                //that.grid = {
-                //    size: { w: 4, h: 40 },
-                //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + this.form.Inside_Code + "&HousID=" + this.form.Hous_id,
-                //    queryParams: ko.observable(),
-                //    pagination: false
-                //};
                 this.confirmClick = function () {
                     fnConfirm(this, win);
                 };
@@ -231,22 +224,6 @@ var viewModel = function (data) {
                 this.cancelClick = function () {
                     win.dialog('close');
                 };
-          //      var detailcols = [[
-          //{ title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
-          //{ title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
-          //{ title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
-          //{ title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
-          //{ title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
-          //{ title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
-          //{ title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
-          //{ title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
-          //{ title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
-          //{ title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
-          //{ title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
-          //{ title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
-          //{ title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }
-                //]];
-
                 this.griddetail =
                     {
                         iconCls: 'icon icon-list',
@@ -265,7 +242,20 @@ var viewModel = function (data) {
                         method: "GET",
                         contentType: "application/json",
                         url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?rad=' + Math.random(),
-                        
+                        onLoadSuccess: function ()
+                        {
+                            if (model.House_id == '01')
+                            {
+                                that.griddetail.datagrid('showColumn', 'Hous1Name');
+                            } else if (model.House_id == '02')
+                            {
+                                that.griddetail.datagrid('showColumn', 'Hous2Name');
+                            } else if (model.House_id == '03') {
+                                that.griddetail.datagrid('showColumn', 'Hous3Name');
+                            } else if (model.House_id == '04') {
+                                that.griddetail.datagrid('showColumn', 'Hous4Name');
+                            }
+                        }
                     };
                 this.gridEdit = new com.editGridViewModel(that.griddetail);
                 this.griddetail.onDblClickRow = that.gridEdit.begin;
