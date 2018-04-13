@@ -70,17 +70,20 @@
         .l-txt {
             width: 356px;
         }
-        .datagrid-wrap.panel-body.panel-body-noheader {
-            height: 470px !important;
-        }
          .left {
             width: 40%;
+            padding-top:15px;
+            padding-left:5px;
             float: left;
         }
         .right {
-            width: 60%;
+            width: 518px;
             float: left;
+            padding-top: 15px;
+            height: 370px;
+            overflow: initial;
         }
+
     </style>
 
     <div class="ccontent">
@@ -152,12 +155,12 @@
 
 
                 <div class="grid_2 lbl">备注 </div>
-                <div class="grid_3 val"><textarea class="z-txt l-txt" style="width: 250px;" data-bind="value:form.Remark"></textarea></div>
+                <div class="grid_3 val"><textarea class="z-txt l-txt" style="width: 240px;" data-bind="value:form.Remark"></textarea></div>
                 <div class="clear"></div>
             </div>
         </div>
         <div class="right">
-            <table style="margin-left: 45px;" id="griddetaillist" data-bind="datagrid:griddetail">
+            <table style="margin-left: 5px; width: 620px !important;" id="griddetaillist" data-bind="datagrid:griddetail">
                 <thead>
                     <tr>
                         <th field="Sequence" sortable="true" align="left" width="60" editor="text">序号</th>
@@ -179,6 +182,7 @@
         </div>
     </div>
     <div style="text-align:center;clear:both">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:calcClick" href="javascript:void(0)">计算</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:confirmClick" href="javascript:void(0)">确定</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
     </div>

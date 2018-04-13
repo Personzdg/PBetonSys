@@ -128,8 +128,8 @@ var viewModel = function (data) {
     this.opentaskdialog = function (title, model, fnConfirm) {
         com.dialog({
             title: title,
-            width: 900,
-            height: 500,
+            width: 1000,
+            height: 480,
             html: "#task-template",
             viewModel: function (win) {
                 var that = this;
@@ -175,7 +175,6 @@ var viewModel = function (data) {
                     textField: 'Text',
                     data: self.comboboxFallData
                 };
-                debugger;
                 this.comboboxPumpType = {
                     value: model.Pump_vehicle==null?null:self.removeEmptyValue(model.Pump_vehicle.replace(';', ',').split(',')),
                     valueField: 'Text',
@@ -225,7 +224,14 @@ var viewModel = function (data) {
                 this.confirmClick = function () {
                     fnConfirm(this, win);
                 };
-
+                //计算事件
+                this.calcClick = function ()
+                {
+                    var rows = that.griddetail.datagrid("getRows");
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                        that.griddetail.datagrid('updateRow', { index: i, row: { range_From: "0", MT_Value: "0" } });
+                        }
+                };
                 this.cancelClick = function () {
                     win.dialog('close');
                 };
@@ -239,7 +245,7 @@ var viewModel = function (data) {
                         remoteSort: false,       //后台排序
                         pagination: false,      //翻页
                         fit: false,
-                        size: { w: 5, h:15 },
+                        //size: { w: 8, h:15 },
                         queryParams: {
                             Inside_ID: "",
                             HousID: model.House_id
@@ -348,72 +354,4 @@ var viewModel = function (data) {
     this.initComboData();
 
     this.grid.onDblClickRow = this.addClick;
-
-
-    //this.gridDetail = $.extend(true,{},self.grid,{
-    //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail',
-    //    queryParams: {
-    //        Inside_ID: 'C15-1',
-    //        HousID: '01'
-    //    },
-    //    pagination:false
-    //});
-    //设置grid列
-  
-
-    //this.IniMyConfectDetailList = function (Inside_ID, HousID) {
-    //    debugger;
-    //    //设置grid列
-    //    var detailcols = [[
-    //            { title: '序号', field: 'Sequence', sortable: true, align: 'left', width: 60 },
-    //            { title: '1#线', field: 'Hous1Name', sortable: true, align: 'left', width: 60 },
-    //            { title: '2#线', field: 'Hous2Name', sortable: true, align: 'left', width: 60 },
-    //            { title: '3#线', field: 'Hous3Name', sortable: true, align: 'left', width: 60 },
-    //            { title: '4#线', field: 'Hous4Name', sortable: true, align: 'left', width: 60 },
-    //            { title: '最小值', field: 'range_From', sortable: true, align: 'left', width: 40 },
-    //            { title: '设定配比值', field: 'Theory_value', sortable: true, align: 'left', width: 80 },
-    //            { title: '含水率', field: 'Ratio', sortable: true, align: 'left', width: 80 },
-    //            { title: '施工配比值', field: 'MT_Value', sortable: true, align: 'left', width: 80 },
-    //            { title: '最大值', field: 'Range_To', sortable: true, align: 'left', width: 80 },
-    //            { title: '材料种类', field: 'MTType', sortable: true, align: 'left', width: 80 },
-    //            { title: '材料规格', field: 'MTSize', sortable: true, align: 'left', width: 80 },
-    //            { title: '供应商名称', field: 'Provide_ID', sortable: true, align: 'left', width: 80 }
-    //    ]];
-    //    var queryParams2222 = {
-    //        Inside_ID: 'C15-1',
-    //        HousID: '01'
-    //    };
-    //    var grid222222 = $('#griddetaillist');
-    //    grid222222.datagrid({
-    //        iconCls: 'icon icon-list',
-    //        nowrap: true,           //折行
-    //        rownumbers: false,       //行号
-    //        striped: true,          //隔行变色
-    //        singleSelect: false,     //单选
-    //        remoteSort: false,       //后台排序
-    //        pagination: false,      //翻页
-    //        fit: false,
-    //        queryParams: queryParams2222,
-    //        method: "GET",
-    //        contentType: "application/json",
-    //        height: 310,
-    //        url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?rad=' + Math.random(),
-    //        columns: detailcols
-    //    });
-
-
-
-    //    //com.ajax({
-    //    //    type: 'GET',
-    //    //    url: '/api/Mms/S_Confect/GetLookupS_ConfectDetail?Inside_ID=' + Inside_ID + "&HousID=" + HousID,
-    //    //    success: function (d) {
-    //    //        //self.myList = d;
-    //    //        for (var i = 0; i < d.length; i++)
-    //    //        {
-    //    //            vm.griddetaillist.addnew(d[i]);
-    //    //            //$('#griddetaillist').addnew(d[i]);
-    //    //        }
-    //    //    }
-    //    //});
-    //};
 };
