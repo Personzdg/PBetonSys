@@ -34,6 +34,25 @@ var viewModel = function (data) {
         CDriveID: ko.observable(),
         CPumpId:ko.observable()
     };
+    this.ReSetCurrModel = function ()
+    {
+        self.CurrModel.CNo("");
+        self.CurrModel.CPBNo("");
+        self.CurrModel.CTaskNo("");
+        self.CurrModel.CFirstCarTime('2017-12-16 01:01:00');  //
+        self.CurrModel.CProjectName("");
+        self.CurrModel.LastCarTime('2017-12-16 01:01:00');
+        self.CurrModel.CClientName("");
+        self.CurrModel.Cinterva("");
+        self.CurrModel.CPosition("");
+        self.CurrModel.Cwjj("");
+        self.CurrModel.Cysfl("");
+        self.CurrModel.Cydfl("");
+        self.CurrModel.Cqd("");
+        self.CurrModel.Ctld("");
+        self.CurrModel.Cyscs("");
+        self.CurrModel.ChouseId("");
+    };
     this.currRow = ko.observable({});
     this.gridEdit = new com.editGridViewModel(this.grid);
     //this.grid.onDblClickRow = this.gridEdit.begin;
@@ -46,7 +65,7 @@ var viewModel = function (data) {
         window.location.reload();
     };
     this.addClick = function () {
-        
+        self.ReSetCurrModel();
     };
     this.deleteClick = function () {
         var row = self.grid.datagrid('getSelected');
@@ -74,17 +93,22 @@ var viewModel = function (data) {
         //self.gridEdit.begin()
     };
     this.grid.onClickRow = this.editClick;
-    this.tabClick = function ()
+    setTimeout(function ()
     {
-        //setTimeout(function ()
-        //{
-        //    $('#tt').tabs({
-        //        border: false,
-        //        onSelect: function (title, index) {
-        //            console.log(title + ' is selected');
-        //        }
-        //    });
-        //}, 2000);
-    };
+        $('#tt').tabs({
+            border: false,
+            onSelect: function (title, index) {
+                switch(index){
+                    case 0:
+                        $("#frmProduct").attr("src","/Mms/Product");
+                        break;
+                    case 1:
+                        $("#frmProduct1").attr("src", "/Mms/Product");
+                        break;
+                }
+                console.log(title +index+ ' is selected');
+            }
+        });
+    }, 2000);
     //this.grid.onDblClickRow = this.editClick;
 };

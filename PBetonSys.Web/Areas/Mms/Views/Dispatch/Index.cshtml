@@ -14,6 +14,9 @@
         var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
         ko.bindingViewModel(new viewModel(data));
     </script>
+
+    <script type="text/javascript">
+    </script>
     <style type="text/css">
         .datagrid {
             height: 550px;
@@ -34,10 +37,10 @@
     <div data-options="region:'south',title:'',split:true" style="width:2100px;height:460px;">
         <div id="tt" class="easyui-tabs">
             <div title="生产查询">
-                <iframe id="frmProduct" frameborder="0" src="/Mms/Product" style="width: 100%;height:2000px"></iframe>
+                <iframe id="frmProduct" frameborder="0" src="" style="width: 100%;height:2000px"></iframe>
             </div>
             <div title="车辆查询">
-                <iframe id="frmProduct" frameborder="0" src="/Mms/Product" style="width: 100%;height:2000px"></iframe>
+                <iframe id="frmProduct1" frameborder="0" src="" style="width: 100%;height:2000px"></iframe>
             </div>
             <div title="运输单" class="hide" style="padding-top:2px;">
             </div>
