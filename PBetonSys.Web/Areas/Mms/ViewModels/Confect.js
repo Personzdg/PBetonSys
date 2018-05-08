@@ -227,9 +227,17 @@ var viewModel = function (data) {
                 //计算事件
                 this.calcClick = function ()
                 {
+                 
+
+
                     var rows = that.griddetail.datagrid("getRows");
+                    
                     for (var i = 0, l = rows.length; i < l; i++) {
-                        that.griddetail.datagrid('updateRow', { index: i, row: { range_From: "0", MT_Value: "0" } });
+
+                       
+                          var value = rows[i].Theory_Value;  // 怎么读取griddetail列值
+
+                        that.griddetail.datagrid('updateRow', { index: i, row: { range_From: "0", MT_Value: value } });
                         }
                 };
                 this.cancelClick = function () {

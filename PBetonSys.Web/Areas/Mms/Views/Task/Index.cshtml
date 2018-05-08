@@ -136,8 +136,9 @@
         <div class="grid_2 lbl">审核</div>
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
         <div class="grid_2 lbl">供应时间</div>
-        <div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
-        <div class="clear"></div>
+        @*<div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>*@
+        <div class="grid_5 val"><input type="text" class="z-txt easyui-datebox" style="width:140px;" data-bind="dateboxValue:form.Provide_DateTime" /></div>
+         <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>
         <div class="grid_4 val"><textarea style="height:50px;" class="z-txt l-txt" data-bind="value:form.Remark"></textarea></div>

@@ -34,7 +34,7 @@
             <a id="a_add" href="#" plain="true" class="easyui-linkbutton" icon="icon-add" title="新增" data-bind="click:addClick">新增</a>
         </div>
     </div>
-    <div data-options="region:'south',title:'',split:true" style="width:2100px;height:460px;">
+    <div data-options="region:'south',title:'',split:true" style="width:2100px;height:260px;">
         <div id="tt" class="easyui-tabs">
             <div title="生产查询">
                 <iframe id="frmProduct" frameborder="0" src="" style="width: 100%;height:2000px"></iframe>
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div data-options="region:'east',title:'',split:true" style="width:1200px;height:400px;">
+    <div data-options="region:'east',title:'',split:true" style="width:800px;height:400px;">
         <div class="z-toolbar">
             <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="" title="保存">保存</a>
             <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="" title="关闭">关闭</a>
@@ -160,26 +160,30 @@
             <thead>
                 <tr>
                     <th field="序号" sortable="true" editor="text">序号</th>
-                    <th field="合同编号" sortable="true" align="left" width="100" editor="text">合同编号</th>
-                    <th field="任务单编号" sortable="true" align="left" width="100" editor="text">任务单编号</th>
-                    <th field="配比编号" sortable="true" align="left" width="80" editor="text">配比编号</th>
-                    <th field="临时工地" sortable="true" align="center" width="80" editor="text">临时工地</th>
+                    <th field="ProjectName" sortable="true" align="left" width="100" editor="text">工程名称</th>
                     <th field="结构部位" sortable="true" align="left" width="80" editor="text">结构部位</th>
                     <th field="强度等级" sortable="true" align="left" width="80" editor="text">强度等级</th>
-                    <th field="坍落度" sortable="true" align="left" width="80" editor="text">坍落度</th>
-                    <th field="泵送" sortable="true" align="left" width="200" editor="text">泵送</th>
+                    <th field="泵送" sortable="true" align="left" width="50" editor="text">泵送</th>
+                    <th field="ClientName" sortable="true" align="left" width="100" editor="text">施工单位</th>
+                    <th field="合同编号" sortable="true" align="left" width="100" editor="text">合同编号</th>
+                    <th field="任务单编号" sortable="true" align="left" width="100" editor="text">任务单编号</th>
+                    @*<th field="配比编号" sortable="true" align="left" width="80" editor="text">配比编号</th>
+                    <th field="临时工地" sortable="true" align="center" width="80" editor="text">临时工地</th>*@
+
+                    @*<th field="坍落度" sortable="true" align="left" width="80" editor="text">坍落度</th>*@
+                  
                     <th field="预定方量" sortable="true" align="left" width="60" editor="text">预定方量</th>
                     <th field="累计方量" sortable="true" align="left" width="60" editor="text">累计方量</th>
                     <th field="累计车次" sortable="true" align="left" width="60" editor="text">累计车次</th>
                     <th field="第一车时间" sortable="true" align="center" width="80" editor="{type:'datebox'}" formatter="com.formatDate">第一车时间</th>
                     <th field="最后一车时间" sortable="true" align="left" width="60" editor="{type:'datebox'}" formatter="com.formatDate">最后一车时间</th>
                     <th field="任务供应时间" sortable="true" align="left" width="60" editor="{type:'datebox'}" formatter="com.formatDate">任务供应时间</th>
-                    <th field="ProjectName" hidden="true"></th>
+                    @*<th field="ProjectName" hidden="true"></th>
                     <th field="ClientName" hidden="true"></th>
                     <th field="interva" hidden="true"></th>
                     <th field="wjj" hidden="true"></th>
                     <th field="House_id" hidden="true"></th>
-                </tr>
+                </tr>*@
             </thead>
         </table>
     </div>
