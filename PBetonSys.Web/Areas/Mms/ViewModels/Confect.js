@@ -91,24 +91,26 @@ var viewModel = function (data) {
         //post.list[type].push(data);
         post.form = data;
         post.list["inserted"] = vm.griddetail.datagrid("getRows");
+        var rows = vm.griddetail.datagrid("getRows");
         if (post.list["inserted"].length > 0)
         {
             for (var ii = 0; ii < post.list["inserted"].length; ii++)
             {
+                var Theory_Value =rows[ii].Theory_Value;
                 post.list["inserted"][ii].Confect_ID = vm.form.Confect_ID();
-                post.list["inserted"][ii].NewMax = 0;
-                post.list["inserted"][ii].NewMin = 0; 
-                post.list["inserted"][ii].MTCode = 0; 
-                post.list["inserted"][ii].ZBCode = 0;
-                post.list["inserted"][ii].range_From = 0;
-                post.list["inserted"][ii].MTSize = 0; 
-                post.list["inserted"][ii].Provide_ID = 0; 
-                post.list["inserted"][ii].MT_Value = 0; 
-                post.list["inserted"][ii].Confect_Detail_ID = 0;
-                post.list["inserted"][ii].Ratio = 0;
+                post.list["inserted"][ii].MTCode =' 0';// rows[ii].MTCode;
+                post.list["inserted"][ii].ZBCode =' 0';// rows[ii].ZBCode;
+                post.list["inserted"][ii].Provide_ID =' 0';// rows[ii].Provide_ID;
+                post.list["inserted"][ii].MT_Value = 1; // rows[ii].MT_Value;
+                post.list["inserted"][ii].Ratio = 0;// rows[ii].Ratio;
+                post.list["inserted"][ii].Theory_Value = Theory_Value;
+                post.list["inserted"][ii].Confect_Detail_ID = '0';
                 post.list["inserted"][ii].T1 = 0;
                 post.list["inserted"][ii].Tol = 0; 
-                post.list["inserted"][ii].Theory_Value = 0;
+                post.list["inserted"][ii].range_From = 0;
+                post.list["inserted"][ii].MTSize = '0'; 
+                post.list["inserted"][ii].NewMax = 0;
+                post.list["inserted"][ii].NewMin = 0; 
             }
         }
         debugger;
@@ -231,11 +233,45 @@ var viewModel = function (data) {
 
 
                     var rows = that.griddetail.datagrid("getRows");
-                    
+                    var value = 0;
+                    var LiLun_value = 0;
+                    var MtType = '';
+                    var Sequence = 0;
+                    var Ratio = 0;
+                    var Water = 0;
+                    var sumWater = 0;
                     for (var i = 0, l = rows.length; i < l; i++) {
 
-                       
-                          var value = rows[i].Theory_Value;  // 怎么读取griddetail列值
+                        
+                         LiLun_value = rows[i].Theory_Value;  // 怎么读取griddetail列值
+                         MtType = rows[i].MTType;  // 材料类型
+                         Sequence = rows[i].Sequence;  // 序号
+                         Ratio = rows[i].Ratio/100;
+                         Water = LiLun_value * Ratio;
+                         sumWater = sumWater + Water;
+                         if (Sequence <= 4) {
+                             if (LiLun_value > 0) { value = LiLun_value + sumWater; }
+                             else { value = 0;}
+                            
+
+                         }
+                       else {
+                         if (LiLun_value == 0) {
+                             value = 0
+                         }
+                         else {
+                             value = LiLun_value;
+
+                         }
+                         }
+                        if (MtType == '水') {
+
+                            if (LiLun_value > 0) { value = LiLun_value - sumWater }
+
+
+                        }
+
+
 
                         that.griddetail.datagrid('updateRow', { index: i, row: { range_From: "0", MT_Value: value } });
                         }
