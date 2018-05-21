@@ -37,7 +37,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return result;
         }
 
-        public dynamic GetHouseList() 
+        public dynamic GetHouseList()
         {
             return new DispatchService().GetHouseList();
         }
@@ -45,6 +45,50 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public dynamic GetDriveList()
         {
             return new DispatchService().GetDriveList();
+        }
+
+        /// <summary>
+        /// 根据合同号获取运输单列表
+        /// </summary>
+        /// <param name="contId">合同号</param>
+        /// <returns></returns>
+        public dynamic GetTransportByContId(string contId)
+        {
+            return new DispatchService().GetTransportByContId(contId);
+
+        }
+
+       /// <summary>
+        /// 获取任务编号
+       /// </summary>
+       /// <param name="hous_id"></param>
+       /// <param name="task_ID"></param>
+       /// <returns></returns>
+        public dynamic GetTranspID(string hous_id, string task_ID)
+        {
+            return new DispatchService().GetTranspID(hous_id, task_ID);
+        }
+
+
+        /// <summary>
+        /// 编辑调度列表
+        /// </summary>
+        /// <param name="data"></param>
+        [System.Web.Http.HttpPost]
+        public void Edit(dynamic data)
+        {
+            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+                    <settings>
+                        <table>
+                            Transport
+                        </table>
+                        <where>
+                            <field name='Transp_ID' cp='equal' variable='Transp_ID'></field>
+                        </where>
+                    </settings>");
+
+            var service = new DispatchService();
+            var result = service.Edit(null, listWrapper, data);
         }
     }
 }

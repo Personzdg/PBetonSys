@@ -60,12 +60,12 @@ namespace PBetonSys.Web.Areas.Mms.Models
     }
     public class DispatchService : ServiceBase<SilotReport>
     {
-         public DispatchService()
+        public DispatchService()
         {
             base.ModuleName = "Betonsys";
         }
 
-        public List<Dispatch> GetDispatchList() 
+        public List<Dispatch> GetDispatchList()
         {
             string strSql = "select e.CheckFlag, b.Telephon,  b.House_id, b.ShowFlag,c.CheckAdder,b.wjj,c.interva,a.*,c.ProjectName,f.Name ClientName   from AttemperTaskListTab() as a  join  Task as b on(a.任务单编号=b.Task_id) join contract as c on(a.合同编号=c.Cont_id) join Confect as e  on (a.配比编号=E.Confect_ID) left join dbo.Client as f on c.Clinet_id=f.Cl_ID order by e.CheckFlag";
             return db.Sql(strSql).QueryMany<Dispatch>();
@@ -108,5 +108,40 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
             return base.GetDynamicList(pQuery);
         }
+
+        /// <summary>
+        /// 根据合同号获取运输单列表
+        /// </summary>
+        /// <param name="contId"></param>
+        /// <returns></returns>
+        public dynamic GetTransportByContId(string contId)
+        {
+            if (string.IsNullOrEmpty(contId))
+            {
+                contId = "-111111111111111";
+            }
+            var pQuery = ParamQuery.Instance()
+                .Select(" * ")
+                .From(" Transport")
+                .AndWhere("Cont_ID", contId);
+            return base.GetDynamicList(pQuery);
+        }
+
+        /// <summary>
+        /// 获取任务编号
+        /// </summary>
+        /// <param name="hous_id"></param>
+        /// <param name="task_ID"></param>
+        /// <returns></returns>
+        public string GetTranspID(string hous_id, string task_ID)
+        {
+            var produce = db.StoredProcedure("GetTransportID");
+            produce.Parameter("hous_id ", hous_id, DataTypes.StringFixedLength);
+            produce.Parameter("Task_ID ", task_ID, DataTypes.StringFixedLength);
+            produce.ParameterOut("TranID", DataTypes.String, 13);
+            produce.Execute();
+            return produce.ParameterValue<string>("TranID");
+        }
+
     }
 }

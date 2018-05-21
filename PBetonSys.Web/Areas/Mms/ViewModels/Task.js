@@ -184,18 +184,15 @@ var viewModel = function (data) {
                     //Provide_DateTime: ko.observable(model.Provide_DateTime == null ? '': model.Provide_DateTime),
                     Remark: ko.observable(model.Remark)
                 };
-                debugger;
                 if (!this.form.House_id())
                 {
                    
                     if (self.comboboxHouseData.length > 0)
                     {
-                        debugger;
                         this.form.House_id(self.comboboxHouseData[0].Code)
                     }
                 }
                 this.confirmClick = function () {
-                    debugger;
                     fnConfirm(that, win);
                 };
 
