@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "配比审核";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/ConfectAuditList.js"></script>
+    <script type="text/javascript">
+        using(['combogrid', 'combobox', 'datetimebox', 'numberbox','datagrid']);
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "1" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">任务单号</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Task_id" class="z-txt" /></div>
+    <div class="grid_1 lbl">合同编号</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.cont_id" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">供应时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Provide_DateTime" class="easyui-daterange z-txt" /></div>
+    <div class="clear"></div>
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:searchClick" style="margin:0 15px;">查询</a>
+        <a id="a_reset" href="#" class="buttonHuge button-blue" data-bind="click:clearClick">清空</a>
+    </div>
+</div>
+
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="UpDateTime" width="120">修改时间</th>
+            <th field="DESCRIPTION" width="60">楼号</th>
+            <th field="Name" width="120">施工单位</th>
+            <th field="projectname" width="120">工程名称</th>
+            <th field="Place" width="120">结构部位</th>
+            <th field="Strong" width="80">强度</th>
+            <th field="Fall" width="80">坍落度</th>
+            <th field="Amount" width="80">预报方量</th>
+            <th field="Pump" width="120" formatter="formatterEnable">泵送</th>
+            <th field="Pump_vehicle" width="80">泵号</th>
+            <th field="Confect_ID" width="120">配比编号</th>
+            <th field="Confect_ID" width="120" formatter="formatterEnable">是否审核</th>
+            <th field="Provide_DateTime" width="120">审核时间</th>
+        </tr>
+    </thead>
+</table>

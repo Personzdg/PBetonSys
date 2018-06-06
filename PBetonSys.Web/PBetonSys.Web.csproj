@@ -236,6 +236,7 @@
     <Content Include="Areas\Mms\ViewModels\Cart.js" />
     <Content Include="Areas\Mms\ViewModels\Clinet.js" />
     <Content Include="Areas\Mms\ViewModels\Confect.js" />
+    <Content Include="Areas\Mms\ViewModels\ConfectAuditList.js" />
     <Content Include="Areas\Mms\ViewModels\Contract.js" />
     <Content Include="Areas\Mms\ViewModels\Dispatch.js" />
     <Content Include="Areas\Mms\ViewModels\mms.com.js" />
@@ -3349,6 +3350,7 @@
     <Content Include="Areas\Mms\Views\S_Confect\LookupS_Confect.cshtml" />
     <Content Include="Areas\Mms\Views\AuditingTask\Index.cshtml" />
     <Content Include="Areas\Mms\Views\AuditingConfect\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\Confect\Audit.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
