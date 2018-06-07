@@ -5,6 +5,7 @@
 }
 
 @section scripts{
+@*<script src="~/Areas/Mms/ViewModels/mms.viewModel.search.js"></script>*@
     <script src="~/Areas/Mms/ViewModels/ConfectAuditList.js"></script>
     <script type="text/javascript">
         using(['combogrid', 'combobox', 'datetimebox', 'numberbox','datagrid']);
@@ -15,10 +16,20 @@
 }
 <div id="condition" class="container_12" style="position:relative;">
     <div class="grid_1 lbl">任务单号</div>
-    <div class="grid_2 val"><input type="text" data-bind="value:form.Task_id" class="z-txt" /></div>
+    <div class="grid_1 val"><input type="text" data-bind="value:form.Task_id" class="z-txt" /></div>
     <div class="grid_1 lbl">合同编号</div>
-    <div class="grid_2 val"><input type="text" data-bind="value:form.cont_id" class="z-txt" /></div>
+    <div class="grid_1 val"><input type="text" data-bind="value:form.cont_id" class="z-txt" /></div>
+    <div class="grid_1 lbl">工程名称</div>
+    <div class="grid_1 val"><input type="text" data-bind="value:form.projectname" class="z-txt" /></div>
+    <div class="grid_1 lbl">结构部位</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.projectname" class="z-txt" /></div>
     <div class="clear"></div>
+    <div class="grid_1 lbl">施工单位</div>
+    <div class="grid_1 val"><input type="text" data-bind="value:form.Name" class="z-txt" /></div>
+    <div class="grid_1 lbl">结构部位</div>
+    <div class="grid_1 val"><input type="text" data-bind="value:form.Place" class="z-txt" /></div>
+    <div class="grid_1 lbl">强度等级</div>
+    <div class="grid_1 val"><input type="text" data-bind="value:form.projectname" class="z-txt" /></div>
     <div class="grid_1 lbl">供应时间</div>
     <div class="grid_2 val"><input type="text" data-bind="value:form.Provide_DateTime" class="easyui-daterange z-txt" /></div>
     <div class="clear"></div>

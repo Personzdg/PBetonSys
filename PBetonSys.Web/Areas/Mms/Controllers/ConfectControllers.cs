@@ -48,6 +48,17 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             };
             return View(model);
         }
+
+        public ActionResult AuditDetail(string id = "")
+        {
+            var model = new
+            {
+                form = new 
+                { Confect_ID = id 
+                }
+            };
+            return View(model);
+        }
         public ActionResult ConfectList()
         {
             return View();
@@ -141,7 +152,44 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             var result = service.Edit(formWrapper, listWrapper, data);
 
         }
-    
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Confect_ID"></param>
+        /// <returns></returns>
+        public dynamic GetAjustList(string Confect_ID)
+        {
+            var query = RequestWrapper.Instance().LoadSettingXmlString(@"
+                    <settings>
+                          <select>
+                            Confect_Detail_ID,Hous_ID
+                        </select>
+                        <from>
+                            Confect_Detail2
+                       </from>
+                    </settings>");
+            var pQuery = query.ToParamQuery();
+            pQuery.AndWhere("Confect_ID", Confect_ID);
+            return new TaskService().GetDynamicList(pQuery);
+        }
+
+        public dynamic GetConfectDetaiList(string Confect_Detail_ID) 
+        {
+            var query = RequestWrapper.Instance().LoadSettingXmlString(@"
+                    <settings>
+                          <select>
+                            Inside_ID,Hous1Name,Hous2Name,Hous3Name,Hous4Name,MT_Size,Theory_Value,Tol,T1,MTType,MTSize,Provide_ID,MTCode,ZBCode,MT_Value ,Sequence,Range_To,range_From,NewMin,NewMax,Theory_Value,MT_Value,Ratio
+                        </select>
+                        <from>
+                            Confect_Detail2
+                       </from>
+                    </settings>");
+            var pQuery = query.ToParamQuery();
+            pQuery.AndWhere("Confect_Detail_ID", Confect_Detail_ID);
+            return new TaskService().GetDynamicList(pQuery);
+        }
      }
 
 

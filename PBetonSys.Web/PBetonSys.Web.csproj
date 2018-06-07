@@ -232,6 +232,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Mms\ViewModels\AuditDetail.js" />
     <Content Include="Areas\Mms\ViewModels\AuditingConfect.js" />
     <Content Include="Areas\Mms\ViewModels\Cart.js" />
     <Content Include="Areas\Mms\ViewModels\Clinet.js" />
@@ -3351,6 +3352,7 @@
     <Content Include="Areas\Mms\Views\AuditingTask\Index.cshtml" />
     <Content Include="Areas\Mms\Views\AuditingConfect\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Confect\Audit.cshtml" />
+    <Content Include="Areas\Mms\Views\Confect\AuditDetail.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

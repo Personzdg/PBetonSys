@@ -1,7 +1,4 @@
-﻿/**
-* 模块名：MMS
-* 程序名: PriceInfo.js
-**/
+﻿
 
 var viewModel = function (data) {
     var self = this;
@@ -9,12 +6,13 @@ var viewModel = function (data) {
 
     this.grid = {
         size: { w: 4, h: 50 },
+        queryParams: ko.observable(),
         url: '/api/Mms/Confect/GetAuditConfectList',
         pagination: true,
         pageSize: 20
     };
 
-    //this.grid.queryParams(data.form);
+    this.grid.queryParams(data.form);
 
     this.searchClick = function () {
         var param = ko.toJS(this.form);
@@ -28,10 +26,11 @@ var viewModel = function (data) {
     this.refreshClick = function () {
         window.location.reload();
     };
-
-
-    this.grid.onDblClickRow = function ()
-    {
-
+    this.editClick = function () {
+        var row = self.grid.datagrid('getSelected');
+        if (!row) return com.message('warning', self.resx.noneSelect);
+        com.openTab('配比详情', "/mms/Confect/AuditDetail?id=" + row.Confect_ID);
     };
+
+    this.grid.onDblClickRow = this.editClick;
 };
