@@ -120,6 +120,11 @@ namespace PBetonSys.Web.Areas.Mms
         }
         #endregion
 
+
+         //var produce = db.StoredProcedure("GetTaskNO");
+         //    produce.ParameterOut("Number", DataTypes.String, 13);
+         //    produce.Execute();
+         //    return produce.ParameterValue<string>("Number");
 //        #region 保存
 //        // 保存 POST api/mms/send
 //        [HttpPost]

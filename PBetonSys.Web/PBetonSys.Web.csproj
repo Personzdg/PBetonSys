@@ -187,6 +187,7 @@
     <Compile Include="Areas\Mms\Controllers\ConfectControllers.cs" />
     <Compile Include="Areas\Mms\Controllers\ContractController.cs" />
     <Compile Include="Areas\Mms\Controllers\DispatchController.cs" />
+    <Compile Include="Areas\Mms\Controllers\GatheringController.cs" />
     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mms\Controllers\ProductController.cs" />
     <Compile Include="Areas\Mms\Controllers\ReportController.cs" />
@@ -199,6 +200,8 @@
     <Compile Include="Areas\Mms\Models\Confect_Detail2.cs" />
     <Compile Include="Areas\Mms\Models\Contract.cs" />
     <Compile Include="Areas\Mms\Models\DispatchService.cs" />
+    <Compile Include="Areas\Mms\Models\Gathering.cs" />
+    <Compile Include="Areas\Mms\Models\Gathering_Detail.cs" />
     <Compile Include="Areas\Mms\Models\Product.cs" />
     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\S_Confect.cs" />
@@ -240,6 +243,7 @@
     <Content Include="Areas\Mms\ViewModels\ConfectAuditList.js" />
     <Content Include="Areas\Mms\ViewModels\Contract.js" />
     <Content Include="Areas\Mms\ViewModels\Dispatch.js" />
+    <Content Include="Areas\Mms\ViewModels\Gathering.js" />
     <Content Include="Areas\Mms\ViewModels\mms.com.js" />
     <Content Include="Areas\Mms\ViewModels\mms.lookupContract.js" />
     <Content Include="Areas\Mms\ViewModels\mms.lookupNewTask.js" />
@@ -3353,6 +3357,7 @@
     <Content Include="Areas\Mms\Views\AuditingConfect\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Confect\Audit.cshtml" />
     <Content Include="Areas\Mms\Views\Confect\AuditDetail.cshtml" />
+    <Content Include="Areas\Mms\Views\Gathering\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

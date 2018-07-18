@@ -72,10 +72,24 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public List<SilotReport> GetSilotReportData()
         {
-            string startDate = "2017-10-16";
-            string endDate = "2017-10-21";
-            string strSql = string.Format("Select b.Hous_id,b.MaxVal,b.MinVal,a.筒仓名称 Name,a.期初值 SVal,a.盘点值 PVal,a.入库值 IVal,a.消耗值 UVal from CheckSilotfunction('{0}','{1}') as a join silot as b on (a.筒仓名称=b.siloName) where  b.State = 1 and b.ShowFlage=1", startDate, endDate) ;
+
+            // string startDate = "2017-10-16";   //select max (isnull(Checkdate,getdate())) as checkdate from CheckSilot
+            string endDate = DateTime.Now.ToString();
+            string checkdatestrSql = string.Format("select max (Checkdate) as checkdate from CheckSilot");
+            DateTime startDate = db.ConnectionStringName(APP.DB_Materials, new SqlServerProvider()).Sql(checkdatestrSql).QuerySingle<DateTime>();
+
+
+            string strSql = string.Format("Select b.Hous_id,b.MaxVal,b.MinVal,a.筒仓名称 Name,a.期初值 SVal,a.盘点值 PVal,a.入库值 IVal,a.消耗值 UVal from CheckSilotfunction('{0}','{1}') as a join silot as b on (a.筒仓名称=b.siloName) where  b.State = 1 and b.ShowFlage=1 order by Hous_id ", startDate.ToString(), endDate);
             return db.ConnectionStringName(APP.DB_Materials, new SqlServerProvider()).Sql(strSql).QueryMany<SilotReport>();
-        } 
+        }
     }
 }
+//        public List<SilotReport> GetSilotReportData()
+//        {
+//            string startDate = "2017-10-16";
+//            string endDate = "2017-10-21";
+//            string strSql = string.Format("Select b.Hous_id,b.MaxVal,b.MinVal,a.筒仓名称 Name,a.期初值 SVal,a.盘点值 PVal,a.入库值 IVal,a.消耗值 UVal from CheckSilotfunction('{0}','{1}') as a join silot as b on (a.筒仓名称=b.siloName) where  b.State = 1 and b.ShowFlage=1", startDate, endDate) ;
+//            return db.ConnectionStringName(APP.DB_Materials, new SqlServerProvider()).Sql(strSql).QueryMany<SilotReport>();
+//        } 
+//    }
+//}
