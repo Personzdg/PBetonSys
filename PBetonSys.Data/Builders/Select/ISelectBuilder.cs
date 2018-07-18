@@ -4,7 +4,7 @@ using System.Data;
 
 namespace PBetonSys.Data
 {
-	public interface ISelectBuilder<TEntity>
+    public interface ISelectBuilder<TEntity>
 	{
 		SelectBuilderData Data { get; set; }
 		ISelectBuilder<TEntity> Select(string sql);
