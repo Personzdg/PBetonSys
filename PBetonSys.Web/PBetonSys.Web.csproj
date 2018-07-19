@@ -190,6 +190,7 @@
     <Compile Include="Areas\Mms\Controllers\GatheringController.cs" />
     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mms\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Mms\Controllers\ProjectAlltabController.cs" />
     <Compile Include="Areas\Mms\Controllers\ReportController.cs" />
     <Compile Include="Areas\Mms\Controllers\S_ConfectController.cs" />
     <Compile Include="Areas\Mms\Controllers\TaskController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Areas\Mms\Models\Gathering.cs" />
     <Compile Include="Areas\Mms\Models\Gathering_Detail.cs" />
     <Compile Include="Areas\Mms\Models\Product.cs" />
+    <Compile Include="Areas\Mms\Models\ProjectAlltabService.cs" />
     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\S_Confect.cs" />
     <Compile Include="Areas\Mms\Models\Task.cs" />
@@ -3358,6 +3360,7 @@
     <Content Include="Areas\Mms\Views\Confect\Audit.cshtml" />
     <Content Include="Areas\Mms\Views\Confect\AuditDetail.cshtml" />
     <Content Include="Areas\Mms\Views\Gathering\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\SettlementReport\ProjectAll.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

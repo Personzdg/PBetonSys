@@ -54,6 +54,8 @@ namespace PBetonSys.Core
         //数据库的一些设置
         public static string DB_Materials = ConfigurationManager.ConnectionStrings[4].Name;
 
+        //数据库的一些设置
+        public static string DB_Settlement = ConfigurationManager.ConnectionStrings[5].Name;
         //事件支持
         //public static Action<AjaxAction> OnAjaxRequst = null;
         public static Action<CommandEventArgs> OnDbExecuting = null;
