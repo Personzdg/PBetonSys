@@ -139,15 +139,24 @@
         <table id="listDetail" data-bind="datagrid:griddetail">
             <thead>
                 <tr>
-                    <th field="ID" sortable="true" align="left" width="80">序号</th>
-                    <th field="Gathering_ID" sortable="true" align="left" width="100">Gathering_ID</th>
-                    <th field="CheckDateTime" sortable="true" align="left" width="100" editor="text">CheckDateTime</th>
+                    <th field="ID" sortable="true" align="left" width="80" hidden="hidden">序号</th>
+                    <th field="Gathering_ID" sortable="true" align="left" width="100" hidden="hidden">Gathering_ID</th>
+                    <th field="CheckDateTime" sortable="true" align="left" width="100" formatter="com.formatDate">CheckDateTime</th>
                     <th field="ReceiveMoney" sortable="true" align="left" width="120" editor="text">ReceiveMoney</th>
-                    <th field="CheckFlag" sortable="true" align="left" width="100" editor="text">CheckFlag</th>
+                    <th field="CheckFlag" sortable="true" align="left" width="100" formatter="com.formatCheckbox" editor="{type:'checkbox',options:{on:true,off:false}}">CheckFlag</th>
                     <th field="Remark" sortable="true" align="left" width="100" editor="text">Remark</th>
                 </tr>
             </thead>
         </table>
    </div>
+    <div style="text-align:center;clear:both">
+        <a class=" easyui-linkbutton" data-bind="click:detailAdd" data-options="iconCls:'icon-ok'" href="javascript:void(0)">
+            追加
+        </a>
+        <a class=" easyui-linkbutton" data-bind="click:detailconfirmClick" data-options="iconCls:'icon-ok'" href="javascript:void(0)">
+            确定
+        </a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:detailcancelClick" href="javascript:void(0)">取消</a>
+    </div>
     
 </script>

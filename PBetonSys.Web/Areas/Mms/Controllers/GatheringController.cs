@@ -1,4 +1,5 @@
-﻿using PBetonSys.Core;
+﻿using Newtonsoft.Json.Linq;
+using PBetonSys.Core;
 using PBetonSys.Web.Areas.Mms.Models;
 using System;
 using System.Collections.Generic;
@@ -135,21 +136,21 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         </where>
                     </settings>");
 
-            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
-                    <settings>
-                        <table>
-                            Gathering_Detail
-                        </table>
-                        <where>
-                            <field name='Gathering_ID' cp='equal' variable='Gathering_ID'></field>
-                        </where>
-                    </settings>");
+//            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+//                    <settings>
+//                        <table>
+//                            Gathering_Detail
+//                        </table>
+//                        <where>
+//                            <field name='Gathering_ID' cp='equal' variable='Gathering_ID'></field>
+//                        </where>
+//                    </settings>");
 
             var service = new GatheringService();
             //var fromId = data.form.Gathering_ID.Value;
             //ParamDelete pd = ParamDelete.Instance().From("Gathering_Detail").AndWhere("Gathering_ID", fromId); //删除之前的记录
-            service.AddDetail(data.form.Gathering_ID.Value, data.form.ReceiveMoney.Value);
-            var result = service.Edit(formWrapper, listWrapper, data);
+            service.AddDetail(data.form.Gathering_ID.Value.ToString(), data.form.ReceiveMoney.Value.ToString());
+            var result = service.Edit(formWrapper, null, data);
 
          }
 
@@ -160,7 +161,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
              var query = RequestWrapper.Instance().LoadSettingXmlString(@"
                     <settings>
                           <select>
-                             Gathering_ID, CheckDateTime, ReceiveMoney, Remark, CheckFlag
+                             ID,Gathering_ID, CheckDateTime, ReceiveMoney, Remark, CheckFlag
                         </select>
                         <from>
                             Gathering_Detail
@@ -177,7 +178,42 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
              var service = new GatheringService();
              return service.GetNewCode();
          }
-     
+
+
+         [System.Web.Http.HttpPost]
+         public void EditDetail(dynamic data)
+         {
+            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+                                 <settings>
+                                     <table>
+                                         Gathering_Detail
+                                     </table>
+                                     <where>
+                                         <field name='ID' cp='equal' variable='ID'></field>
+                                     </where>
+                                 </settings>");
+
+             var service = new GatheringService();
+
+             if (data["list"] != null && listWrapper != null)
+             {
+                 foreach (JProperty item in data["list"].Children())
+                 {
+                     if (item.Name == "inserted") 
+                     {
+                         foreach (var row in item.Value.Children())
+                         {
+                             row["CheckDateTime"] = DateTime.Now;
+                         }
+                     }
+                 }
+             }
+             var gathering_ID = data.Gathering_ID.Value;
+             //ParamDelete pd = ParamDelete.Instance().From("Gathering_Detail").AndWhere("Gathering_ID", fromId); //删除之前的记录
+             var result = service.Edit(null, listWrapper, data);
+             service.ReSetReceiveMoney(gathering_ID);
+
+         }
      }
 
 

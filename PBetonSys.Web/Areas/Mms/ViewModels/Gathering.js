@@ -236,6 +236,27 @@ var viewModel = function (data) {
                 this.gridEdit = new com.editGridViewModel(that.griddetail);
                 this.griddetail.onDblClickRow = that.gridEdit.begin;
                 this.griddetail.onClickRow = that.gridEdit.ended;
+                this.detailAdd = function ()
+                {
+                    var row = { Gathering_ID: that.form.Gathering_ID };
+                    that.gridEdit.addnew(row);
+                };
+                this.detailconfirmClick = function ()
+                {
+                    that.gridEdit.ended();
+                    var post = {};
+                    post.Gathering_ID = that.form.Gathering_ID();
+                    post.list = that.gridEdit.getChanges(['ID', 'Gathering_ID', 'ReceiveMoney', 'CheckFlag', 'Remark']);
+                    com.ajax({
+                        url: '/api/mms/Gathering/EditDetail',
+                        data: ko.toJSON(post),
+                        success: function (d) {
+                            com.message('success', '保存成功！');
+                            self.gridEdit.accept();
+                        }
+                    });
+                };
+                this.detailcancelClick = that.gridEdit.ended;
             }
         });
     };
