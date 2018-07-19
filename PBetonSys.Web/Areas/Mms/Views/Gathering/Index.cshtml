@@ -76,29 +76,29 @@
         <div class="clear"></div>
         <div class="grid_2 lbl required">合同编号</div>
         <div class="grid_10 val">
-            <input type="text" class="z-txt l-txt" style="width:300px;" data-bind="value:form.Cont_ID" disabled="disabled" />
+            <input type="text" class="z-txt l-txt" style="width:300px;" data-bind="value:form.SysCont_id" disabled="disabled" />
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
         </div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">工程名称</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxProject,comboboxValue:form.Syscont_id" data-options="disabled:true" /></div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxProject,comboboxValue:form.SysCont_id" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">施工单位</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxClient,comboboxValue:form.Clinet_id" data-options="disabled:true" /></div>
+        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="easyuiCombobox:comboboxClient,comboboxValue:form.Clinet_id" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">付款人</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="value:form.GatheringPerson" /></div>
+        <div class="grid_10 val"><input type="text" class="z-txt m-txt" style="width:90%;" data-bind="value:form.GatheringPerson" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">开户行</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="value:form.Bank" /></div>
+        <div class="grid_10 val"><input type="text" class="z-txt m-txt" style="width:90%;" data-bind="value:form.Bank" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">账号</div>
-        <div class="grid_10 val"><input type="text" class="easyui-combobox z-txt l-txt" data-bind="value:form.AcCode" /></div>
+        <div class="grid_10 val"><input type="text" class="z-txt m-txt" style="width:90%;" data-bind="value:form.AcCode" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">销售员</div>
@@ -117,9 +117,9 @@
 
     
         <div class="grid_2 lbl required">收款时间 </div>
-        <div class="grid_5 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
+        <div class="grid_3 val"><input type="text" class="easyui-datebox z-txt m-txt" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true" /></div>
         <div class="grid_2 lbl">收款人</div>
-        <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.GatheringPerson" /></div>
+        <div class="grid_5 val"><input type="text" class="z-txt m-txt" data-bind="value:form.GatheringPerson" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>
@@ -133,4 +133,21 @@
         </a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:cancelClick" href="javascript:void(0)">取消</a>
     </div>
+
+
+    <div style="clear:both">
+        <table id="listDetail" data-bind="datagrid:griddetail">
+            <thead>
+                <tr>
+                    <th field="ID" sortable="true" align="left" width="80">序号</th>
+                    <th field="Gathering_ID" sortable="true" align="left" width="100">Gathering_ID</th>
+                    <th field="CheckDateTime" sortable="true" align="left" width="100" editor="text">CheckDateTime</th>
+                    <th field="ReceiveMoney" sortable="true" align="left" width="120" editor="text">ReceiveMoney</th>
+                    <th field="CheckFlag" sortable="true" align="left" width="100" editor="text">CheckFlag</th>
+                    <th field="Remark" sortable="true" align="left" width="100" editor="text">Remark</th>
+                </tr>
+            </thead>
+        </table>
+   </div>
+    
 </script>

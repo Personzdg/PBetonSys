@@ -1,0 +1,129 @@
+[1mdiff --git a/PBetonSys.Web/Areas/Mms/ViewModels/Dispatch.js b/PBetonSys.Web/Areas/Mms/ViewModels/Dispatch.js[m
+[1mindex b9ebc70..c6dcb17 100644[m
+[1m--- a/PBetonSys.Web/Areas/Mms/ViewModels/Dispatch.js[m
+[1m+++ b/PBetonSys.Web/Areas/Mms/ViewModels/Dispatch.js[m
+[36m@@ -34,6 +34,7 @@[m [mvar viewModel = function (data) {[m
+         CDriveID: ko.observable(),[m
+         CPumpId:ko.observable()[m
+     };[m
+[32m+[m[32m    this.currRow = ko.observable({});[m[41m[m
+     this.gridEdit = new com.editGridViewModel(this.grid);[m
+     //this.grid.onDblClickRow = this.gridEdit.begin;[m
+     //this.grid.onClickRow = this.gridEdit.ended;[m
+[36m@@ -73,5 +74,17 @@[m [mvar viewModel = function (data) {[m
+         //self.gridEdit.begin()[m
+     };[m
+     this.grid.onClickRow = this.editClick;[m
+[32m+[m[32m    this.tabClick = function ()[m[41m[m
+[32m+[m[32m    {[m[41m[m
+[32m+[m[32m        //setTimeout(function ()[m[41m[m
+[32m+[m[32m        //{[m[41m[m
+[32m+[m[32m        //    $('#tt').tabs({[m[41m[m
+[32m+[m[32m        //        border: false,[m[41m[m
+[32m+[m[32m        //        onSelect: function (title, index) {[m[41m[m
+[32m+[m[32m        //            console.log(title + ' is selected');[m[41m[m
+[32m+[m[32m        //        }[m[41m[m
+[32m+[m[32m        //    });[m[41m[m
+[32m+[m[32m        //}, 2000);[m[41m[m
+[32m+[m[32m    };[m[41m[m
+     //this.grid.onDblClickRow = this.editClick;[m
+ };[m
+[1mdiff --git a/PBetonSys.Web/Areas/Mms/Views/Dispatch/Index.cshtml b/PBetonSys.Web/Areas/Mms/Views/Dispatch/Index.cshtml[m
+[1mindex 7939722..ea2c584 100644[m
+[1m--- a/PBetonSys.Web/Areas/Mms/Views/Dispatch/Index.cshtml[m
+[1m+++ b/PBetonSys.Web/Areas/Mms/Views/Dispatch/Index.cshtml[m
+[36m@@ -9,18 +9,22 @@[m
+         using('datebox');[m
+         using('timespinner');[m
+         using('datetimebox');[m
+[32m+[m[32m        using('jquery');[m[41m[m
+         using(['validatebox', 'combotree', 'numberspinner'], easyuifix.datagrid_editor_extend);[m
+         var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));[m
+         ko.bindingViewModel(new viewModel(data));[m
+     </script>[m
+     <style type="text/css">[m
+         .datagrid {[m
+[31m-        height:550px;[m
+[31m-        overflow-y:auto;[m
+[32m+[m[32m            height: 550px;[m[41m[m
+[32m+[m[32m            overflow-y: auto;[m[41m[m
+[32m+[m[32m        }[m[41m[m
+[32m+[m[32m        .z-body {[m[41m[m
+[32m+[m[32m        overflow-y:scroll;[m[41m[m
+         }[m
+     </style>[m
+ }[m
+[31m-<div id="cc" class="easyui-layout" style="width: 2100px; height:900px;">[m
+[32m+[m[32m<div id="cc" class="easyui-layout" style="width: 2100px; height:900px;" data-options="fit:true">[m[41m[m
+     <div data-options="region:'north',title:'',split:true" style="height:40px;width:1800px;">[m
+         <div class="z-toolbar" style="height:23px;">[m
+             <a id="a_refresh" href="#" plain="true" class="easyui-linkbutton" icon="icon-arrow_refresh" title="刷新" data-bind="click:refreshClick">刷新</a>[m
+[36m@@ -30,8 +34,10 @@[m
+     <div data-options="region:'south',title:'',split:true" style="width:2100px;height:460px;">[m
+         <div id="tt" class="easyui-tabs">[m
+             <div title="生产查询">[m
+[32m+[m[32m                <iframe id="frmProduct" frameborder="0" src="/Mms/Product" style="width: 100%;height:2000px"></iframe>[m[41m[m
+             </div>[m
+             <div title="车辆查询">[m
+[32m+[m[32m                <iframe id="frmProduct" frameborder="0" src="/Mms/Product" style="width: 100%;height:2000px"></iframe>[m[41m[m
+             </div>[m
+             <div title="运输单" class="hide" style="padding-top:2px;">[m
+             </div>[m
+[36m@@ -54,15 +60,15 @@[m
+             <a id="a_printer" href="#" plain="true" class="easyui-linkbutton" icon="icon-printer" title="打印" data-bind="">打印</a>[m
+         </div>[m
+         <div id="master" class="container_12" style="width:85%;">[m
+[31m-            <div class="grid_1 lbl">合同编号</div>[m
+[31m-            <div class="grid_2 val"><input type="text" id="CNo" name="CNo" data-bind="value:CurrModel.CNo" class="z-txt readonly" /></div>[m
+[32m+[m[32m            <div class="grid_1 lbl">合同编号</div>   @*CurrModel.CNo*@[m[41m[m
+[32m+[m[32m            <div class="grid_2 val"><input type="text" id="合同编号" name="合同编号" data-bind="value:CurrModel.CNo" class="z-txt readonly" /></div>[m[41m[m
+             <div class="grid_1 lbl">配比编号</div>[m
+             <div class="grid_2 val"><input type="text" id="CPBNo" name="CPBNo" data-bind="value:CurrModel.CPBNo" class="z-txt readonly" /></div>[m
+             <div class="grid_1 lbl">任务编号</div>[m
+             <div class="grid_2 val "><input type="text" id="CTaskNo" name="CTaskNo" data-bind="value:CurrModel.CTaskNo" class="z-txt easyui-validatebox" /></div>[m
+             <div class="grid_1 lbl">第一车</div>[m
+             <div class="grid_2 val "><input type="text" id="CFirstCarTime" name="CFirstCarTime" data-bind="datetimeboxValue:CurrModel.CFirstCarTime" class=" z-txt easyui-datetimebox" /></div>[m
+[31m-         [m
+[32m+[m[41m[m
+             <div class="clear"></div>[m
+ [m
+             <div class="grid_1 lbl">工程名称</div>[m
+[1mdiff --git a/PBetonSys.Web/PBetonSys.Web.csproj b/PBetonSys.Web/PBetonSys.Web.csproj[m
+[1mindex 4c18e23..4b50349 100644[m
+[1m--- a/PBetonSys.Web/PBetonSys.Web.csproj[m
+[1m+++ b/PBetonSys.Web/PBetonSys.Web.csproj[m
+[36m@@ -185,6 +185,7 @@[m
+     <Compile Include="Areas\Mms\Controllers\ContractController.cs" />[m
+     <Compile Include="Areas\Mms\Controllers\DispatchController.cs" />[m
+     <Compile Include="Areas\Mms\Controllers\HomeController.cs" />[m
+[32m+[m[32m    <Compile Include="Areas\Mms\Controllers\ProductController.cs" />[m
+     <Compile Include="Areas\Mms\Controllers\ReportController.cs" />[m
+     <Compile Include="Areas\Mms\Controllers\TaskController.cs" />[m
+     <Compile Include="Areas\Mms\MmsAreaRegistration.cs" />[m
+[36m@@ -192,6 +193,7 @@[m
+     <Compile Include="Areas\Mms\Models\Client.cs" />[m
+     <Compile Include="Areas\Mms\Models\Contract.cs" />[m
+     <Compile Include="Areas\Mms\Models\DispatchService.cs" />[m
+[32m+[m[32m    <Compile Include="Areas\Mms\Models\Product.cs" />[m
+     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />[m
+     <Compile Include="Areas\Mms\Models\Task.cs" />[m
+     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />[m
+[36m@@ -231,6 +233,7 @@[m
+     <Content Include="Areas\Mms\ViewModels\mms.lookupContract.js" />[m
+     <Content Include="Areas\Mms\ViewModels\mms.viewModel.edit.js" />[m
+     <Content Include="Areas\Mms\ViewModels\mms.viewModel.search.js" />[m
+[32m+[m[32m    <Content Include="Areas\Mms\ViewModels\Product.js" />[m
+     <Content Include="Areas\Mms\ViewModels\Task.js" />[m
+     <Content Include="Areas\Sys\ViewModels\Code.js" />[m
+     <Content Include="Areas\Sys\ViewModels\Menu.js" />[m
+[36m@@ -3330,6 +3333,7 @@[m
+     <Content Include="Areas\Mms\ViewModels\mms.lookupClient.js" />[m
+     <Content Include="Areas\Mms\Views\Dispatch\Index.cshtml" />[m
+     <Content Include="Areas\Mms\Views\Report\Index.cshtml" />[m
+[32m+[m[32m    <Content Include="Areas\Mms\Views\Product\Index.cshtml" />[m
+     <None Include="Scripts\jquery.validate-vsdoc.js" />[m
+     <Content Include="Scripts\jquery.validate.js" />[m
+     <Content Include="Scripts\jquery.validate.min.js" />[m
+[1mdiff --git a/PBetonSys.v12.suo b/PBetonSys.v12.suo[m
+[1mindex 2b62139..3cdc672 100644[m
+Binary files a/PBetonSys.v12.suo and b/PBetonSys.v12.suo differ

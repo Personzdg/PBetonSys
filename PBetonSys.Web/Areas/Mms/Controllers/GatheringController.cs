@@ -66,7 +66,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
              query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='CheckDateTime'>
                     <select>
-                       a.Gathering_ID, a.SysCont_id, a.CheckDateTime, a.ReceiveMoney, a.Other, a.ReceiveType, a.AffirmFlag, a.ClerkName,  a.Remark, a.SalseName, a.GatheringPerson, a.Bank, a.Accounts, a.AcCode,a.AffirmDateTime,b.ProjectName,c.Name  
+                       a.Gathering_ID, a.SysCont_id, a.CheckDateTime, a.ReceiveMoney, a.Other, a.ReceiveType, a.AffirmFlag, a.ClerkName,  a.Remark, a.SalseName, a.GatheringPerson, a.Bank, a.Accounts, a.AcCode,a.AffirmDateTime,b.ProjectName,c.Name,c.Clinet_id  
                     </select>
                     <from>
                         Gathering as a join Contract as b on (a.Syscont_id=b.SysCont_id) join Clinet  as c on (b.Clinet_id=c.Clinet_id)
@@ -135,7 +135,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         </where>
                     </settings>");
 
-             var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
                     <settings>
                         <table>
                             Gathering_Detail
@@ -145,10 +145,11 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         </where>
                     </settings>");
 
-             var service = new GatheringService();
-             var fromId = data.form.Gathering_ID.Value;
-             ParamDelete pd = ParamDelete.Instance().From("Gathering_Detail").AndWhere("Gathering_ID", fromId); //删除之前的记录
-             var result = service.Edit(formWrapper, listWrapper, data);
+            var service = new GatheringService();
+            //var fromId = data.form.Gathering_ID.Value;
+            //ParamDelete pd = ParamDelete.Instance().From("Gathering_Detail").AndWhere("Gathering_ID", fromId); //删除之前的记录
+            service.AddDetail(data.form.Gathering_ID.Value, data.form.ReceiveMoney.Value);
+            var result = service.Edit(formWrapper, listWrapper, data);
 
          }
 

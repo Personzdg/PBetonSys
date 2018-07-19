@@ -74,7 +74,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='CheckDateTime'>
                     <select>
-                        [Clinet_id] ,[Name]
+                        [Clinet_id] as value ,[Name] as text
                     </select>
                     <from>
                         Clinet
