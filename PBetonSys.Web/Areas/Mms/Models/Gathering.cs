@@ -31,11 +31,14 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public void ReSetReceiveMoney(string gathering_ID) 
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("update [dbo].Gathering");
-            sb.Append(" set ReceiveMoney=(select sum(ReceiveMoney) from [dbo].Gathering_Detail where Gathering_ID='{0}')");
-            sb.AppendFormat(" where Gathering_ID='{0}'", gathering_ID.Trim());
-            db.Sql(sb.ToString()).Execute();
+            using (var db = Db.Context("Settlement"))
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("update [dbo].[Gathering]");
+                sb.Append(" set [ReceiveMoney]=(select sum([ReceiveMoney]) from [dbo].[Gathering_Detail] where [Gathering_ID]=[dbo].[Gathering].[Gathering_ID])");
+                sb.AppendFormat(" where [Gathering_ID]='{0}'", gathering_ID.Trim());
+                db.Sql(sb.ToString()).Execute();
+            }
         }
         public string GetNewCode()
         {

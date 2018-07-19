@@ -252,7 +252,9 @@ var viewModel = function (data) {
                         data: ko.toJSON(post),
                         success: function (d) {
                             com.message('success', '保存成功！');
-                            self.gridEdit.accept();
+                            that.gridEdit.accept();
+                            self.searchClick();
+                            win.dialog('close');
                         }
                     });
                 };
