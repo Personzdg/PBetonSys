@@ -165,19 +165,19 @@ var viewModel = function (data) {
                     data: self.combogridData
                 };
                 this.comboboxClient = {
-                    valueField: 'value',
-                    textField: 'text',
+                    valueField: 'Clinet_id',
+                    textField: 'Name',
                     data: self.comboboxClientData
                 };
              
                 this.comboboxSalseName = {
-                    valueField: 'Text',
-                    textField: 'Text',
+                    valueField: 'Code',
+                    textField: 'DESCRIPTION',
                     data: self.comboboxSalseNameData
                 };
                 this.comboboxReceiveType = {
-                    valueField: 'Text',
-                    textField: 'Text',
+                    valueField: 'Code',
+                    textField: 'DESCRIPTION',
                     data: self.comboboxReceiveTypeData
                 };
              
