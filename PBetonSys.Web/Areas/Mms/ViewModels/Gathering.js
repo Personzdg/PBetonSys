@@ -79,17 +79,18 @@ var viewModel = function (data) {
     }
     this.save = function (type, vm, win) {
         var post = new Object();
-        post.list = new Object();
-        post.list[type] = [];
+        //post.list = new Object();
+        //post.list[type] = [];
         var data = ko.toJS(vm.form);
         delete data.Clinet_id;
         if (data.ReceiveMoney == "")
             data.ReceiveMoney = 0;
-
+   
         if (data.Other == "")
             data.Other = 0;
 
-        post.list[type].push(data);
+        post.form = data;
+        //post.list[type].push(data);
         com.ajax({
             type: 'POST',
             url: '/api/Mms/Gathering/edit',

@@ -16,14 +16,14 @@ namespace PBetonSys.Web.Areas.Mms.Models
             base.ModuleName = "Settlement";
         }
 
-        public void AddDetail(string gathering_ID,string receiveMoney)
+        public void AddDetail(string gathering_ID,decimal receiveMoney)
         {
-            bool isExists=db.Sql(string.Format("select 1 from Gathering_Detail where Gathering_ID = {0}",gathering_ID)).QuerySingle<int>()>0?true:false;
-            decimal dReceiveMoney = 0;
-            Decimal.TryParse(receiveMoney, out dReceiveMoney);
-            if (!isExists&& dReceiveMoney>0)
+            bool isExists=db.Sql(string.Format("select 1 from Gathering_Detail where Gathering_ID = '{0}'",gathering_ID)).QuerySingle<int>()>0?true:false;
+            //Decimal.TryParse(receiveMoney, out dReceiveMoney);
+            if (!isExists&& receiveMoney > 0)
             {
-                db.Insert("Gathering_Detail").Column("Gathering_ID", gathering_ID).Column("CheckDateTime", DateTime.Now).Column("ReceiveMoney", receiveMoney).Column("CheckFlag", 0);
+                db.Sql(string.Format("INSERT INTO [dbo].[Gathering_Detail]([Gathering_ID],[CheckDateTime],[ReceiveMoney],[CheckFlag]) VALUES('{0}','{1}',{2},0)", gathering_ID, DateTime.Now, receiveMoney)).Execute();
+                //db.Insert("Gathering_Detail").Column("Gathering_ID", gathering_ID).Column("CheckDateTime", DateTime.Now).Column("ReceiveMoney", receiveMoney).Column("CheckFlag", 0);
             }
         }
 
