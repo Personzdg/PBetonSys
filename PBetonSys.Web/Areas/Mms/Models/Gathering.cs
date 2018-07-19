@@ -3,6 +3,7 @@ using PBetonSys.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 
@@ -16,17 +17,26 @@ namespace PBetonSys.Web.Areas.Mms.Models
             base.ModuleName = "Settlement";
         }
 
-        public void AddDetail(string gathering_ID,decimal receiveMoney)
+        public void AddDetail(string gathering_ID,string receiveMoney)
         {
             bool isExists=db.Sql(string.Format("select 1 from Gathering_Detail where Gathering_ID = '{0}'",gathering_ID)).QuerySingle<int>()>0?true:false;
-            //Decimal.TryParse(receiveMoney, out dReceiveMoney);
-            if (!isExists&& receiveMoney > 0)
+            decimal dReceiveMoney = 0;
+            Decimal.TryParse(receiveMoney, out dReceiveMoney);
+            if (!isExists && dReceiveMoney > 0)
             {
-                db.Sql(string.Format("INSERT INTO [dbo].[Gathering_Detail]([Gathering_ID],[CheckDateTime],[ReceiveMoney],[CheckFlag]) VALUES('{0}','{1}',{2},0)", gathering_ID, DateTime.Now, receiveMoney)).Execute();
+                db.Sql(string.Format("INSERT INTO [dbo].[Gathering_Detail]([Gathering_ID],[CheckDateTime],[ReceiveMoney],[CheckFlag]) VALUES('{0}','{1}',{2},0)", gathering_ID, DateTime.Now, dReceiveMoney)).Execute();
                 //db.Insert("Gathering_Detail").Column("Gathering_ID", gathering_ID).Column("CheckDateTime", DateTime.Now).Column("ReceiveMoney", receiveMoney).Column("CheckFlag", 0);
             }
         }
 
+        public void ReSetReceiveMoney(string gathering_ID) 
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("update [dbo].Gathering");
+            sb.Append(" set ReceiveMoney=(select sum(ReceiveMoney) from [dbo].Gathering_Detail where Gathering_ID='{0}')");
+            sb.AppendFormat(" where Gathering_ID='{0}'", gathering_ID.Trim());
+            db.Sql(sb.ToString()).Execute();
+        }
         public string GetNewCode()
         {
             var produce = db.StoredProcedure("GetGatheringID");
