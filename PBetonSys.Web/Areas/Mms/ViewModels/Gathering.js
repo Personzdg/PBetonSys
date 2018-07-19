@@ -82,6 +82,7 @@ var viewModel = function (data) {
         post.list = new Object();
         post.list[type] = [];
         var data = ko.toJS(vm.form);
+        delete data.Clinet_id;
         if (data.ReceiveMoney == "")
             data.ReceiveMoney = 0;
 
@@ -138,17 +139,18 @@ var viewModel = function (data) {
 
 
     this.opentaskdialog = function (title, model, fnConfirm) {
+        console.log(model);
         com.dialog({
             title: title,
             width: 500,
-            height: 440,
+            height: 550,
             html: "#task-template",
             viewModel: function (win) {
                 var that = this;
                 this.lookupClick = function () {
                     mms.com.selectContract(self, null, function (data) {
-                        that.form.SysCont_ID(data.Cont_ID);
-                        that.form.Clinet_id(data.Clinet_id);
+                        that.form.SysCont_id(data.Cont_ID);
+                        //that.form.Clinet_id(data.Clinet_id);
                     });
                 };
                 this.comboboxHouse = {
@@ -162,8 +164,8 @@ var viewModel = function (data) {
                     data: self.combogridData
                 };
                 this.comboboxClient = {
-                    valueField: 'Clinet_id',
-                    textField: 'Name',
+                    valueField: 'value',
+                    textField: 'text',
                     data: self.comboboxClientData
                 };
              
@@ -180,7 +182,6 @@ var viewModel = function (data) {
              
                
              
-                debugger;
                 this.form = {
                     /**     Task_id: ko.observable(model.Task_id.replace('T','P'))**/
                     Gathering_ID: ko.observable(model.Gathering_ID),
@@ -193,7 +194,7 @@ var viewModel = function (data) {
                     AffirmFlag: ko.observable(model.AffirmFlag),
                     ClerkName: ko.observable(model.ClerkName),
                     Remark: ko.observable(model.Remark),
-
+                    Clinet_id: ko.observable(model.Clinet_id),
                     SalseName: ko.observable(model.SalseName),
                     AffirmName: ko.observable(model.AffirmName),
                      GatheringPerson: ko.observable(model.GatheringPerson),
@@ -212,6 +213,28 @@ var viewModel = function (data) {
                 this.cancelClick = function () {
                     win.dialog('close');
                 };
+
+                this.griddetail =
+                  {
+                      iconCls: 'icon icon-list',
+                      rownumbers: false,       //行号
+                      striped: true,          //隔行变色
+                      singleSelect: false,     //单选
+                      pagination: false,      //翻页
+                      fit: false,
+                      queryParams: {
+                          Gathering_ID: this.form.Gathering_ID()
+                      },
+                      method: "GET",
+                      contentType: "application/json",
+                      url: '/api/mms/Gathering/GetGatheringDetaiList?rad=' + Math.random(),
+                      onLoadSuccess: function () {
+                          
+                      }
+                  };
+                this.gridEdit = new com.editGridViewModel(that.griddetail);
+                this.griddetail.onDblClickRow = that.gridEdit.begin;
+                this.griddetail.onClickRow = that.gridEdit.ended;
             }
         });
     };

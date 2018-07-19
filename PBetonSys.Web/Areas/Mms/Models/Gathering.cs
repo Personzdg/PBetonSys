@@ -16,6 +16,17 @@ namespace PBetonSys.Web.Areas.Mms.Models
             base.ModuleName = "Settlement";
         }
 
+        public void AddDetail(string gathering_ID,string receiveMoney)
+        {
+            bool isExists=db.Sql(string.Format("select 1 from Gathering_Detail where Gathering_ID = {0}",gathering_ID)).QuerySingle<int>()>0?true:false;
+            decimal dReceiveMoney = 0;
+            Decimal.TryParse(receiveMoney, out dReceiveMoney);
+            if (!isExists&& dReceiveMoney>0)
+            {
+                db.Insert("Gathering_Detail").Column("Gathering_ID", gathering_ID).Column("CheckDateTime", DateTime.Now).Column("ReceiveMoney", receiveMoney).Column("CheckFlag", 0);
+            }
+        }
+
         public string GetNewCode()
         {
             var produce = db.StoredProcedure("GetGatheringID");
