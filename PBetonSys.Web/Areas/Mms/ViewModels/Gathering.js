@@ -51,6 +51,10 @@ var viewModel = function (data) {
     };
     this.editClick = function () {
         var row = self.grid.datagrid('getSelected');
+        if (!row.Gathering_ID)
+        {
+            return false;
+        }
         if (!row) return com.message('warning', '请先选择一个收款单！');
         self.opentaskdialog("编辑收款" + row._id, row, function (vm, win) {
             if (com.formValidate(win)) {
@@ -81,6 +85,10 @@ var viewModel = function (data) {
         var post = new Object();
         //post.list = new Object();
         //post.list[type] = [];
+        if (vm.AffirmFlag) {
+            com.message('warning', '已经审核');
+            return false;
+        }
         var data = ko.toJS(vm.form);
         delete data.Clinet_id;
         if (data.ReceiveMoney == "")
@@ -123,13 +131,10 @@ var viewModel = function (data) {
                     rowTota2 += parseFloat(rows[i]['Other']);
                 }
                 self.grid.datagrid("appendRow", {
-                    EngineePos: '<b>小计：</b>', ReceiveMoney: rowTotal, Name: '',
-                    EngineePos: '<b>小计：</b>', Other: rowTota2, Name: ''
+                    Name: '<b>小计：</b>',ReceiveMoney:rowTotal,Other:rowTota2
                 });
-                self.grid.datagrid("appendRow", {
-                    EngineePos: '<b>合计：</b>', ReceiveMoney: d == null ? "0" : d, Name: '',
-                    EngineePos: '<b>合计：</b>', Other    : d == null ? "0" : d, Name: ''
-                });
+                self.grid.datagrid("appendRow", { Name: '<b>合计：</b>', ReceiveMoney: d });
+              
             }
         });
     }
@@ -140,7 +145,6 @@ var viewModel = function (data) {
 
 
     this.opentaskdialog = function (title, model, fnConfirm) {
-        console.log(model);
         com.dialog({
             title: title,
             width: 500,
@@ -238,6 +242,11 @@ var viewModel = function (data) {
                 this.griddetail.onClickRow = that.gridEdit.ended;
                 this.detailAdd = function ()
                 {
+                    if (that.AffirmFlag)
+                    {
+                        com.message('warning', '已经审核');
+                        return false;
+                    }
                     var row = { Gathering_ID: that.form.Gathering_ID };
                     that.gridEdit.addnew(row);
                 };
