@@ -20,7 +20,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                  {
                      Gathering_ID = "",
                      ProjectName = "",
-                     CheckDateTime = ""
+                     CheckDateTime = DateTime.Now.ToString("yyyy-MM-dd"),
                  }
              };
              return View(model);
@@ -35,7 +35,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                  {
                      Gathering_ID = "",
                      ProjectName = "",
-                     CheckDateTime = ""
+                     CheckDateTime = DateTime.Now.ToString("yyyy-MM-dd"),
                  }
              };
              return View(model);
