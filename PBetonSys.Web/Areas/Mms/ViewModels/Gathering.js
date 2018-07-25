@@ -115,12 +115,10 @@ var viewModel = function (data) {
     this.IniTotal = function () {
         com.ajax({
             type: 'GET',
-            //ko.mapping.fromJS(data.form);
-            //data: self.form,
-            data: ko.mapping.fromJS(self.form),
+            data: ko.mapping.toJS(self.form),
             url: '/api/mms/Gathering/GetTotalReceiveMoney',
             success: function (d) {
-                if (d < 1) {
+                if (d.ReceiveMoney < 1) {
                     return false;
                 }
                 var rowTotal = 0;
@@ -133,7 +131,7 @@ var viewModel = function (data) {
                 self.grid.datagrid("appendRow", {
                     Name: '<b>小计：</b>',ReceiveMoney:rowTotal,Other:rowTota2
                 });
-                self.grid.datagrid("appendRow", { Name: '<b>合计：</b>', ReceiveMoney: d });
+                self.grid.datagrid("appendRow", { Name: '<b>合计：</b>', ReceiveMoney: d.ReceiveMoney, Other: d.Other });
               
             }
         });
@@ -155,7 +153,7 @@ var viewModel = function (data) {
                 this.lookupClick = function () {
                     mms.com.selectContract(self, null, function (data) {
                         that.form.SysCont_id(data.Cont_ID);
-                        //that.form.Clinet_id(data.Clinet_id);
+                        that.form.Clinet_id(data.Clinet_id);
                     });
                 };
                 this.comboboxHouse = {
