@@ -98,7 +98,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 </where>
             </settings>");
              var pQuery = query.ToParamQuery();
-             var result = GatheringService.Instance().GetField<string>(pQuery);
+             var result = GatheringService.Instance().GetField<dynamic>(pQuery);
              return result;
          }
 ///////////////////////////

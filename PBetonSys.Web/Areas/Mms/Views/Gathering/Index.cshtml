@@ -140,10 +140,10 @@
                     <tr>
                         <th field="ID" sortable="true" align="left" width="80" hidden="hidden">序号</th>
                         <th field="Gathering_ID" sortable="true" align="left" width="100" hidden="hidden">Gathering_ID</th>
-                        <th field="CheckDateTime" sortable="true" align="left" width="100" formatter="com.formatDate">CheckDateTime</th>
-                        <th field="ReceiveMoney" sortable="true" align="left" width="120" editor="text">ReceiveMoney</th>
-                        <th field="CheckFlag" sortable="true" align="left" width="100" formatter="com.formatCheckbox" editor="{type:'checkbox',options:{on:true,off:false}}">CheckFlag</th>
-                        <th field="Remark" sortable="true" align="left" width="100" editor="text">Remark</th>
+                        <th field="CheckDateTime" sortable="true" align="left" width="100"  editor="{type:'datebox'}" formatter="com.formatDate">时间</th>
+                        <th field="ReceiveMoney" sortable="true" align="left" width="120" editor="text">收款金额</th>
+                        <th field="CheckFlag" sortable="true" align="left" width="100" formatter="com.formatCheckbox" editor="{type:'checkbox',options:{on:true,off:false}}">确认</th>
+                        <th field="Remark" sortable="true" align="left" width="100" editor="text">备注</th>
                     </tr>
                 </thead>
             </table>
