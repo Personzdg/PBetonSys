@@ -19,7 +19,7 @@ namespace PBetonSys.Web.Controllers
         public ActionResult Index()
         {
             var loginer = FormsAuth.GetUserData<LoginerBase>();
-            ViewBag.Title = "管理系统";
+            ViewBag.Title = "系统";
             ViewBag.UserName = loginer.UserName;
             ViewBag.Settings = new ClerkService().GetCurrentUserSettings();
 

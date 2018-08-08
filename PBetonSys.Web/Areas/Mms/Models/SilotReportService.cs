@@ -79,7 +79,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
             DateTime startDate = db.ConnectionStringName(APP.DB_Materials, new SqlServerProvider()).Sql(checkdatestrSql).QuerySingle<DateTime>();
 
 
-            string strSql = string.Format("Select b.Hous_id,b.MaxVal,b.MinVal,a.筒仓名称 Name,a.期初值 SVal,a.盘点值 PVal,a.入库值 IVal,a.消耗值 UVal from CheckSilotfunction('{0}','{1}') as a join silot as b on (a.筒仓名称=b.siloName) where  b.State = 1 and b.ShowFlage=1 order by Hous_id ", startDate.ToString(), endDate);
+            string strSql = string.Format("Select b.Hous_id,b.MaxVal,b.MinVal,a.筒仓名称 Name,a.期初值/1000 as SVal,a.盘点值/1000 as PVal,a.入库值/1000 as  IVal,a.消耗值/1000 as UVal from CheckSilotfunction('{0}','{1}') as a join silot as b on (a.筒仓名称=b.siloName) where  b.State = 1 and b.ShowFlage=1 order by Hous_id ", startDate.ToString(), endDate);
             return db.ConnectionStringName(APP.DB_Materials, new SqlServerProvider()).Sql(strSql).QueryMany<SilotReport>();
         }
     }

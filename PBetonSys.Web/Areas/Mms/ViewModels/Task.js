@@ -7,14 +7,18 @@ var viewModel = function (data) {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 4, h: 40 },
+        size: { w: 3, h: 4 },
         url: '/api/Mms/Task/GetTaskList',
         queryParams: ko.observable(),
         pagination: true,
         loadFilter: function (d) {
             d.rows = utils.copyProperty(d.rows, 'Task_id', '_id');
             return d;
-        }
+        },
+        onLoadSuccess: function () {
+            self.IniTotal();
+        },
+
     };
     this.grid.queryParams(data.form);
     this.gridEdit = new com.editGridViewModel(this.grid);
@@ -282,4 +286,32 @@ var viewModel = function (data) {
     this.initComboData();
 
     this.grid.onDblClickRow = this.editClick;
+
+
+    this.IniTotal = function () {
+        com.ajax({
+            type: 'GET',
+            data: ko.mapping.toJS(self.form),
+            url: '/api/mms/Task/GetTotalTaskList',
+            success: function (d) {
+                if (d.Amount < 1) {
+                    return false;
+                }
+                var rowTotal = 0;
+
+                var rows = self.grid.datagrid('getRows');
+                for (var i = 0; i < rows.length; i++) {
+                    rowTotal += parseFloat(rows[i]['Amount']);
+                 
+                }
+                self.grid.datagrid("appendRow", {
+                    Pump_vehicle: '<b>合计：</b>', Amount: rowTotal
+                });
+              
+
+            }
+        });
+    }
+
+
 };

@@ -28,6 +28,22 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         }
 
 
+        public ActionResult Search()
+        {
+            var model = new
+            {
+                form = new
+                {
+                    Task_id = "",
+                    ProjectName = "",
+                    Provide_DateTime = DateTime.Now.ToString("yyyy-MM-dd"),
+                }
+            };
+            return View(model);
+        }
+
+
+
         public ActionResult GetNewTakList()
         {
             return View();
@@ -44,6 +60,28 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 <settings defaultOrderBy='CheckDateTime'>
                     <select>
                         a.* ,b.ProjectName
+                    </select>
+                    <from>
+                        Task as a
+                        left join Contract as b on a.Cont_ID=b.Cont_ID
+                    </from>
+  <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+    <field name='a.Task_id'       cp='startwith'  ></field>
+    <field name='b.ProjectName'       cp='like'   ></field>
+    <field name='a.Provide_DateTime'          cp='daterange'  ></field>
+  </where>
+                </settings>");
+            var pQuery = query.ToParamQuery();
+            var result = new TaskService().GetDynamicListWithPaging(pQuery);
+            return result;
+        }
+
+        public dynamic GetTotalTaskList(RequestWrapper query)
+        {
+            query.LoadSettingXmlString(@"
+                <settings defaultOrderBy='a.CheckDateTime'>
+                    <select>
+                        a.Task_id,b.ProjectName,sum(a.Amount) as Amount
                     </select>
                     <from>
                         Task as a

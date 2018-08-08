@@ -62,6 +62,29 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         }
 
 
+        public dynamic GetTotalTaskList(RequestWrapper query)
+        {
+            query.LoadSettingXmlString(@"
+                  <settings>
+                    <select>
+                      sum(a.Amount) as Amount
+                    </select>
+                    <from>
+                        Task as a
+                     
+                    </from>
+  <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
+
+    <field name='a.Provide_DateTime'          cp='daterange'  ></field>
+  </where>
+                </settings>");
+            var pQuery = query.ToParamQuery();
+            var result = new TaskService().GetDynamicListWithPaging(pQuery);
+            return result;
+        }
+
+
+
         public dynamic GetNewTakList(RequestWrapper query)
         {
             query.LoadSettingXmlString(@"
