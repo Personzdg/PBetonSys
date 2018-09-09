@@ -69,7 +69,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 },
                 defaultForm = new
                 {
-                    //ClientName="",
+                    SysCont_ID=id,
                     Clinet_id="",
                     FinshFlag=false,
                     ProjectName="",
@@ -206,13 +206,13 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public string GetNewCode()
         {
             var service = new ContractService();
-            return service.GetNewKey("SysCont_ID", "maxplus").PadLeft(3, '0');
+            return service.GetNewKey("SysCont_ID", "dateplus");
         }
 
           [System.Web.Http.HttpPost]
         public void Edit(dynamic data)
         {
-            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+            var formWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
                     <settings>
                         <table>
                             Contract
@@ -222,7 +222,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         </where>
                     </settings>");
             var service = new ContractService();
-            var result = service.Edit(null, listWrapper, data);
+            var result = service.Edit(formWrapper, null, data);
         }
 
 

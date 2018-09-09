@@ -73,6 +73,7 @@ var viewModel = function (data) {
         var data = ko.toJS(vm.form);
         if (data.Amount == "")
             data.Amount = 0;
+        delete data[ClientName];
         post.list[type].push(data);
         com.ajax({
             type: 'POST',

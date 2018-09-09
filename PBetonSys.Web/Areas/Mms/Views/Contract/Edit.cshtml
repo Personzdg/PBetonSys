@@ -10,22 +10,28 @@
 <script src="~/Areas/Mms/ViewModels/Contract.js"></script>
     <script type="text/javascript">
         var viewModel = function (data) {
+            var cSysCont_ID=window.location.href.substring(window.location.href.lastIndexOf("/")+1);
+            var cClientName="";
+            if(data.form&&data.form.ClientName)
+            {
+                cClientName=data.form.ClientName;
+            }
+            this.form2=
+                {
+                    ClientName:ko.observable(cClientName)
+                };
             var self = this;
-            //this.form2=
-            //    {
-            //        Name:""
-            //    };
+         
             mms.viewModel.edit.apply(self, arguments);              //继承mms.viewModel.edit
             this.lookupClick = function () {
                 mms.com.selectClient(null, function (row) {
-                    self.form.ClientName=row.Name;
+                    self.form2.ClientName(row.Name);
                     self.form.Clinet_id(row.Clinet_id);
                 });
             };
         };
         var formatterEnable = function (value) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
         var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
-        debugger;
         ko.bindingViewModel(new viewModel(data));
     </script>
 }
@@ -55,7 +61,7 @@
     <div class="grid_3 val"><input type="text" data-bind="value:form.SimpleName" class="z-txt" /></div>
     <div class="grid_1 lbl">施工单位</div>
     <div class="grid_3 val">
-        <input type="text" class="z-txt" data-bind="value:form.ClientName" disabled="disabled" />
+        <input type="text" class="z-txt" data-bind="value:form2.ClientName" disabled="disabled" />
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
         <input type="hidden" data-bind="value:form.Clinet_id" />
     </div>
