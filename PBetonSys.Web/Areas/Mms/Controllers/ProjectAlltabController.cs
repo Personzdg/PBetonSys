@@ -17,7 +17,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             {
                 form = new
                 {
-                    Provide_DateTime = DateTime.Now.ToString("yyyy-MM-dd"),
+                    CheckDateTime=DateTime.Now.ToString("yyyy-MM-dd"),
                 }
             };
             return View(model);
@@ -32,7 +32,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         {
             string strartDate = "";
             string endDate="";
-            string queryDate = query["Provide_DateTime"];
+            string queryDate = query["CheckDateTime"];
             if (queryDate.Contains("到"))
             {
                 strartDate = queryDate.Split('到')[0];
@@ -45,6 +45,27 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             }
             List<ProjectAlltab> retList = new ProjectAlltabService().GetProjectAlltabData(strartDate, endDate);
             return retList;
+        }
+
+        public dynamic GetTotalProjectAlltabList(RequestWrapper query)
+        {
+            string strartDate = "";
+            string endDate = "";
+            string queryDate = query["CheckDateTime"];
+            if (queryDate.Contains("到"))
+            {
+                strartDate = queryDate.Split('到')[0];
+                endDate = queryDate.Split('到')[1];
+            }
+            else
+            {
+                strartDate = queryDate;
+                endDate = queryDate;
+            }
+
+            var ret = new ProjectAlltabService().GetProjectAlltabData(strartDate, endDate);
+            return ret;
+
         }
     }
 

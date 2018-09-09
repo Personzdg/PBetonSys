@@ -112,7 +112,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 </settings>");
             // <where defaultForAll='false'  defaultIgnoreEmpty='true' >
             var pQuery = query.ToParamQuery();
-            var result = new ProductService().GetDynamicListWithPaging(pQuery);
+            var result = new ProductService().GetDynamic(pQuery);
             return result;
         }
     }

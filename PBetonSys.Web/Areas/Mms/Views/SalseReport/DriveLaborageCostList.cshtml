@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/DriveLaborageCost.js"></script>
+    <script type="text/javascript">
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+<div class="z-toolbar">
+    <a href="#" plain="true" class="easyui-splitbutton" data-options="menu:'#dropdown',iconCls:'icon-download'">导出</a>
+</div>
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.CheckDateTime" class="z-txt easyui-daterange" /></div>
+    <div class="grid_1 lbl">车号</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.CartID" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="btnSearch" href="#" plain="true" data-bind="click:searchClick" class="easyui-linkbutton" icon="icon-search" title="查询">查询</a>
+    </div>
+</div>
+
+
+<div id="dropdown" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
+    <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
+    <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
+</div>
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="_id" hidden="true">_id</th>
+            
+            <th field="KM" width="50">KM</th>
+            <th field="DriveName" width="60">姓名</th>
+            <th field="CartID" width="50">车号</th>
+            <th field="CheckDateTime" width="80">时间</th>
+            <th field="Interva" width="40">车次</th>
+            <th field="Amount" width="50">方量</th>
+            <th field="Sum_Money" width="50">合计金额</th>
+            <th field="SjAmount" width="50">实际方量</th>
+            <th field="SJSum_money" width="50">实际金额</th>
+            <th field="Remark" width="80">备注</th>
+
+
+
+        </tr>
+    </thead>
+</table>

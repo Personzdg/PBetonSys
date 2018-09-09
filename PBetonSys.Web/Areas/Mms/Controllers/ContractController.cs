@@ -44,6 +44,16 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             var finshFlagList = new List<dynamic>();
             finshFlagList.Add(new { text = "否", value = "0" });
             finshFlagList.Add(new { text = "是", value = "1" });
+
+            var contTypeList = new List<dynamic>();
+            contTypeList.Add(new { text = "正式合同", value = "正式合同" });
+            contTypeList.Add(new { text = "临时合同", value = "临时合同" });
+
+            var flagtypeList = new List<dynamic>();
+            flagtypeList.Add(new { text = "单方", value = "0" });
+            flagtypeList.Add(new { text = "全部", value = "1" });
+
+
             var model = new
             {
                 form = data.form,
@@ -51,6 +61,9 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 dataSource = new
                 {
                     FinshFlagList = finshFlagList,
+                    ContTypeList = contTypeList,
+                    FlagtypeList=flagtypeList,
+                    salseNameList = new DispatchService().GetSalseNameList(),
                     clerkList = new ClerkService().GetDynamicList(ParamQuery.Instance().Select("Name as value,Name as text")),
                     constructionList = new ClientService().GetDynamicList(ParamQuery.Instance().Select("Clinet_id as value,Name as text"))
                 },
@@ -196,20 +209,21 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             return service.GetNewKey("SysCont_ID", "maxplus").PadLeft(3, '0');
         }
 
-        //        public ActionResult Edit(dynamic data)
-        //        {
-        //            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
-        //            <settings>
-        //                <table>
-        //                    Clinet
-        //                </table>
-        //                <where>
-        //                    <field name='SysCont_ID' cp='equal' variable='SysCont_ID'></field>
-        //                </where>
-        //            </settings>");
-        //            var service = new ContractService();
-        //            var result = service.Edit(null, listWrapper, data);
-        //        }
+          [System.Web.Http.HttpPost]
+        public void Edit(dynamic data)
+        {
+            var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
+                    <settings>
+                        <table>
+                            Contract
+                        </table>
+                        <where>
+                            <field name='SysCont_ID' cp='equal' variable='SysCont_ID'></field>
+                        </where>
+                    </settings>");
+            var service = new ContractService();
+            var result = service.Edit(null, listWrapper, data);
+        }
 
 
     }

@@ -62,7 +62,9 @@
 		grid.datagrid(opt);
 
 		var search = function () {
-			var queryParams = $.extend({}, param, {
+		 
+		    var queryParams = $.extend({}, param, {
+		      
 			    Clinet_id: $('#id').val(),
 				Name: $('#text').val()
 			});
@@ -77,6 +79,7 @@
 		$('#btnClear').click(function () { $('#master').find("input").val(""); search(); });
 
 		$('#btnConfirm').click(function () {
+		    
 			options.onSelect(selected);
 			destroyIframe(iframe);
 			thiswin.window('destroy');

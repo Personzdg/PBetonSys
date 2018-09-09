@@ -7,7 +7,7 @@ var viewModel = function (data) {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 3, h: 4 },
+        size: { w: 4, h: 50 },
         url: '/api/Mms/Task/GetTaskList',
         queryParams: ko.observable(),
         pagination: true,
@@ -40,7 +40,7 @@ var viewModel = function (data) {
             type: 'GET',
             url: '/api/Mms/Task/getnewcode',
             success: function (d) {
-                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "",AuditingFlag:false};
+                var defaults = { Task_id: d, Pump_vehicle: "", Wjj: "",AuditingFlag:false,Provide_DateTime:''};
                 self.opentaskdialog("添加新任务", defaults, function (vm, win) {
                     if (com.formValidate(win)) {
                         self.save("inserted", vm, win);
@@ -164,7 +164,6 @@ var viewModel = function (data) {
                         that.form.Wjj(n.join(','));
                     }
                 };
-                debugger;
                 this.form = {
                     /**     Task_id: ko.observable(model.Task_id.replace('T','P'))**/
                         Task_id: ko.observable(model.Task_id),
@@ -184,8 +183,7 @@ var viewModel = function (data) {
                     Telephon: ko.observable(model.Telephon),
                     ViseName: ko.observable(model.ViseName),
                     CheckDateTime: ko.observable(model.CheckDateTime),
-                    Provide_DateTime: ko.observable(model.Provide_DateTime),
-                    //Provide_DateTime: ko.observable(model.Provide_DateTime == null ? '': model.Provide_DateTime),
+                    Provide_DateTime: ko.observable(model.Provide_DateTime.replace("T"," ")),
                     Remark: ko.observable(model.Remark)
                 };
                 if (!this.form.House_id())
@@ -305,13 +303,19 @@ var viewModel = function (data) {
                  
                 }
                 self.grid.datagrid("appendRow", {
-                    Pump_vehicle: '<b>合计：</b>', Amount: rowTotal
+                    Pump_vehicle: '<b>小计：</b>', Amount: rowTotal
                 });
-              
+                //debugger;
+                self.grid.datagrid("appendRow", {
+                    Pump_vehicle: '<b>合计：</b>', Amount: d.Amount
+                });
+
 
             }
         });
     }
-
+    this.downloadClick = function (vm, event) {
+        com.exporter(self.grid).download($(event.currentTarget).attr("suffix"));
+    };
 
 };

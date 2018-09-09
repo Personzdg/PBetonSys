@@ -18,6 +18,7 @@
 
     <a id="a_edit" href="#" plain="true" class="easyui-linkbutton" icon="icon-edit" data-bind="click:editClick" title="审核">审核</a>
     <a id="a_del" href="#" plain="true" class="easyui-linkbutton" icon="icon-cross" title="删除" data-bind="click:deleteClick">删除</a>
+    <a href="#" plain="true" class="easyui-splitbutton" data-options="menu:'#dropdown',iconCls:'icon-download'">导出</a>
 </div>
 
 <div id="condition" class="container_12" style="position:relative;">
@@ -35,6 +36,13 @@
     </div>
 </div>
 
+
+
+<div id="dropdown" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
+    <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
+    <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
+</div>
 
 <table id="gridlist" data-bind="datagrid:grid">
     <thead>

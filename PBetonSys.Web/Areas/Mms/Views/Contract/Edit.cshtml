@@ -7,17 +7,18 @@
 @section scripts{
 <script src="~/Areas/Mms/ViewModels/mms.com.js"></script>
 <script src="~/Areas/Mms/ViewModels/mms.viewModel.edit.js"></script>
+<script src="~/Areas/Mms/ViewModels/Contract.js"></script>
     <script type="text/javascript">
         var viewModel = function (data) {
             var self = this;
-            this.form2=
-                {
-                    ClientName:""
-                };
+            //this.form2=
+            //    {
+            //        Name:""
+            //    };
             mms.viewModel.edit.apply(self, arguments);              //继承mms.viewModel.edit
             this.lookupClick = function () {
                 mms.com.selectClient(null, function (row) {
-                    self.form2.ClientName=row.Name;
+                    self.form.ClientName=row.Name;
                     self.form.Clinet_id(row.Clinet_id);
                 });
             };
@@ -54,7 +55,7 @@
     <div class="grid_3 val"><input type="text" data-bind="value:form.SimpleName" class="z-txt" /></div>
     <div class="grid_1 lbl">施工单位</div>
     <div class="grid_3 val">
-        <input type="text" class="z-txt" data-bind="value:form2.ClientName" disabled="disabled" />
+        <input type="text" class="z-txt" data-bind="value:form.ClientName" disabled="disabled" />
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
         <input type="hidden" data-bind="value:form.Clinet_id" />
     </div>
@@ -64,7 +65,7 @@
     <div class="clear"></div>
 
     <div class="grid_1 lbl">销售员 </div>
-    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.clerkList,comboboxValue:form.SalseName" class="z-txt easyui-combobox" /></div>
+    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.salseNameList,comboboxValue:form.SalseName" class="z-txt easyui-combobox" /></div>
     <div class="grid_1 lbl">签订日期</div>
     <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.CheckDateTime" class="z-txt easyui-datebox" /></div>
     <div class="grid_1 lbl">工程老板 </div>
@@ -76,13 +77,13 @@
     <div class="grid_3 val"><input type="text" data-bind="value:form.LinkPhon" class="z-txt" /></div>
     <div class="grid_1 lbl">联系人</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.LinkName" class="z-txt" /></div>
-    <div class="grid_1 lbl">密码</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.Password" class="z-txt" /></div>
+    @*<div class="grid_1 lbl">密码</div>
+        <div class="grid_3 val"><input type="text" data-bind="value:form.Password" class="z-txt" /></div>*@
 
     <div class="clear"></div>
 
-    <div class="grid_1 lbl">微信号</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.WXCode" class="z-txt" /></div>
+    @*<div class="grid_1 lbl">微信号</div>
+        <div class="grid_3 val"><input type="text" data-bind="value:form.WXCode" class="z-txt" /></div>*@
     <div class="grid_1 lbl">运距</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.Interva" class="z-txt" /></div>
     <div class="grid_1 lbl">合同数量</div>
@@ -92,15 +93,15 @@
 
     <div class="grid_1 lbl">结束日期</div>
     <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.FinShDateTime" class="z-txt easyui-datebox" /></div>
-    <div class="grid_1 lbl">栓号</div>
+    <div class="grid_1 lbl">标号</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.Strong" class="z-txt" /></div>
     <div class="grid_1 lbl">单价</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.Price" class="z-txt" /></div>
 
     <div class="clear"></div>
 
-    <div class="grid_1 lbl">对账时间</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.StatDate" class="z-txt" /></div>
+    @*<div class="grid_1 lbl">对账时间</div>
+        <div class="grid_3 val"><input type="text" data-bind="value:form.StatDate" class="z-txt" /></div>*@
     <div class="grid_1 lbl">付款方式</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.paymentType" class="z-txt" /></div>
     <div class="grid_1 lbl">比率</div>
@@ -108,17 +109,20 @@
 
     <div class="clear"></div>
 
-    <div class="grid_1 lbl">收款时间</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.GatheringDate" class="z-txt" /></div>
-    <div class="grid_1 lbl">尾款期限</div>
-    <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.EndPaymentDatetime" class="z-txt easyui-datebox" /></div>
-    <div class="grid_1 lbl">余款</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.EndPaymentMonth" class="z-txt" /></div>
+    @*<div class="grid_1 lbl">收款时间</div>
+        <div class="grid_3 val"><input type="text" data-bind="value:form.GatheringDate" class="z-txt" /></div>
+        <div class="grid_1 lbl">尾款期限</div>
+        <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.EndPaymentDatetime" class="z-txt easyui-datebox" /></div>
+        <div class="grid_1 lbl">余款</div>
+        <div class="grid_3 val"><input type="text" data-bind="value:form.EndPaymentMonth" class="z-txt" /></div>*@
 
     <div class="clear"></div>
 
-    <div class="grid_1 lbl">合同类型</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.ContType" class="z-txt" /></div>
+    <div class="grid_1 lbl">合同类型</div> 
+    <div class="grid_3 val "><input type="text" data-bind="datasource:dataSource.ContTypeList,comboboxValue:form.ContType" class="z-txt easyui-combobox" /></div>
+
+ 
+
     <div class="grid_1 lbl">备注</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.Remark" class="z-txt" /></div>
     <div class="clear"></div>

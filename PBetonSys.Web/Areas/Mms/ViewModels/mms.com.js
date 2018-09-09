@@ -114,7 +114,7 @@ mms.com.selectContract = function (vm, param,callback) {
 mms.com.selectClient = function (param, callback) {
     var target = parent.$('#selectClient').length ? parent.$('#selectClient') : parent.$('<div id="selectClient"></div>').appendTo('body');
     utils.clearIframe(target);
-
+   
     var opt = { title: '选择施工单位', width: 600, height: 450, modal: true, collapsible: false, minimizable: false, maximizable: true, closable: true };
     opt.content = "<iframe id='frm_win_material' src='/mms/Clinet/lookupclient' style='height:100%;width:100%;border:0;' frameborder='0'></iframe>";  //frameborder="0" for ie7
     opt.paramater = param;      //可传参数

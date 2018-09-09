@@ -81,6 +81,17 @@ namespace PBetonSys.Web.Areas.Mms.Models
             return base.GetDynamicList(pQuery);
         }
 
+        public dynamic GetSalseNameList()
+        {
+            var pQuery = ParamQuery.Instance()
+                .Select("Code as value,DESCRIPTION as text")
+                .From("SysCode")
+                .AndWhere("CodeType", "SalseName");
+
+            return base.GetDynamicList(pQuery);
+        }
+
+
         public dynamic GetCarList()
         {
             var pQuery = ParamQuery.Instance()

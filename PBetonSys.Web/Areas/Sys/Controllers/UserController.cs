@@ -67,6 +67,13 @@ namespace PBetonSys.Web.Areas.Sys.Controllers
         }
 
         [System.Web.Http.HttpPost]
+        public int PostModifyPwd(string oPwd, string nPwd)
+        {
+            var loginUser = FormsAuth.GetUserData();
+            return new ClerkService().ModifyUserPwd(loginUser.UserCode, oPwd, nPwd);
+        }
+
+        [System.Web.Http.HttpPost]
         public void Edit(dynamic data)
         {
             var listWrapper = RequestWrapper.Instance().LoadSettingXmlString(@"
@@ -107,5 +114,8 @@ namespace PBetonSys.Web.Areas.Sys.Controllers
             var service = new sys_userSettingService();
             var result = service.Edit(null, listWrapper, data);
         }
+
+
+
     }
 }

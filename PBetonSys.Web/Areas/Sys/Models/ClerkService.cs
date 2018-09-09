@@ -177,6 +177,24 @@ left join sys_userRoleMap B on B.RoleCode = A.RoleCode and B.UserCode = '{0}'", 
             return result;
         }
 
+
+        public int ModifyUserPwd(string userCode, string oPwd, string nPwd)
+        {
+            //用户名密码验证
+            var query = this.GetModel(ParamQuery.Instance()
+                            .AndWhere("ClerkID", userCode)
+                            .AndWhere("Password", oPwd));
+            if (query == null)
+            {
+                return -1;
+            }
+            var result = db.Update("Clerk")
+               .Column("Password", nPwd)
+               .Where("ClerkID", userCode)
+               .Execute();
+            return result;
+        }
+
         protected override void OnAfterEditDetail(EditEventArgs arg)
         {
             if (arg.type == OptType.Add)

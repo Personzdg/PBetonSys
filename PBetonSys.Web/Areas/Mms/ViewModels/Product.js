@@ -47,4 +47,7 @@ var viewModel = function () {
     {
         this.Init();
     }
+    this.downloadClick = function (vm, event) {
+        com.exporter(self.grid).download($(event.currentTarget).attr("suffix"));
+    };
 };

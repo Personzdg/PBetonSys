@@ -49,7 +49,8 @@
     ko.creatEasyuiValueBindings({ type: 'combobox', event: 'onSelect' });
     ko.creatEasyuiValueBindings({ type: 'combotree', event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'datebox', event: 'onSelect', formatter: com.formatDate });
-    ko.creatEasyuiValueBindings({ type: 'datetimebox', event: 'onSelect'});
+    ko.creatEasyuiValueBindings({ type: 'datetimebox', event: 'onSelect' });
+    ko.creatEasyuiValueBindings({ type: 'datetimebox', event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'lookup'        , event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'numberbox'     , event: 'onChange' });
     ko.creatEasyuiValueBindings({ type: 'numberspinner' , event: 'onChange' ,fix: function (element) { $(element).width($(element).width() + 20); } });

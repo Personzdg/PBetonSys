@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/ProjectAlltab.js"></script>
+    <script type="text/javascript">
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+@*<div class="z-toolbar">
+    <a href="#" plain="true" class="easyui-splitbutton" data-options="menu:'#dropdown',iconCls:'icon-download'">导出</a>
+</div>*@
+
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_2 lbl">生产时间</div>
+    <div class="grid_4 val"><input type="text" data-bind="value:form.Provide_DateTime" class="z-txt easyui-daterange" /></div>
+    @*<div class="grid_1 lbl">公司名</div>
+    <div class="grid_1 val"><input type="text" data-bind="" class="z-txt easyui-combobox" data-options="showblank:true" /></div>*@
+    <div class="grid_6 val">
+        <a id="btnSearch" href="#" plain="true" data-bind="click:searchClick" class="easyui-linkbutton" icon="icon-search" title="查询">查询</a>
+    </div>
+</div>
+
+<div id="dropdown" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
+    <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
+    <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
+</div>
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="_id" hidden="true">_id</th>
+            <th field="name" width="80">施工单位</th>
+            <th field="ProjectName" width="120">工程名称</th>
+            <th field="SalseName" width="80">销售员</th>
+            <th field="合同编号" width="80">合同编号</th>
+            <th field="本日销售方量" width="80">本日销售方量</th>
+            <th field="本日销售金额" width="80">本日销售金额</th>
+            <th field="本月销售方量" width="80">本月销售方量</th>
+            <th field="本月销售金额" width="80">本月销售金额</th>
+            <th field="累计销售方量" width="80">累计销售方量</th>
+            <th field="累计销售金额" width="80">累计销售金额</th>
+            <th field="本月实际收款" width="80">本月实际收款</th>
+            <th field="其他扣除" width="80">其他扣除</th>
+            <th field="累计欠款" width="80">累计欠款</th>
+            <th field="收款率" width="80">收款率</th>
+        </tr>
+    </thead>
+</table>

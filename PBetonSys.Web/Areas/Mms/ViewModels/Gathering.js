@@ -320,4 +320,7 @@ var viewModel = function (data) {
     this.initComboData();
 
     this.grid.onDblClickRow = this.editClick;
+    this.downloadClick = function (vm, event) {
+        com.exporter(self.grid).download($(event.currentTarget).attr("suffix"));
+    };
 };

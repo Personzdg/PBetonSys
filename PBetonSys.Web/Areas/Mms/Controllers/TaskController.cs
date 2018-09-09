@@ -79,7 +79,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
   </where>
                 </settings>");
             var pQuery = query.ToParamQuery();
-            var result = new TaskService().GetDynamicListWithPaging(pQuery);
+            var result = new TaskService().GetDynamic(pQuery); //.GetDynamicListWithPaging(pQuery);
             return result;
         }
 

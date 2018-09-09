@@ -54,6 +54,28 @@ namespace PBetonSys.Web.Areas.Mms.Models
             
             return db.ConnectionStringName(APP.DB_Settlement, new SqlServerProvider()).Sql(strSql).QueryMany<ProjectAlltab>();
         }
+
+
+        public List<ProjectAlltab> GetTotalProjectAlltabData(string BegDayDate, string EndDatetime)
+        {
+            //string BegDayDate = DateTime.Now.ToString("yyyy-mm-dd");
+            string BegMonthDate = DateTime.Now.ToString("yyyy-MM-01");
+            string BegYearDate = "2017-01-01";
+            //string EndDatetime = DateTime.Now.ToString();
+            string ContID = "";
+
+
+            var strSql = String.Format(@"
+                        select b.合同编号,sum(b.本日销售方量) as 本日销售方量, sum(b.本日销售金额) as 本日销售方量,sum(b.本月销售方量) as 本月销售方量, sum(b.本月销售金额) as 本月销售金额,
+                        sum(b.累计销售方量) as 累计销售方量 ,sum(b.累计销售金额) as  累计销售金额,sum(isnull(a.本月实际收款,0)) as 本月实际收款 , sum(isnull(a.本月累计收款,0)) as 本月累计收款,
+                        sum(isnull(其他扣除,0)) as 其他扣除,sum((isnull(b.累计销售金额,0)-isnull(a.本月累计收款,0))) as 累计欠款 ,
+                          from contract as c LEFT OUTER JOIN  
+                         ProjectGatheringGatherTab('{0}','{1}','{2}','{3}') as a  on (c.SysCont_id=a.合同编号) LEFT OUTER JOIN 
+                         ProjectGatherStatTab('{4}','{5}','{6}','{7}','{8}')  as b  on( c.SysCont_id=b.合同编号)  group by  b.合同编号
+                         ", BegMonthDate, BegYearDate, EndDatetime, ContID, BegDayDate, BegMonthDate, BegYearDate, EndDatetime, ContID);
+
+            return db.ConnectionStringName(APP.DB_Settlement, new SqlServerProvider()).Sql(strSql).QueryMany<ProjectAlltab>();
+        }
     }
 
 }

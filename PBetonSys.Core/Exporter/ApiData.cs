@@ -25,7 +25,7 @@ namespace PBetonSys.Core
             var param = JsonConvert.DeserializeObject<dynamic>(context.Request.Form["dataParams"]);
 
             var route = url.Replace("/api/", "").Split('/'); // route[0]=mms,route[1]=send,route[2]=get
-            var type = Type.GetType(String.Format("Zephyr.Areas.{0}.Controllers.{1}ApiController,Zephyr.Web", route), false, true);
+            var type = Type.GetType(String.Format("PBetonSys.Web.Areas.{0}.Controllers.{1}ApiController,PBetonSys.Web", route), false, true);
             if (type != null)
             {
                 var instance = Activator.CreateInstance(type);

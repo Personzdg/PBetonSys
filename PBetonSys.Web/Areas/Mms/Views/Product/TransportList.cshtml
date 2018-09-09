@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/Transport.js"></script>
+    <script type="text/javascript">
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+<div class="z-toolbar">
+    <a href="#" plain="true" class="easyui-splitbutton" data-options="menu:'#dropdown',iconCls:'icon-download'">导出</a>
+</div>
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">生产时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.checkdateTime" class="z-txt easyui-daterange" /></div>
+    <div class="grid_1 lbl">工程名称</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_6 val">
+        <a id="btnSearch" href="#" plain="true" data-bind="click:searchClick" class="easyui-linkbutton" icon="icon-search" title="查询">查询</a>
+    </div>
+</div>
+
+
+<div id="dropdown" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
+    <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
+    <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
+</div>
+
+<table id="gridlist" data-bind="datagrid:grid">
+    <thead>
+        <tr>
+            <th field="_id" hidden="true">_id</th>
+            <th field="Transp_id" width="80">运输单号</th>
+            <th field="ProjectName" width="120">工程名称</th>
+            <th field="Name" width="80">施工单位</th>
+            <th field="strong" width="50">强度</th>
+            <th field="place" width="80">部位</th>
+            <th field="Pump_No" width="80">泵号</th>
+            <th field="Vehicle_id" width="30">车号</th>
+            <th field="Driver" width="50">驾驶员</th>
+            <th field="Produce_Amount" width="50">生产方量</th>
+            <th field="amount" width="50">销售方量</th>
+            <th field="Other" width="50">砂浆</th>
+            <th field="Number" width="30">车次</th>
+            <th field="CheckDateTime" width="80">时间</th>
+         
+
+    
+        </tr>
+    </thead>
+</table>

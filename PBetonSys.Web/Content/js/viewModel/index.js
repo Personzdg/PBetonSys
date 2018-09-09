@@ -44,20 +44,62 @@ wrapper.tabContextMenu = function (e, title) {
     e.preventDefault();
 };
 
+//wrapper.changePassword = function () {
+//    com.dialog({
+//        title: "&nbsp;修改密码",
+//        iconCls: 'icon-key',
+//        width: 320,
+//        height: 204,
+//        html: "#password-template",
+//        viewModel: function (w) {
+//            w.find("[name=UserCode]").val("123");
+//            w.find("#pwd_confirm").click(function () { w.dialog('close'); });
+//            w.find("#pwd_close").click(function () { w.dialog('close'); });
+//        }
+//    });
+//};
 wrapper.changePassword = function () {
     com.dialog({
         title: "&nbsp;修改密码",
         iconCls: 'icon-key',
         width: 320,
-        height: 204,
+        height: 210,
         html: "#password-template",
         viewModel: function (w) {
-            w.find("[name=UserCode]").val("lhs");
-            w.find("#pwd_confirm").click(function () { w.dialog('close'); });
+            var that = this;
+            w.find("#pwd_confirm").click(function () {
+                var o = w.find("#oldPwd").val();
+                var n = w.find("#newPwd").val();
+                if (!o || !n) {
+                    $.messager.alert('修改密码', '密码不能为空');
+                    return false;
+                }
+                if (o == n) {
+                    $.messager.alert('修改密码', '亲！密码没有修改!!');
+                } else {
+                    var post = { oPwd: o, nPwd: n };
+                    com.ajax({
+                        url: '/api/sys/user/postmodifypwd?oPwd=' + o + '&nPwd=' + n,
+                        data: post,
+                        success: function (d) {
+                            if (d == -1) {
+                                $.messager.alert('success', '原密码不正确！');
+                            } else {
+                                $.messager.alert('success', '修改成功！');
+                                w.dialog('close');
+                            }
+                        }
+                    });
+                }
+
+
+            });
             w.find("#pwd_close").click(function () { w.dialog('close'); });
         }
     });
 };
+
+
 
 wrapper.mysettings = function () {
     wrapper.addTab("个人设置", "/sys/config", "icon icon-wrench_orange");

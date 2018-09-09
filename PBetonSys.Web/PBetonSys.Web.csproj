@@ -195,6 +195,7 @@
     <Compile Include="Areas\Mms\Controllers\ReceiveController.cs" />
     <Compile Include="Areas\Mms\Controllers\ReportController.cs" />
     <Compile Include="Areas\Mms\Controllers\ResourceController.cs" />
+    <Compile Include="Areas\Mms\Controllers\SalseReportController.cs" />
     <Compile Include="Areas\Mms\Controllers\SiloStatController.cs" />
     <Compile Include="Areas\Mms\Controllers\S_ConfectController.cs" />
     <Compile Include="Areas\Mms\Controllers\TaskController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Areas\Mms\Models\ProjectAlltabService.cs" />
     <Compile Include="Areas\Mms\Models\ReceiveServiec.cs" />
     <Compile Include="Areas\Mms\Models\Resource.cs" />
+    <Compile Include="Areas\Mms\Models\SalseReport.cs" />
     <Compile Include="Areas\Mms\Models\SiloStatService.cs" />
     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\S_Confect.cs" />
@@ -254,6 +256,7 @@
     <Content Include="Areas\Mms\ViewModels\Contract.js" />
     <Content Include="Areas\Mms\ViewModels\DayReport.js" />
     <Content Include="Areas\Mms\ViewModels\Dispatch.js" />
+    <Content Include="Areas\Mms\ViewModels\DriveLaborageCost.js" />
     <Content Include="Areas\Mms\ViewModels\Gathering.js" />
     <Content Include="Areas\Mms\ViewModels\mms.com.js" />
     <Content Include="Areas\Mms\ViewModels\mms.lookupContract.js" />
@@ -263,8 +266,11 @@
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.search.js" />
     <Content Include="Areas\Mms\ViewModels\Product.js" />
     <Content Include="Areas\Mms\ViewModels\ProjectAlltab.js" />
+    <Content Include="Areas\Mms\ViewModels\ProjectNameReceivedt.js" />
+    <Content Include="Areas\Mms\ViewModels\PumpCartCost.js" />
     <Content Include="Areas\Mms\ViewModels\Receive.js" />
     <Content Include="Areas\Mms\ViewModels\Resource.js" />
+    <Content Include="Areas\Mms\ViewModels\SalseReport.js" />
     <Content Include="Areas\Mms\ViewModels\SiloStat.js" />
     <Content Include="Areas\Mms\ViewModels\Task.js" />
     <Content Include="Areas\Mms\ViewModels\Transport.js" />
@@ -3382,6 +3388,10 @@
     <Content Include="Areas\Mms\Views\Product\TransportList.cshtml" />
     <Content Include="Areas\Mms\Views\Resource\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Receive\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\SalseReport\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\SalseReport\PumpCartCostList.cshtml" />
+    <Content Include="Areas\Mms\Views\SalseReport\DriveLaborageCostList.cshtml" />
+    <Content Include="Areas\Mms\Views\Receive\ProjectNameReceivedt.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

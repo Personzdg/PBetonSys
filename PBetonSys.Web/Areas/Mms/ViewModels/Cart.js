@@ -63,4 +63,8 @@ var viewModel = function () {
             });
         }
     };
+
+    this.downloadClick = function (vm, event) {
+        com.exporter(self.grid).download($(event.currentTarget).attr("suffix"));
+    };
 };

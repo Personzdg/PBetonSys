@@ -56,4 +56,7 @@ var viewModel = function (data) {
     this.gridEdit = new com.editGridViewModel(this.griddetail);
     this.griddetail.onDblClickRow = this.gridEdit.begin;
     this.griddetail.onClickRow = this.gridEdit.ended;
+    this.downloadClick = function (vm, event) {
+        com.exporter(self.grid).download($(event.currentTarget).attr("suffix"));
+    };
 };

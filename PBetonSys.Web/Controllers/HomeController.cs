@@ -21,9 +21,15 @@ namespace PBetonSys.Web.Controllers
             var loginer = FormsAuth.GetUserData<LoginerBase>();
             ViewBag.Title = "系统";
             ViewBag.UserName = loginer.UserName;
+            ViewBag.UserCode = loginer.UserCode;
             ViewBag.Settings = new ClerkService().GetCurrentUserSettings();
 
             return View();
+        }
+
+        public void Download()
+        {
+            Exporter.Instance().Download();
         }
 	}
 }

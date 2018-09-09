@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Areas/Mms/ViewModels/ProjectNameReceivedt.js"></script>
+    <script type="text/javascript">
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        ko.bindingViewModel(new viewModel(data));
+    </script>
+}
+<div class="z-toolbar">
+    <a href="#" plain="true" class="easyui-splitbutton" data-options="menu:'#dropdown',iconCls:'icon-download'">导出</a>
+</div>
+<div id="condition" class="container_12" style="position:relative;">
+    <div class="grid_1 lbl">时间</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.ctime" class="z-txt easyui-daterange" /></div>
+
+    @*<div class="grid_1 lbl">工程名称</div>
+        <div class="grid_1 val"><input type="text" data-bind="value:form.工程名称" class="z-txt easyui-combobox" data-options="showblank:true" /></div>*@
+
+    <div class="grid_1 lbl">类型</div>
+    <div class="grid_1 val "><input type="text" data-bind="datasource:dataSource.FlagtypeList,comboboxValue:form.flag" class="z-txt easyui-combobox" /></div>
+
+
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="btnSearch" href="#" plain="true" data-bind="click:searchClick" class="easyui-linkbutton" icon="icon-search" title="查询">查询</a>
+
+    </div>
+    </div>
+  
+
+
+
+<div id="dropdown" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-ext-xls'" suffix="xls" data-bind="click:downloadClick">Excel2003   </div>
+    <div data-options="iconCls:'icon-page_excel'" suffix="xlsx" data-bind="click:downloadClick">Excel2007   </div>
+    <div data-options="iconCls:'icon-ext-doc'" suffix="doc" data-bind="click:downloadClick">Word2003    </div>
+</div>
+    <table id="gridlist" data-bind="datagrid:grid">
+        <thead>
+            <tr>
+                <th field="_id" hidden="true">_id</th>
+                <th field="工程名称" width="100">工程名称</th>
+                <th field="方量" width="50">方量</th>
+                <th field="标号" width="50">标号</th>
+                <th field="单价合计" width="50">单价合计</th>
+                <th field="总胶量" width="50">总胶量</th>
+                <th field="楼号" width="50">楼号</th>
+                <th field="mtvalue1" width="50">5-25</th>
+                <th field="mtvalue2" width="50">5-16</th>
+                <th field="mtvalue3" width="50">细砂</th>
+                <th field="mtvalue4" width="50">粗砂</th>
+                <th field="mtvalue5" width="50">水泥</th>
+                <th field="mtvalue6" width="50">矿粉</th>
+                <th field="mtvalue7" width="50">粉煤灰</th>
+                <th field="mtvalue8" width="50">水</th>
+                <th field="mtvalue9" width="50">外加剂</th>
+                <th field="summoney" width="50">总金额</th>
+                <th field="运费" width="50">运费</th>
+                @*<th field="运费合计" width="50">运费合计</th>*@
+                <th field="泵费" width="50">泵费</th>
+          
+            </tr>
+        </thead>
+    </table>

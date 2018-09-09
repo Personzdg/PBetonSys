@@ -11,7 +11,7 @@ var viewModel = function (data) {
         queryParams: ko.observable(),
         pagination: true,
         loadFilter: function (d) {
-            d.rows = utils.copyProperty(d.rows, 'Cont_ID', '_id');
+            d.rows = utils.copyProperty(d.rows, 'PrintCont_ID', '_id');
             return d;
         }
     };
@@ -22,14 +22,6 @@ var viewModel = function (data) {
         if (row._isnew == undefined)
             com.readOnlyHandler('input')(editors.Clinet_id.target, true);
     };
-
-    this.lookupClick = function () {
-        mms.com.selectClient(self, null, function (data) {
-            //that.form.Cont_ID(data.Cont_ID);
-            that.form.Clinet_id(data.Clinet_id);
-        });
-    };
-
 
     this.refreshClick = function () {
         window.location.reload();
@@ -57,19 +49,42 @@ var viewModel = function (data) {
         self.gridEdit.begin()
     };
     this.grid.onDblClickRow = this.editClick;
-    this.saveClick = function () {
-        self.gridEdit.ended();
-        var post = {};
-        post.list = self.gridEdit.getChanges(['_id', 'Clinet_id', 'Name', 'CheckDateTime', 'State', 'Remark', 'ClerkID', 'LinkName', 'LinkPhon', 'WXCode', 'Password']);
-        if (self.gridEdit.isChangedAndValid()) {
-            com.ajax({
-                url: '/api/mms/Clinet/edit',
-                data: ko.toJSON(post),
-                success: function (d) {
-                    com.message('success', '保存成功！');
-                    self.gridEdit.accept();
-                }
-            });
-        }
+    //this.saveClick = function () {
+    //    self.gridEdit.ended();
+    //    var post = {};
+    //    post.list = self.gridEdit.getChanges(['_id', 'SysCont_ID', 'Cont_ID', 'ProjectName', 'ProjectAddr', 'CheckAdder', 'Interva', 'Clinet_id', 'CheckDateTime', 'SalseName', 'BossName'
+    //        , 'SalseRecevice', 'LinkPhon', 'MobilePhon', 'Strong', 'Amount', 'Price', 'FinshFlag', 'FinShDateTime', 'paymentType', 'term', 'GatheringRatio', 'Remark', 'ContType', 'ResizeRatio'
+    //    ]);
+    //    if (self.gridEdit.isChangedAndValid()) {
+    //        com.ajax({
+    //            url: '/api/mms/Contract/edit',
+    //            data: ko.toJSON(post),
+    //            success: function (d) {
+    //                com.message('success', '保存成功！');
+    //                self.gridEdit.accept();
+    //            }
+    //        });
+    //    }
+    //};
+    this.saveClick= function (type, vm, win) {
+        var post = new Object();
+        post.list = new Object();
+        post.list[type] = [];
+        var data = ko.toJS(vm.form);
+        if (data.Amount == "")
+            data.Amount = 0;
+        post.list[type].push(data);
+        com.ajax({
+            type: 'POST',
+            url: '/api/Mms/Contract/edit',
+            data: JSON.stringify(post),
+            success: function (d) {
+                data = d;
+                com.message('success', '保存成功！');
+                win.dialog('close');
+                self.searchClick();
+            }
+        });
     };
+
 };
