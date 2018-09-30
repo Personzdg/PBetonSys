@@ -41,20 +41,21 @@ var viewModel = function () {
                 var rowTotal = 0;
                 var rowTota2 = 0;
                 var rowTota3 = 0;
-           
+                var rowTota4= 0;
                 var rows = self.grid.datagrid('getRows');
                 for (var i = 0; i < rows.length; i++) {
                     rowTotal += parseFloat(rows[i]['a_gross']);
                     rowTota2 += parseFloat(rows[i]['a_empty']);
                     rowTota3 += parseFloat(rows[i]['a_suttle']);
+                    rowTota4 += parseFloat(rows[i]['a_money']);
                 
                 }
+                //self.grid.datagrid("appendRow", {
+                //    silo_id: '<b>小计：</b>', a_gross: rowTotal, a_empty: rowTota2, a_suttle: rowTota3, a_money: rowTota4
+                //});
+                //debugger;
                 self.grid.datagrid("appendRow", {
-                    silo_id: '<b>小计：</b>', a_gross: rowTotal, a_empty: rowTota2, a_suttle: rowTota3
-                });
-                debugger;
-                self.grid.datagrid("appendRow", {
-                    silo_id: '<b>合计：</b>', a_gross: d.a_gross, a_empty: d.a_empty, a_suttle: d.a_suttle
+                    silo_id: '<b>合计：</b>', a_gross: d.a_gross, a_empty: d.a_empty, a_suttle: d.a_suttle, a_money: d.a_money
                 });
 
             }

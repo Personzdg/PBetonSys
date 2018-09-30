@@ -62,7 +62,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             string strartDate = "";
             string endDate = "";
             string queryDate = query["ctime"];
-            int flag = Convert.ToInt32(query["flag"]);
+            //int flag = Convert.ToInt32(query["flag"]);
             if (queryDate.Contains("到"))
             {
                 strartDate = queryDate.Split('到')[0];
@@ -80,7 +80,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             //result.total = this.queryRowCount(param, result.rows);
             //List<Receive> retList = new ReceiveService().GetReceiveData(strartDate, endDate);
             //return retList;
-            return new ReceiveService().GetReceiveData(strartDate, endDate, flag, index, pageSize);
+            return new ReceiveService().GetReceiveData(strartDate, endDate,  index, pageSize);
         }
 
         public dynamic GetTotalReceiveData(RequestWrapper query)
@@ -88,7 +88,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             string strartDate = "";
             string endDate = "";
             string queryDate = query["ctime"];
-            int flag = Convert.ToInt32(query["flag"]);
+           
             if (queryDate.Contains("到"))
             {
                 strartDate = queryDate.Split('到')[0];
@@ -100,7 +100,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 endDate = queryDate;
             }
 
-            var ret = new ReceiveService().GetTotalReceiveData(strartDate, endDate, flag);
+            var ret = new ReceiveService().GetTotalReceiveData(strartDate, endDate);
            return ret;
         }//消耗明细查询
 
@@ -125,6 +125,28 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             int pageSize = ZConvert.To<int>(query["rows"]);
 
             return new ReceiveService().GetProjectNameReceivedtData(strartDate, endDate,flag, index, pageSize);
+        }
+
+        public dynamic GetTotalProjectNameReceivedt(RequestWrapper query)//工程消耗汇总查询
+        {
+            string strartDate = "";
+            string endDate = "";
+            int flag = Convert.ToInt32(query["flag"]);
+            string queryDate = query["ctime"];
+            if (queryDate.Contains("到"))
+            {
+                strartDate = queryDate.Split('到')[0];
+                endDate = queryDate.Split('到')[1];
+            }
+            else
+            {
+                strartDate = queryDate;
+                endDate = queryDate;
+            }
+
+            var ret = new ReceiveService().GetTotalProjectNameReceivedtData(strartDate, endDate, flag);
+            return ret;
+          
         }
 
     }

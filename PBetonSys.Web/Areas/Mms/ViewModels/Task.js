@@ -302,10 +302,10 @@ var viewModel = function (data) {
                     rowTotal += parseFloat(rows[i]['Amount']);
                  
                 }
-                self.grid.datagrid("appendRow", {
-                    Pump_vehicle: '<b>小计：</b>', Amount: rowTotal
-                });
-                //debugger;
+                //self.grid.datagrid("appendRow", {
+                //    Pump_vehicle: '<b>小计：</b>', Amount: rowTotal
+                //});
+                ////debugger;
                 self.grid.datagrid("appendRow", {
                     Pump_vehicle: '<b>合计：</b>', Amount: d.Amount
                 });

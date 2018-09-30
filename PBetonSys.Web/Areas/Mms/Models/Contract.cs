@@ -33,7 +33,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public string ProjectAddr { get; set; }
 
-        public decimal Interva { get; set; }
+        public decimal? Interva { get; set; }
 
         public string Clinet_id { get; set; }
 
@@ -51,9 +51,9 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public string Strong { get; set; }
 
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
 
         public Int16 FinshFlag { get; set; }
 
@@ -63,7 +63,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public string paymentType { get; set; }
 
-        public decimal GatheringRatio { get; set; }
+        public decimal? GatheringRatio { get; set; }
 
         public string Remark { get; set; }
 
@@ -71,7 +71,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public string GatheringDate { get; set; }
 
-        public int EndPaymentMonth { get; set; }
+        public int? EndPaymentMonth { get; set; }
 
         public string ContType { get; set; }
 

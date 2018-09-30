@@ -48,9 +48,9 @@ var viewModel = function () {
                     rowTota3 += parseFloat(rows[i]['Other']);
                     rowTota4 += parseFloat(rows[i]['Number']);
                 }
-                self.grid.datagrid("appendRow", {
-                    Vehicle_id: '<b>小计：</b>', Produce_Amount: rowTotal, amount: rowTota2, Other: rowTota3, Number: rowTota4
-                });
+                //self.grid.datagrid("appendRow", {
+                //    Vehicle_id: '<b>小计：</b>', Produce_Amount: rowTotal, amount: rowTota2, Other: rowTota3, Number: rowTota4
+                //});
                 //debugger;
                 self.grid.datagrid("appendRow", {
                     Vehicle_id: '<b>合计：</b>', Produce_Amount: d.Produce_Amount, amount: d.amount, Other: d.Other, Number: d.Number

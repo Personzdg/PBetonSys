@@ -43,7 +43,7 @@
 
 <div id="master" class="container_12" data-bind="inputwidth:0.9">
     <div class="grid_1 lbl">系统编号</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.SysCont_ID" class="z-txt" /></div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.SysCont_ID" class="z-txt" data-options="required:true,missingMessage:'不能为空'" /></div>
     <div class="grid_1 lbl">合同编号</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.Cont_ID" class="z-txt" /></div>
     <div class="grid_1 lbl">工程是否结</div>
@@ -52,7 +52,7 @@
     <div class="clear"></div>
 
     <div class="grid_1 lbl">工程名称</div>
-    <div class="grid_3 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
+    <div class="grid_3 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" data-options="required:true,missingMessage:'不能为空'" /></div>
     <div class="grid_1 lbl">工程地址</div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.ProjectAddr" class="z-txt" /></div>
     <div class="clear"></div>
@@ -61,7 +61,7 @@
     <div class="grid_3 val"><input type="text" data-bind="value:form.SimpleName" class="z-txt" /></div>
     <div class="grid_1 lbl">施工单位</div>
     <div class="grid_3 val">
-        <input type="text" class="z-txt" data-bind="value:form2.ClientName" disabled="disabled" />
+        <input type="text" class="z-txt" data-bind="value:form2.ClientName" disabled="disabled" data-options="required:true,missingMessage:'不能为空'" />
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:lookupClick"></a>
         <input type="hidden" data-bind="value:form.Clinet_id" />
     </div>
@@ -71,9 +71,9 @@
     <div class="clear"></div>
 
     <div class="grid_1 lbl">销售员 </div>
-    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.salseNameList,comboboxValue:form.SalseName" class="z-txt easyui-combobox" /></div>
+    <div class="grid_3 val"><input type="text" data-bind="datasource:dataSource.salseNameList,comboboxValue:form.SalseName" data-options="required:true,missingMessage:'不能为空'" class="z-txt easyui-combobox" /></div>
     <div class="grid_1 lbl">签订日期</div>
-    <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.CheckDateTime" class="z-txt easyui-datebox" /></div>
+    <div class="grid_3 val"><input type="text" data-bind="dateboxValue:form.CheckDateTime" data-options="required:true,missingMessage:'不能为空'" class="z-txt easyui-datebox" /></div>
     <div class="grid_1 lbl">工程老板 </div>
     <div class="grid_3 val"><input type="text" data-bind="value:form.BossName" class="z-txt" /></div>
 
@@ -125,7 +125,7 @@
     <div class="clear"></div>
 
     <div class="grid_1 lbl">合同类型</div> 
-    <div class="grid_3 val "><input type="text" data-bind="datasource:dataSource.ContTypeList,comboboxValue:form.ContType" class="z-txt easyui-combobox" /></div>
+    <div class="grid_3 val "><input type="text" data-bind="datasource:dataSource.ContTypeList,comboboxValue:form.ContType" data-options="required:true,missingMessage:'不能为空'" class="z-txt easyui-combobox" /></div>
 
  
 

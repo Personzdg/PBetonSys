@@ -68,9 +68,9 @@ var viewModel = function () {
                     rowTota14 += parseFloat(rows[i]['sumNum']);
                   
                 }
-                self.grid.datagrid("appendRow", {
-                    Mstring5: '<b>小计：</b>', qty: rowTota15, num1: rowTotal, num2: rowTota2, num3: rowTota3, num4: rowTota4, num5: rowTota5, num6: rowTota6, num7: rowTota7, num8: rowTota8, num9: rowTota9, num10: rowTota10, num11: rowTota11, num12: rowTota12, num13: rowTota13, sumNum: rowTota14
-                });
+                //self.grid.datagrid("appendRow", {
+                //    Mstring5: '<b>小计：</b>', qty: rowTota15, num1: rowTotal, num2: rowTota2, num3: rowTota3, num4: rowTota4, num5: rowTota5, num6: rowTota6, num7: rowTota7, num8: rowTota8, num9: rowTota9, num10: rowTota10, num11: rowTota11, num12: rowTota12, num13: rowTota13, sumNum: rowTota14
+                //});
                
                 self.grid.datagrid("appendRow", { Mstring5: '<b>合计：</b>', qty: d.qty, num1: d.num1, num2: d.num2, num3: d.num3, num4: d.num4, num5: d.num5, num6: d.num6, num7: d.num7, num8: d.num8, num9: d.num9, num10: d.num110, num11: d.num11, num12: d.num12, num13: d.num13, sumNum: d.sumNum });
 

@@ -199,6 +199,7 @@
     <Compile Include="Areas\Mms\Controllers\SiloStatController.cs" />
     <Compile Include="Areas\Mms\Controllers\S_ConfectController.cs" />
     <Compile Include="Areas\Mms\Controllers\TaskController.cs" />
+    <Compile Include="Areas\Mms\Controllers\TransSurplController.cs" />
     <Compile Include="Areas\Mms\MmsAreaRegistration.cs" />
     <Compile Include="Areas\Mms\Models\Cart.cs" />
     <Compile Include="Areas\Mms\Models\Client.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Areas\Mms\Models\SilotReportService.cs" />
     <Compile Include="Areas\Mms\Models\S_Confect.cs" />
     <Compile Include="Areas\Mms\Models\Task.cs" />
+    <Compile Include="Areas\Mms\Models\TransSurplService.cs" />
     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />
     <Compile Include="Areas\Sys\Controllers\MenuController.cs" />
     <Compile Include="Areas\Sys\Controllers\OrganizeController.cs" />
@@ -274,6 +276,7 @@
     <Content Include="Areas\Mms\ViewModels\SiloStat.js" />
     <Content Include="Areas\Mms\ViewModels\Task.js" />
     <Content Include="Areas\Mms\ViewModels\Transport.js" />
+    <Content Include="Areas\Mms\ViewModels\TransSurpl.js" />
     <Content Include="Areas\Sys\ViewModels\Code.js" />
     <Content Include="Areas\Sys\ViewModels\Menu.js" />
     <Content Include="Areas\Sys\ViewModels\Organize.js" />
@@ -3392,6 +3395,7 @@
     <Content Include="Areas\Mms\Views\SalseReport\PumpCartCostList.cshtml" />
     <Content Include="Areas\Mms\Views\SalseReport\DriveLaborageCostList.cshtml" />
     <Content Include="Areas\Mms\Views\Receive\ProjectNameReceivedt.cshtml" />
+    <Content Include="Areas\Mms\Views\TransSurpl\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

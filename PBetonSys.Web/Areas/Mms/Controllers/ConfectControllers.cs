@@ -76,11 +76,12 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='CheckDateTime'>
                     <select>
-                        a.Confect_ID,a.Cont_ID,a.Hous_id,a.Amount,a.Place,a.Strong,a.Fall,a.Pump,a.Inside_Code,a.CheckDateTime,a.AuditingFlag,a.sumTheory_value,a.UpDateTime,c.Pump_vehicle,c.LinkName,c.Telephon,c.Provide_DateTime ,b.ProjectName
+                        a.Confect_ID,a.Cont_ID,a.Hous_id,a.Amount,a.Place,a.Strong,a.Fall,a.Pump,a.Inside_Code,a.CheckDateTime,
+                        a.AuditingFlag,a.sumTheory_value,a.UpDateTime,c.Pump_vehicle,c.LinkName,c.Telephon,c.Provide_DateTime ,b.ProjectName,e.Name
                     </select>
                     <from>
                         Confect as a
-                       left join Task as c on(a.Task_ID=c.Task_ID)   left join Contract as b on a.Cont_ID=b.Cont_ID
+                       left join Task as c on(a.Task_ID=c.Task_ID)   left join Contract as b on a.Cont_ID=b.Cont_ID  left join   Client  as e on (b.Clinet_id=e.Cl_ID )
                     </from>
   <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
     <field name='a.Confect_ID'       cp='startwith'  ></field>

@@ -172,8 +172,8 @@ var viewModel = function (data) {
                         //Pump_vehicle: ko.observable(model.Pump_vehicle.replace(';', ',')) // 这部个显示的时候是需要的。但保存时Confect表里没这个字段不需要保存
                     };
                 this.form = {
-                    Confect_ID: ko.observable(model.Task_id.replace('T', 'P')),
-                    Task_id: ko.observable(model.Task_id),
+                    Confect_ID: ko.observable(model.Confect_ID.replace('T', 'P')),
+                    //Task_id: ko.observable(model.Task_id),
                     Hous_id: ko.observable(model.House_id),
                     //AuditingFlag: ko.observable(model.AuditingFlag),
                     Cont_ID: ko.observable(model.Cont_ID),

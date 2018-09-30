@@ -35,7 +35,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                 <settings defaultOrderBy='a.IndateTime'>
                     <select>
-                        a.id,a.Provide_id,a.IndateTime,a.TypeName,a.Voiture_id ,a.silo_id,a.a_gross,a.a_empty,a.a_suttle,a.a_unit,
+                        a.id,a.Provide_id,a.IndateTime,a.TypeName,a.Voiture_id ,a.silo_id,a.a_gross,a.a_empty,a.a_suttle,a.a_unit,a.a_price,a.a_money,
                         a.MTType,a.AffFlag,a.BackDatetime,a.a_suttleSJ ,b.name
                     </select>
                     <from>
@@ -63,7 +63,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                <settings>
                     <select>
-                        sum(a.a_gross) as a_gross  , sum(a.a_empty) as a_empty , sum(a.a_suttle) as a_suttle
+                        sum(isnull(a.a_gross,0)) as a_gross  , sum(isnull(a.a_empty,0)) as a_empty , sum(isnull(a.a_suttle,0)) as a_suttle, sum(isnull(a_money,0)) as a_money
                        
                     </select>
                     <from>

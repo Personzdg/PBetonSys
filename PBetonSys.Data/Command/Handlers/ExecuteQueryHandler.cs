@@ -104,7 +104,8 @@ namespace PBetonSys.Data
 			if(_command.Data.Context.Data.OnError != null)
 				_command.Data.Context.Data.OnError(new ErrorEventArgs(_command.Data.InnerCommand, exception));
 			
-			throw exception;
+			
+            throw exception;
 		}
 	}
 }

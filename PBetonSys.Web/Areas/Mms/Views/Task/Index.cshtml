@@ -28,7 +28,7 @@
     <div class="grid_2 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
     <div class="clear"></div>
     <div class="grid_1 lbl">供应时间</div>
-    <div class="grid_2 val"><input type="text" data-bind="value:form.Provide_DateTime" class="easyui-daterange z-txt" /></div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.Provide_DateTime"  class=" easyui-daterange z-txt" /></div>
     <div class="clear"></div>
     <div class="prefix_9" style="position:absolute;top:5px;height:0;">
         <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:searchClick" style="margin:0 15px;">查询</a>
@@ -111,7 +111,7 @@
         <div class="clear"></div>
 
         <div class="grid_2 lbl">预定方量</div>
-        <div class="grid_10 val"><input type="text" class="easyui-numberbox z-txt m-txt" data-bind="numberboxValue:form.Amount" data-options="precision:2" /></div>
+        <div class="grid_10 val"><input type="text" class="easyui-numberbox z-txt m-txt" data-bind="numberboxValue:form.Amount"  data-options="precision:2" /></div>
         <div class="clear"></div>
 
         <div class="grid_2 lbl required">强度等级</div>
@@ -146,7 +146,7 @@
         <div class="grid_3 val"><input type="text" class="z-txt m-txt" data-bind="value:form.Auditing" /></div>
         <div class="grid_2 lbl">供应时间</div>
         @*<div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>*@
-        <div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-bind="datetimeboxValue:form.Provide_DateTime" /></div>
+        <div class="grid_5 val"><input type="text" class="z-txt easyui-datetimebox" style="width:140px;" data-options="required:true,missingMessage:'不能为空'" data-bind=" datetimeboxvalue:form.provide_datetime" /></div>
          <div class="clear"></div>
 
         <div class="grid_2 lbl">备注 </div>
