@@ -8,7 +8,7 @@ var viewModel = function () {
     debugger;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 4, h: 50 },
+        size: { w: 4, h: 60 },
         url: '/api/Mms/SalseReport/GetDriveLaborageCostList',
         //data: { BegMonthDate: '', EndDatetime: '' },
         queryParams: ko.observable(),

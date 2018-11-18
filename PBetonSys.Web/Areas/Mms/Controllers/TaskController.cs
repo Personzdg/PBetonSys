@@ -71,10 +71,11 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                     </select>
                     <from>
                         Task as a
+                        left join Contract as b on a.Cont_ID=b.Cont_ID
                      
                     </from>
   <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
-
+     <field name='b.ProjectName'       cp='like'   ></field>
     <field name='a.Provide_DateTime'          cp='daterange'  ></field>
   </where>
                 </settings>");

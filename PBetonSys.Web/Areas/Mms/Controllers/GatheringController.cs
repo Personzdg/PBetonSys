@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+
+using PBetonSys.Data;
+
 namespace PBetonSys.Web.Areas.Mms.Controllers
 {
      public class GatheringController : Controller
@@ -18,7 +21,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
              {
                  form = new
                  {
-                     Gathering_ID = "",
+                     Name= "",
                      ProjectName = "",
                      CheckDateTime = DateTime.Now.ToString("yyyy-MM-dd"),
                  }
@@ -65,7 +68,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
          public dynamic GetGatheringList(RequestWrapper query)
          {
              query.LoadSettingXmlString(@"
-                <settings defaultOrderBy='CheckDateTime'>
+                <settings defaultOrderBy='a.CheckDateTime'>
                     <select>
                        a.Gathering_ID, a.SysCont_id, a.CheckDateTime, a.ReceiveMoney, a.Other, a.ReceiveType, a.AffirmFlag, a.ClerkName,  a.Remark, a.SalseName, a.GatheringPerson, a.Bank, a.Accounts, a.AcCode,a.AffirmDateTime,b.ProjectName,c.Name,c.Clinet_id  
                     </select>
@@ -73,7 +76,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         Gathering as a join Contract as b on (a.Syscont_id=b.SysCont_id) join Clinet  as c on (b.Clinet_id=c.Clinet_id)
                     </from>
   <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
-    <field name='a.Gathering_ID'       cp='startwith'  ></field>
+    <field name='c.Name'         cp='like'  ></field>
     <field name='b.ProjectName'       cp='like'   ></field>
     <field name='a.CheckDateTime'          cp='daterange'  ></field>
   </where>
@@ -88,13 +91,15 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
              query.LoadSettingXmlString(@"
             <settings>
                 <select>
-                   SUM(drm.ReceiveMoney) ReceiveMoney ,  SUM(drm.Other) Other
+                   SUM(a.ReceiveMoney) ReceiveMoney ,  SUM(a.Other) Other
                 </select>
                 <from>
-                    Gathering drm
+                    Gathering as a join Contract as b on (a.Syscont_id=b.SysCont_id)   join Clinet  as c on (b.Clinet_id=c.Clinet_id)
                 </from>
                 <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
-                    <field name='drm.CheckDateTime'                cp='daterange'      ></field>
+                     <field name='c.Name'         cp='like'  ></field>
+                    <field name='a.CheckDateTime'                cp='daterange'      ></field>
+                     <field name='b.ProjectName'       cp='like'   ></field>
                 </where>
             </settings>");
              var pQuery = query.ToParamQuery();
@@ -149,11 +154,16 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             var service = new GatheringService();
             //var fromId = data.form.Gathering_ID.Value;
             //ParamDelete pd = ParamDelete.Instance().From("Gathering_Detail").AndWhere("Gathering_ID", fromId); //删除之前的记录
-            service.AddDetail(data.form.Gathering_ID.Value.ToString(), data.form.ReceiveMoney.Value.ToString());
+            service.AddDetail(data.form.Gathering_ID.Value.ToString(),data.form.ReceiveMoney!=null?data.form.ReceiveMoney.Value.ToString():"0");
             var result = service.Edit(formWrapper, null, data);
 
          }
 
+
+         public dynamic GetCheckStatus(string sysCont_id) 
+         {
+             return new GatheringService().GetCheckStatus(sysCont_id);
+         }
 
 //////////////////////
          public dynamic GetGatheringDetaiList(string Gathering_ID)

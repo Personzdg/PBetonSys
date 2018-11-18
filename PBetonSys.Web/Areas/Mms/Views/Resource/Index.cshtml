@@ -15,7 +15,9 @@
 </div>
 <div id="condition" class="container_12" style="position:relative;">
     <div class="grid_1 lbl">时间</div>
-    <div class="grid_2 val"><input type="text" data-bind="value:form.IndateTime" class="z-txt easyui-daterange" /></div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.IndateTime" class="z-txt easyui-daterange" style="width:150px;" /></div>
+    <div class="grid_1 lbl">供应商名称</div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.name" class="z-txt" /></div>
     <div class="grid_1 lbl">材料名称</div>
     <div class="grid_2 val"><input type="text" data-bind="value:form.TypeName" class="z-txt" /></div>
     <div class="clear"></div>
@@ -44,8 +46,13 @@
             <th field="a_gross" width="50">毛重</th>
             <th field="a_empty" width="50">皮重</th>
             <th field="a_suttle" width="50">净重</th>
+            <th field="a_suttleSJ" width="50">结算重量</th>
             <th field="a_price" width="50">单价</th>
             <th field="a_money" width="50">金额</th>
+            <th field="FS" width="50">方数</th>
+            <th field="FS_Ratio" width="50">方重折算率</th>
+            <th field="FSPrice" width="50">方单价</th>
+            <th field="FSMoney" width="50">方金额</th>
             <th field="a_unit" width="50">单位</th>
             <th field="MTType" width="50">类别</th>
             @*<th field="AffFlag" width="30">审核</th>*@

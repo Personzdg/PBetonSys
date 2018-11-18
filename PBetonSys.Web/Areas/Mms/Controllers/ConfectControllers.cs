@@ -81,7 +81,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                     </select>
                     <from>
                         Confect as a
-                       left join Task as c on(a.Task_ID=c.Task_ID)   left join Contract as b on a.Cont_ID=b.Cont_ID  left join   Client  as e on (b.Clinet_id=e.Cl_ID )
+                       left join Task as c on(a.Task_ID=c.Task_ID)   left join Contract as b on a.Cont_ID=b.Cont_ID  left join   Client  as e on (b.Clinet_id=e.Cl_ID ) and (e.flag=0)
                     </from>
   <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >
     <field name='a.Confect_ID'       cp='startwith'  ></field>
@@ -105,7 +105,7 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                         Confect
                         join  Contract on Confect.Cont_ID=Contract.cont_id and Contract.State=1
                         join Task on Task.Task_id=Confect.Task_id
-                        left join Client on Contract.Clinet_id=Client.Cl_ID 
+                        left join Client on Contract.Clinet_id=Client.Cl_ID and Client.flag=0
                         left join SysCode on  Confect.Hous_id=SysCode.Code and SysCode.CodeType='House_id'
                     </from>
                   <where defaultForAll='true' defaultCp='equal' defaultIgnoreEmpty='true' >

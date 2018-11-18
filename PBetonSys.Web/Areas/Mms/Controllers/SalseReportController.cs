@@ -51,8 +51,8 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 form = new
                 {
                     CheckDateTime = DateTime.Now.ToString("yyyy-MM-dd "),
-                    CartID=""
-                   
+                    CartID="",
+                   ProjectName=""
 
                 }
             };
@@ -172,16 +172,17 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
         public dynamic GetDriveLaborageCostList(RequestWrapper query)///搅拌车运费费用列表
         {
             query.LoadSettingXmlString(@"
-                <settings defaultOrderBy='CheckDatetime'>
+                <settings defaultOrderBy='a.CheckDatetime'>
                     <select>
-                        KM,DriveName,CartID,CheckDateTime,Interva,Amount,Sum_Money,SjAmount,SJSum_money,Remark   
+                        b.ProjectName, a.KM,a.DriveName,a.CartID,a.CheckDateTime,a.Interva,a.Amount,a.Sum_Money,a.SjAmount,a.SJSum_money,a.Remark
                     </select>
                     <from>
-                          settlement..DriveLaborage 
+                          settlement..DriveLaborage as a left join  settlement..Contract as b on (a.SysCont_id=b.SysCont_ID) 
                     </from>
                     <where defaultForAll='false'  defaultIgnoreEmpty='true' >
-                     <field name='CartID'       cp='like'   ></field>
-                     <field name='CheckDatetime'     cp='daterange' ></field>
+                     <field name='a.CartID'       cp='like'   ></field>
+                     <field name='b.ProjectName'       cp='like'   ></field>
+                     <field name='a.CheckDatetime'     cp='daterange' ></field>
           </where>
 
 
@@ -198,14 +199,15 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
             query.LoadSettingXmlString(@"
                <settings>
                     <select>
-                          sum(isnull(Amount,0)) as Amount  ,sum(isnull(Sum_Money,0)) as Sum_Money,sum(isnull(SjAmount,0)) as SjAmount,sum(isnull(SJSum_money,0)) as SJSum_money 
+                          sum(isnull(a.Amount,0)) as Amount  ,sum(isnull(a.Sum_Money,0)) as Sum_Money,sum(isnull(a.SjAmount,0)) as SjAmount,sum(isnull(a.SJSum_money,0)) as SJSum_money 
                     </select>    
                    <from>
-                           settlement..DriveLaborage 
+                           settlement..DriveLaborage as a left join  settlement..Contract as b on (a.SysCont_id=b.SysCont_ID) 
                     </from>
                     <where defaultForAll='false'  defaultIgnoreEmpty='true' >
-                   <field name='CartID'       cp='like'   ></field>
-                     <field name='CheckDatetime'     cp='daterange' ></field>
+                   <field name='a.CartID'       cp='like'   ></field>
+                   <field name='b.ProjectName'       cp='like'   ></field>
+                     <field name='a.CheckDatetime'     cp='daterange' ></field>
             
 
                </where>

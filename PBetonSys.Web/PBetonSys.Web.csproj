@@ -268,7 +268,9 @@
     <Content Include="Areas\Mms\ViewModels\mms.viewModel.search.js" />
     <Content Include="Areas\Mms\ViewModels\Product.js" />
     <Content Include="Areas\Mms\ViewModels\ProjectAlltab.js" />
+    <Content Include="Areas\Mms\ViewModels\ProjectNameReceivecoll.js" />
     <Content Include="Areas\Mms\ViewModels\ProjectNameReceivedt.js" />
+    <Content Include="Areas\Mms\ViewModels\ProvideResource.js" />
     <Content Include="Areas\Mms\ViewModels\PumpCartCost.js" />
     <Content Include="Areas\Mms\ViewModels\Receive.js" />
     <Content Include="Areas\Mms\ViewModels\Resource.js" />
@@ -3396,6 +3398,8 @@
     <Content Include="Areas\Mms\Views\SalseReport\DriveLaborageCostList.cshtml" />
     <Content Include="Areas\Mms\Views\Receive\ProjectNameReceivedt.cshtml" />
     <Content Include="Areas\Mms\Views\TransSurpl\Index.cshtml" />
+    <Content Include="Areas\Mms\Views\Resource\ProvideRes.cshtml" />
+    <Content Include="Areas\Mms\Views\Receive\ProjectNameReceivecoll.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

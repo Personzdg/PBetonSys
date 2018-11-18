@@ -7,7 +7,7 @@ var viewModel = function (data) {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 4, h: 50 },
+        size: { w: 3, h: 90 },
         url: '/api/Mms/Task/GetTaskList',
         queryParams: ko.observable(),
         pagination: true,

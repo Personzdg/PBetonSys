@@ -33,7 +33,8 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                 form = new
                 {
                     checkdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    Flag=0 
+                    Flag=0 ,
+                     ProjectName=""
 
                 }
             };
@@ -74,13 +75,14 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                          transport as a
                          join task as b on (a.task_id=b.task_id)
                          left join Contract as c on a.Cont_ID=c.Cont_ID 
-                         left join Client as e on c.Clinet_id=e.Cl_ID
+                         left join Client as e on c.Clinet_id=e.Cl_ID  and (e.flag=0) 
                     </from>
        <where defaultForAll='false'  defaultIgnoreEmpty='true' >
-          <field name='c.ProjectName'       cp='like'   ></field>
-             <field name='e.Flag'           cp='startwith' ></field>   
             <field name='a.CheckDateTime'     cp='daterange' ></field>
-            
+          <field name='c.ProjectName'       cp='like'   ></field>
+          
+            <field name='e.Flag'           cp='startwith' ></field>   
+       
 
           </where>
 
@@ -101,15 +103,19 @@ namespace PBetonSys.Web.Areas.Mms.Controllers
                          transport as a
                          join task as b on (a.task_id=b.task_id)
                          left join Contract as c on a.Cont_ID=c.Cont_ID 
-                          left join Client as e on c.Clinet_id=e.Cl_ID
+                          left join Client as e on c.Clinet_id=e.Cl_ID  and (e.flag=0) 
                     </from>
                   <where defaultForAll='false' defaultCp='equal' defaultIgnoreEmpty='true' >
-                   
-                       <field name='c.ProjectName'       cp='like'   ></field>
-                         <field name='a.CheckDateTime'     cp='daterange' ></field>
+                          <field name='a.CheckDateTime'     cp='daterange' ></field>
+                         <field name='c.ProjectName'       cp='like'   ></field>
+                          <field name='e.Flag'           cp='startwith' ></field>   
+                      
+
+            
                    </where>
 
                 </settings>");
+            //                        
             // <where defaultForAll='false'  defaultIgnoreEmpty='true' >
             var pQuery = query.ToParamQuery();
             var result = new ProductService().GetDynamic(pQuery);

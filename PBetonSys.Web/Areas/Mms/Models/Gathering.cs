@@ -40,6 +40,16 @@ namespace PBetonSys.Web.Areas.Mms.Models
                 db.Sql(sb.ToString()).Execute();
             }
         }
+
+
+        public bool GetCheckStatus(string sysCont_id)
+        {
+            DateTime dt = DateTime.Now;
+            DateTime startMonth = dt.AddDays(1 - dt.Day);
+            DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
+            string GatheringSql = string.Format("select 1 from Gathering  where  SysCont_id='" + sysCont_id + "'  and  CheckDateTime>='" + startMonth.ToString() + "' and  CheckDateTime<='" + endMonth.ToString() + "' and Other>0 ");
+            return db.ConnectionStringName(APP.DB_Settlement, new SqlServerProvider()).Sql(GatheringSql).QuerySingle<int>()>0?true:false;
+        }
         public string GetNewCode()
         {
             var produce = db.StoredProcedure("GetGatheringID");

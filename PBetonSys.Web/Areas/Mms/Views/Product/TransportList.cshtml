@@ -15,11 +15,11 @@
 </div>
 <div id="condition" class="container_12" style="position:relative;">
     <div class="grid_1 lbl">生产时间</div>
-    <div class="grid_2 val"><input type="text" data-bind="value:form.checkdateTime" class="z-txt easyui-daterange" /></div>
+    <div class="grid_2 val"><input type="text" data-bind="value:form.checkdateTime" class="z-txt easyui-daterange" style="width:150px;" /></div>
     <div class="grid_1 lbl">工程名称</div>
     <div class="grid_2 val"><input type="text" data-bind="value:form.ProjectName" class="z-txt" /></div>
     <div class="clear"></div>
-    <div class="grid_6 val">
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
         <a id="btnSearch" href="#" plain="true" data-bind="click:searchClick" class="easyui-linkbutton" icon="icon-search" title="查询">查询</a>
     </div>
 </div>
@@ -44,7 +44,7 @@
             <th field="Vehicle_id" width="30">车号</th>
             <th field="Driver" width="50">驾驶员</th>
             <th field="Produce_Amount" width="50">生产方量</th>
-            <th field="amount" width="50">销售方量</th>
+            <th field="amount" width="50">签收方量</th>
             <th field="Other" width="50">砂浆</th>
             <th field="Number" width="30">车次</th>
             <th field="CheckDateTime" width="80">时间</th>

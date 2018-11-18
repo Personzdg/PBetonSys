@@ -7,7 +7,7 @@ var viewModel = function () {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 3, h: 4 },
+        size: { w: 3, h: 60 },
         url: '/api/Mms/DayReport/GetDayReportList',
         //data: { BegMonthDate: '', EndDatetime: '' },
         queryParams: ko.observable(),

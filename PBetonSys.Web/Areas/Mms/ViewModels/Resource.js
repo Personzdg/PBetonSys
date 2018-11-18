@@ -7,7 +7,7 @@ var viewModel = function () {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 4, h: 50 },
+        size: { w: 3, h: 60 },
         url: '/api/Mms/Resource/GetResourceList',
         //data: { BegMonthDate: '', EndDatetime: '' },
         queryParams: ko.observable(),
@@ -22,7 +22,7 @@ var viewModel = function () {
         }
 
     };
-    this.grid.queryParams(data.form);
+    this.grid.queryParams(ko.toJS(self.form));
     this.searchClick = function () {
         var param = ko.toJS(this.form);
         this.grid.queryParams(param);
@@ -55,7 +55,7 @@ var viewModel = function () {
                 //});
                 //debugger;
                 self.grid.datagrid("appendRow", {
-                    silo_id: '<b>合计：</b>', a_gross: d.a_gross, a_empty: d.a_empty, a_suttle: d.a_suttle, a_money: d.a_money
+                    silo_id: '<b>合计：</b>', a_gross: d.a_gross, a_empty: d.a_empty, a_suttle: d.a_suttle, a_suttleSJ: d.a_suttleSJ, a_money: d.a_money, FS: d.FS, FSMoney: d.FSMoney,
                 });
 
             }

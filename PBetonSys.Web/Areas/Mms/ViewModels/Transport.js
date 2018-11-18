@@ -7,7 +7,7 @@ var viewModel = function () {
     var self = this;
     this.form = ko.mapping.fromJS(data.form);
     this.grid = {
-        size: { w: 4, h: 50 },
+        size: { w: 3, h: 100 },
         url: '/api/Mms/Product/GetTransportList',
         //data: { BegMonthDate: '', EndDatetime: '' },
         queryParams: ko.observable(),
@@ -21,7 +21,7 @@ var viewModel = function () {
             return d;
         }
     };
-    this.grid.queryParams(data.form);
+    this.grid.queryParams(ko.toJS(self.form)); //
     this.searchClick = function () {
         var param = ko.toJS(this.form);
         this.grid.queryParams(param);

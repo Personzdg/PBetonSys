@@ -67,7 +67,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
         public List<Dispatch> GetDispatchList()
         {
-            string strSql = "select e.CheckFlag, b.Telephon,  b.House_id, b.ShowFlag,c.CheckAdder,b.wjj,c.interva,a.*,c.ProjectName,f.Name ClientName   from AttemperTaskListTab() as a  join  Task as b on(a.任务单编号=b.Task_id) join contract as c on(a.合同编号=c.Cont_id) join Confect as e  on (a.配比编号=E.Confect_ID) left join dbo.Client as f on c.Clinet_id=f.Cl_ID order by e.CheckFlag";
+            string strSql = "select e.CheckFlag, b.Telephon,  b.House_id, b.ShowFlag,c.CheckAdder,b.wjj,c.interva,a.*,c.ProjectName,f.Name ClientName   from AttemperTaskListTab() as a  join  Task as b on(a.任务单编号=b.Task_id) join contract as c on(a.合同编号=c.Cont_id) join Confect as e  on (a.配比编号=E.Confect_ID) left join dbo.Client as f on c.Clinet_id=f.Cl_ID and (f.flag=0)  order by e.CheckFlag";
             return db.Sql(strSql).QueryMany<Dispatch>();
         }
 

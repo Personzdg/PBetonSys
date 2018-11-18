@@ -160,12 +160,7 @@ namespace PBetonSys.Web.Areas.Mms.Models
         //////////////////按工程消耗
         public dynamic GetProjectNameReceivedtData(string BegDayDate, string EndDatetime, int Flag ,int pageIndex, int pageSize)
         {
-//            var strSql = String.Format(@"
-//                         select row_number() over (order by 工程名称) as rownumber,方量,工程名称,标号,楼号,单价合计,总胶量,summoney,泵费,运费,
-//                         mtvalue1,Price1,mone1,mtvalue2,Price2,mone2,mtvalue3,Price3,mone3,mtvalue4,Price4,mone4,mtvalue5,Price5,mone5,mtvalue6,Price6,mone6,
-//                         mtvalue7,Price7,mone7,mtvalue8,Price8,mone8,mtvalue9,Price9,mone9
-//                         from Betonsys..ProjectNameReceivedt1('{0}','{1}','{2}')  
-//                         ", BegDayDate, EndDatetime + " 23:59:59", Flag);
+
 
             var strSql = String.Format(@"
                          select row_number() over (order by 工程名称) as rownumber,方量,工程名称,标号,单价合计,总胶量,summoney,泵费,运费,
@@ -175,12 +170,6 @@ namespace PBetonSys.Web.Areas.Mms.Models
                          from Betonsys..ProjectNameReceivedt3('{0}','{1}','{2}')  
                          ", BegDayDate, EndDatetime + " 23:59:59", Flag);
 
-
-
-//            string strSql1 = String.Format(@" select top {0} 方量,工程名称,标号,楼号,单价合计,总胶量,summoney,泵费,运费,
-//                              mtvalue1,Price1,mone1,mtvalue2,Price2,mone2,mtvalue3,Price3,mone3,mtvalue4,Price4,mone4,mtvalue5,Price5,mone5,mtvalue6,Price6,mone6,
-//                              mtvalue7,Price7,mone7,mtvalue8,Price8,mone8,mtvalue9,Price9,mone9
-//                              from ({1}) as temp where temp.rownumber>({2}-1)*{0}", pageSize, strSql, pageIndex);
             string strSql1 = String.Format(@" select top {0} 方量,工程名称,标号,单价合计,总胶量,summoney,泵费,运费,
                                 mtvalue1_1,Price1_1,mone1_1,mtvalue1_2,Price1_2,mone1_2,mtvalue2_1,Price2_1,mone2_1,mtvalue2_2,Price2_2,mone2_2,
                               mtvalue2,Price2,mone2,mtvalue3,Price3,mone3,mtvalue4,Price4,mone4,mtvalue5,Price5,mone5,mtvalue6,Price6,mone6,
@@ -208,5 +197,49 @@ namespace PBetonSys.Web.Areas.Mms.Models
 
             return db.ConnectionStringName("Betonsys", new SqlServerProvider()).Sql(strSql).QuerySingle<Receive>();
         }
+
+
+        /////////////////////工程消耗汇总查询
+        public dynamic GetProjectNameReceivecollData(string BegDayDate, string EndDatetime, int pageIndex, int pageSize)
+        {
+
+
+            var strSql = String.Format(@"
+                         select row_number() over (order by 工程名称) as rownumber,方量,工程名称,summoney,泵费,运费,
+                         mtvalue1_1,Price1_1,mone1_1,mtvalue1_2,Price1_2,mone1_2,mtvalue2_1,Price2_1,mone2_1,mtvalue2_2,Price2_2,mone2_2,
+                         mtvalue2,Price2,mone2,mtvalue3,Price3,mone3,mtvalue4,Price4,mone4,mtvalue5,Price5,mone5,mtvalue6,Price6,mone6,
+                         mtvalue7,Price7,mone7,mtvalue8,Price8,mone8,mtvalue9,Price9,mone9
+                         from Betonsys..ProjectNameReceivecoll('{0}','{1}')  
+                         ", BegDayDate, EndDatetime + " 23:59:59");
+
+            string strSql1 = String.Format(@" select top {0} 方量,工程名称,summoney,泵费,运费,
+                                mtvalue1_1,Price1_1,mone1_1,mtvalue1_2,Price1_2,mone1_2,mtvalue2_1,Price2_1,mone2_1,mtvalue2_2,Price2_2,mone2_2,
+                              mtvalue2,Price2,mone2,mtvalue3,Price3,mone3,mtvalue4,Price4,mone4,mtvalue5,Price5,mone5,mtvalue6,Price6,mone6,
+                              mtvalue7,Price7,mone7,mtvalue8,Price8,mone8,mtvalue9,Price9,mone9
+                              from ({1}) as temp where temp.rownumber>({2}-1)*{0}", pageSize, strSql, pageIndex);
+
+
+            string strSql2 = String.Format(@" select count(1) from ({0}) as temp", strSql);
+            dynamic result = new ExpandoObject();
+            result.rows = db.ConnectionStringName("Betonsys", new SqlServerProvider()).Sql(strSql1).QueryMany<Receive>();
+            result.total = db.ConnectionStringName("Betonsys", new SqlServerProvider()).Sql(strSql2).QuerySingle<int>();
+            return result;
+        }
+
+        //////////////////工程消耗汇总查询合计
+        public dynamic GetTotalProjectNameReceivecollData(string BegDayDate, string EndDatetime)
+        {
+            var strSql = String.Format(@"
+                         select sum(isnull(方量,0)) as 方量 ,sum(isnull(summoney,0)) as summoney  ,sum(isnull(泵费,0)) as 泵费 ,sum(isnull(运费,0)) as 运费 ,
+                          sum(isnull(mtvalue1_1,0)) as mtvalue1_1 ,sum(isnull(mtvalue1_2,0)) as mtvalue1_2 ,sum(isnull(mtvalue2_1,0)) as mtvalue2_1,sum(isnull(mtvalue2_2,0)) as mtvalue2_2,
+                          sum(isnull(mtvalue2,0)) as mtvalue2 ,sum(isnull(mtvalue3,0)) as mtvalue3,sum(isnull(mtvalue4,0)) as mtvalue4,sum(isnull(mtvalue5,0)) as mtvalue5,sum(isnull(mtvalue6,0)) as mtvalue6,sum(isnull(mtvalue7,0)) as mtvalue7,
+                          sum(isnull(mtvalue8,0)) as mtvalue8,sum(isnull(mtvalue9,0)) as mtvalue9
+                         from Betonsys..ProjectNameReceivecoll('{0}','{1}')  
+                         ", BegDayDate, EndDatetime + " 23:59:59");
+
+            return db.ConnectionStringName("Betonsys", new SqlServerProvider()).Sql(strSql).QuerySingle<Receive>();
+        }
+
+
     }   
 }

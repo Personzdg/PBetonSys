@@ -20,7 +20,7 @@ var viewModel = function (data) {
         }
 
     };
-    this.grid.queryParams(data.form);
+    this.grid.queryParams(ko.toJS(self.form));
     this.gridEdit = new com.editGridViewModel(this.grid);
 
     this.searchClick = function () {
@@ -82,6 +82,7 @@ var viewModel = function (data) {
         });
     }
     this.save = function (type, vm, win) {
+       
         var post = new Object();
         //post.list = new Object();
         //post.list[type] = [];
@@ -98,18 +99,33 @@ var viewModel = function (data) {
             data.Other = 0;
 
         post.form = data;
+        debugger;
         //post.list[type].push(data);
         com.ajax({
-            type: 'POST',
-            url: '/api/Mms/Gathering/edit',
-            data: JSON.stringify(post),
+            type: 'GET',
+            data: { sysCont_id: post.form.SysCont_id },
+            url: '/api/Mms/Gathering/GetCheckStatus',
             success: function (d) {
-                data = d;
-                com.message('success', '保存成功！');
-                win.dialog('close');
-                self.searchClick();
+                if (d) {
+                    com.message('warning', '本月已做崔缴通知，不能直接新增！');
+                } else
+                {
+                    com.ajax({
+                        type: 'POST',
+                        url: '/api/Mms/Gathering/edit',
+                        data: JSON.stringify(post),
+                        success: function (d) {
+                            data = d;
+                            com.message('success', '保存成功！');
+                            win.dialog('close');
+                            self.searchClick();
+                        }
+                    });
+
+                }
             }
         });
+       
     };
     /////////////////////
     this.IniTotal = function () {
@@ -210,10 +226,16 @@ var viewModel = function (data) {
                 };
                
                 this.confirmClick = function () {
+                    debugger;
                     fnConfirm(that, win);
                 };
 
                 this.cancelClick = function () {
+                    win.dialog('close');
+                };
+
+
+                this.detailcancelClick = function () {
                     win.dialog('close');
                 };
 
